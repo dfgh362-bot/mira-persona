@@ -274,3 +274,6 @@
 {"ts": "2026-10-21T20:04:21Z", "kind": "site_built", "cards": 9, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
 {"ts": "2026-10-21T20:36:51Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-21T20:36:51Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-10-21T20:36:54Z", "kind": "blocker_added", "line": "T-0012 needs human: onboard telegram: bot via BotFather, token + chat id"}
+{"ts": "2026-10-21T20:36:54Z", "kind": "health_check", "funnel": "draining", "unposted": 13, "oldest_h": 5.9}
+{"ts": "2026-10-21T20:36:54Z", "kind": "health_reported", "status": "healthy", "p": 17, "n": 2, "unposted": 13}

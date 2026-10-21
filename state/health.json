@@ -89,6 +89,11 @@
       "c": 24,
       "cls": "productive",
       "why": "T-0011 needs human"
+    },
+    {
+      "c": 25,
+      "cls": "noop",
+      "why": "T-0012 needs human"
     }
   ]
 }
