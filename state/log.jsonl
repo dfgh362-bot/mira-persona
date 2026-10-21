@@ -110,3 +110,10 @@
 {"ts": "2026-10-21T16:04:25Z", "kind": "backlog_exec", "id": "T-0002", "rc": 0, "tail": "built content/video/mira_clip_20261021_02.mp4 from 3 stills"}
 {"ts": "2026-10-21T16:06:23Z", "kind": "push_failed", "error": "fatal: No configured push destination.\nEither specify the URL from the command-line or configure a remote repository using\n\n    git remote add <name> <url>\n\nand then push using the remote name\n\n    git push <name>\n\n"}
 {"ts": "2026-10-21T16:08:15Z", "kind": "error", "where": "main", "error": "KeyError('margin')"}
+{"ts": "2026-10-21T16:08:36Z", "kind": "post_skipped", "platform": "bluesky", "reason": "missing credentials"}
+{"ts": "2026-10-21T16:08:36Z", "kind": "post_skipped", "platform": "telegram", "reason": "missing credentials"}
+{"ts": "2026-10-21T16:08:36Z", "kind": "post_skipped", "platform": "reddit", "reason": "missing credentials"}
+{"ts": "2026-10-21T16:08:36Z", "kind": "post_skipped", "platform": "mastodon", "reason": "missing credentials"}
+{"ts": "2026-10-21T16:08:36Z", "kind": "post_skipped", "platform": "x", "reason": "missing credentials"}
+{"ts": "2026-10-21T16:08:37Z", "kind": "post_skipped", "platform": "pinterest", "reason": "missing credentials"}
+{"ts": "2026-10-21T16:08:37Z", "kind": "post_skipped", "platform": "fanvue", "reason": "missing credentials"}

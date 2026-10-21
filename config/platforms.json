@@ -8,7 +8,11 @@
     "subscription_monthly": 9.99,
     "welcome_bundle": 12.99,
     "custom_image": 35,
-    "tips": [5, 10, 25],
+    "tips": [
+      5,
+      10,
+      25
+    ],
     "dm_autoreply": "first 3 msgs in-voice, then handoff",
     "voice_notes_rotation": "weekly",
     "ai_creator_flag": true
@@ -19,14 +23,50 @@
     "dupe_check": "check content/posted.json before every post"
   },
   "tiers": {
-    "bluesky":   { "tier": 1, "enabled": true,  "status": "pending" },
-    "telegram":  { "tier": 1, "enabled": true,  "status": "pending" },
-    "mastodon":  { "tier": 1, "enabled": true,  "status": "pending" },
-    "reddit":    { "tier": 1, "enabled": true,  "status": "pending" },
-    "x":         { "tier": 1, "enabled": true,  "status": "pending" },
-    "pinterest": { "tier": 1, "enabled": true,  "status": "pending" },
-    "tiktok":    { "tier": 2, "enabled": false, "status": "manual" },
-    "instagram": { "tier": 2, "enabled": false, "status": "manual" },
-    "fanvue":    { "tier": 3, "enabled": false, "status": "manual" }
+    "bluesky": {
+      "tier": 1,
+      "enabled": true,
+      "status": "manual"
+    },
+    "telegram": {
+      "tier": 1,
+      "enabled": true,
+      "status": "manual"
+    },
+    "mastodon": {
+      "tier": 1,
+      "enabled": true,
+      "status": "manual"
+    },
+    "reddit": {
+      "tier": 1,
+      "enabled": true,
+      "status": "manual"
+    },
+    "x": {
+      "tier": 1,
+      "enabled": true,
+      "status": "manual"
+    },
+    "pinterest": {
+      "tier": 1,
+      "enabled": true,
+      "status": "manual"
+    },
+    "tiktok": {
+      "tier": 2,
+      "enabled": false,
+      "status": "manual"
+    },
+    "instagram": {
+      "tier": 2,
+      "enabled": false,
+      "status": "manual"
+    },
+    "fanvue": {
+      "tier": 3,
+      "enabled": false,
+      "status": "manual"
+    }
   }
 }
