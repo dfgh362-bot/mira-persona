@@ -216,3 +216,6 @@
 {"ts": "2026-10-21T18:39:18Z", "kind": "site_built", "cards": 9, "out": "/home/z/my-project/mira/site/index.html", "tier": "R-03 3-tier"}
 {"ts": "2026-10-21T18:39:18Z", "kind": "backlog_exec", "id": "T-0007", "rc": 0, "tail": "site/index.html rebuilt with 9 card(s); synced content/free -> site/content/free"}
 {"ts": "2026-10-21T18:39:18Z", "kind": "health_check", "escalation": "window not full (14/25)"}
+{"ts": "2026-10-21T18:43:31Z", "kind": "archived", "moved": 0, "older_than_hours": 48.0}
+{"ts": "2026-10-21T18:43:31Z", "kind": "backlog_exec", "id": "T-0008", "rc": 0, "tail": "archived 0 item(s); heartbeat written"}
+{"ts": "2026-10-21T18:43:31Z", "kind": "health_check", "escalation": "window not full (15/25)"}

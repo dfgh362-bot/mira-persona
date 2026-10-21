@@ -1,6 +1,5 @@
 # BACKLOG — infinite queue (never empty)
 
-- [ ] T-0008 | archive old items | hygiene | cmd: python scripts/state.py archive --older-than 48h
 - [ ] T-0010 | onboard fanvue: AI creator flag + pricing 9.99/12.99/35 + tips 5/10/25 + DM auto-reply | onboarding (human)
 - [ ] T-0011 | onboard bluesky: account + app password, set as Actions Secrets | onboarding (human)
 - [ ] T-0012 | onboard telegram: bot via BotFather, token + chat id | onboarding (human)
@@ -11,7 +10,9 @@
 - [ ] T-0029 | onboard bluesky: create account, bio + pinned, creds to Actions Secrets | onboarding (human)
 - [ ] T-0030 | onboard telegram: create account, bio + pinned, creds to Actions Secrets | onboarding (human)
 - [ ] T-0031 | onboard reddit: create account, bio + pinned, creds to Actions Secrets | onboarding (human)
-- [x] T-0007 | rebuild site | ok: site/index.html rebuilt with 9 card(s); synced content/free  | cmd: python scripts/build_site.py
+- [ ] T-0032 | onboard mastodon: create account, bio + pinned, creds to Actions Secrets | onboarding (human)
+- [x] T-0008 | archive old items | ok: archived 0 item(s); heartbeat written | cmd: python scripts/state.py archive --older-than 48h
+- [x] T-0007 | rebuild site | ok: site/index.html rebuilt with 9 card(s); synced content/free | cmd: python scripts/build_site.py
 - [x] T-0006 | sweep mail.tm inboxes with the imported account | ok: demetrisvariable@maxxspace.com: 0 message(s) | cmd: python scripts/mailtm.py verify --all
 - [x] T-0028 | import provided mail.tm account (demetrisvariable@maxxspace.com) | ok: imported demetrisvariable@maxxspace.com on https://api.mail. | cmd: python scripts/mailtm.py import demetrisvariable@maxxspace.com
 - [x] T-0027 | freeze specs: docs/SPEC-v2.md, v3.md, v3.1.md (D44) | ok: -- 5/5 passed | cmd: python scripts/selftest.py specs

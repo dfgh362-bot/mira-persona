@@ -1,7 +1,7 @@
 ## CURRENT
-T-0007 rebuild site — site/index.html rebuilt with 9 card(s); synced content/free -> site/content/free
+T-0008 archive old items — archived 0 item(s); heartbeat written
 ## NEXT ACTION
-python scripts/state.py archive --older-than 48h
+python scripts/backlog.py --one  # T-0010 (needs human)
 ## BLOCKERS
 - bluesky onboarding needs human: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-21T17:46:00Z)
 - telegram onboarding needs human: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-21T17:46:00Z)
@@ -10,6 +10,6 @@ python scripts/state.py archive --older-than 48h
 - x onboarding needs human: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-21T17:46:00Z)
 - pinterest onboarding needs human: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-21T17:46:00Z)
 ## LAST COMMIT
-f6bb10a
+d6c25c9
 ## CYCLE
-20
+21
