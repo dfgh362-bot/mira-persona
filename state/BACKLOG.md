@@ -1,6 +1,5 @@
 # BACKLOG — infinite queue (never empty)
 
-- [ ] T-0005 | generate 2 paid images | daily quota (0/4 today) | cmd: python scripts/gen_image.py --tier paid --count 2
 - [ ] T-0006 | create first mail.tm account | onboarding | cmd: python scripts/mailtm.py create
 - [ ] T-0007 | rebuild site | pipeline | cmd: python scripts/build_site.py
 - [ ] T-0008 | sweep mail.tm inboxes | verification | cmd: python scripts/mailtm.py verify --all
@@ -12,6 +11,7 @@
 - [ ] T-0014 | onboard mastodon: account + app token | onboarding (human)
 - [ ] T-0015 | onboard x: developer account + bearer token | onboarding (human)
 - [ ] T-0016 | onboard pinterest: account + board + token | onboarding (human)
+- [x] T-0005 | generate 2 paid images | ok: quota met (4/4 paid images today), skipping | cmd: python scripts/gen_image.py --tier paid --count 2
 - [x] T-0004 | generate 3 free images | ok: quota met (9/8 free images today), skipping | cmd: python scripts/gen_image.py --tier free --count 3
 - [x] T-0003 | caption queued items | ok: captioned 0 item(s) | cmd: python scripts/gen_caption.py
 - [x] T-0001 | finish v2: remote bring-up (repo, push, Pages, topics, dispatch all) | ok: bringup complete: https://github.com/dfgh362-bot/mira-person | cmd: python scripts/bringup_remote.py

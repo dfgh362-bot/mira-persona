@@ -160,3 +160,7 @@
 {"ts": "2026-10-21T16:45:50Z", "kind": "voice_batch", "generated": 0, "total": 20}
 {"ts": "2026-10-21T16:45:50Z", "kind": "site_built", "cards": 9, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html"}
 {"ts": "2026-10-21T17:02:44Z", "kind": "inbox", "note": "no mailtm accounts stored"}
+{"ts": "2026-10-21T17:14:34Z", "kind": "backlog_exec", "id": "T-0005", "rc": 0, "tail": "quota met (4/4 paid images today), skipping"}
+{"ts": "2026-10-21T17:14:34Z", "kind": "commit_failed", "error": "global user.email \"you@example.com\"\n  git config --global user.name \"Your Name\"\n\nto set your account's default identity.\nOmit --global to set the identity only in this repository.\n\nfatal: empty ident name (for <runner@runnervm8k3b6.2fvbbrm5ht2erfgp2g5ajppu1b.phxx.internal.cloudapp.net>) not allowed\n"}
+{"ts": "2026-10-21T17:14:48Z", "kind": "brain", "source": "pollinations", "action": "python scripts/mailtm.py create"}
+{"ts": "2026-10-21T17:14:48Z", "kind": "site_built", "cards": 9, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html"}

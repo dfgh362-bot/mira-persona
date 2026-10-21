@@ -1,1 +1,1 @@
-python scripts/gen_image.py --tier paid --count 2
+python scripts/mailtm.py create
