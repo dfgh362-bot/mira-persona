@@ -1,4 +1,9 @@
 {
-  "counts": { "free": 0, "paid": 0, "video": 0, "voice": 0 },
-  "updated": null
+  "counts": {
+    "free": 4,
+    "paid": 0,
+    "video": 0,
+    "voice": 0
+  },
+  "updated": "2026-10-21T14:51:12Z"
 }
