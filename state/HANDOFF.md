@@ -1,10 +1,10 @@
 ## CURRENT
-T-0002 build 1 video clip — built content/video/mira_clip_20261021_02.mp4 from 3 stills
+T-0001 finish v2: remote bring-up (repo, push, Pages, topics, dispatch all) — bringup complete: https://github.com/dfgh362-bot/mira-persona
 ## NEXT ACTION
 python scripts/gen_caption.py
 ## BLOCKERS
-- GH_TOKEN env missing — set it and re-run scripts/bringup_remote.py (ts 2026-10-21T16:00:32Z)
+none
 ## LAST COMMIT
-d5b83cf
+2be1be3
 ## CYCLE
-2
+3
