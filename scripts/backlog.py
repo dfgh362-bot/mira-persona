@@ -597,7 +597,7 @@ def one():
         print("| - | lock | fresh — another runner is active, idling | - | - |")
         return
     if not acquire_lock():   # v3.1 R-06: push is the mutex
-        print("| - | lock | lost the push mutex — another runner won | - | - |")
+        print("| - | lock | not acquired — internal commit failed or another runner won | - | - |")
         return
     productive = False
     # v4: issues command channel executes at top priority (start comment,

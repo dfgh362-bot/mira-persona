@@ -48,7 +48,12 @@ def run():
     except Exception as e:
         util.log_event("keepalive_error", where="list_workflows", error=repr(e)[:200])
         print("keepalive: could not list workflows (%r)" % e)
-        return
+        wfs = {}
+    if not isinstance(wfs, dict) or not wfs.get("workflows"):
+        # debug: the response was 200-shaped but empty — capture why
+        head = repr(wfs)[:300]
+        util.log_event("keepalive_debug", workflows_list_empty=head)
+        print("keepalive: workflows list came back empty — raw head: %s" % head)
     report = {}
     for wf in wfs.get("workflows", []):
         name = wf.get("name") or wf.get("path", "?").rpartition("/")[2]
@@ -77,8 +82,23 @@ def run():
                         "age_h": round(age, 1) if age is not None else None}
     stalled = sorted(n for n, r in report.items()
                     if r["age_h"] is None or r["age_h"] > STALL_HOURS)
+    # v3.2+: cycle-stall detection — the loop can run GREEN while one() never
+    # completes a cycle (the git-identity failure class: workflows run,
+    # heartbeat bumps, zero items execute). the workflow-runs check above
+    # cannot see that; the HEARTBEAT cycle counter can.
+    hb = util.load_json(util.STATE / "HEARTBEAT", {})
+    cycle = hb.get("cycle")
+    prev = util.load_json(util.STATE / "keepalive.json", {})
+    cycle_stalled_h = None
+    if cycle is not None:
+        if cycle == prev.get("cycle") and prev.get("cycle_ts"):
+            cycle_stalled_h = _age_hours(prev["cycle_ts"])
+        else:
+            prev["cycle"], prev["cycle_ts"] = cycle, util.ts()
     util.save_json(util.STATE / "keepalive.json", {"checked": util.ts(), "stalled": stalled,
-                                                   "workflows": report})
+                                                   "workflows": report,
+                                                   "cycle": prev.get("cycle"),
+                                                   "cycle_ts": prev.get("cycle_ts")})
     if stalled:
         issues.open_issue(
             "blocked: workflow(s) with 0 runs in %dh: %s" % (STALL_HOURS, ", ".join(stalled)),
@@ -91,6 +111,16 @@ def run():
                                      for n in stalled)),
             labels=["blocked"])
         util.log_event("keepalive_stalled", workflows=",".join(stalled))
+    if cycle_stalled_h is not None and cycle_stalled_h > 6:
+        issues.open_issue(
+            "blocked: loop cycles stalled at %s for %.1fh (workflows still run)" % (cycle, cycle_stalled_h),
+            "the loop WORKFLOW runs green but one() has not completed a cycle in "
+            "%.1fh — heartbeats bump while zero items execute. check state/log.jsonl "
+            "for lock/commit failures (the git-identity class) and the BACKLOG for "
+            "movement. dependency chain: cron (external) -> loop run -> deadman "
+            "-> issue." % cycle_stalled_h,
+            labels=["blocked"])
+        util.log_event("cycle_stalled", cycle=cycle, hours=round(cycle_stalled_h, 1))
     else:
         util.log_event("keepalive_ok", workflows=len(report))
     # refresh HEALTH.md so the chain + keepalive state land in-repo
@@ -99,8 +129,8 @@ def run():
         health.report()
     except Exception as e:
         util.log_event("keepalive_error", where="health_report", error=repr(e)[:150])
-    print("keepalive: %d workflow(s) checked, %d stalled (%s)"
-          % (len(report), len(stalled), ", ".join(stalled) or "none"))
+    print("keepalive: %d workflow(s) checked, %d stalled (%s), cycle %s"
+          % (len(report), len(stalled), ", ".join(stalled) or "none", prev.get("cycle")))
 
 
 @util.cli_guard

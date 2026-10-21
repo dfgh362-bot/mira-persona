@@ -19,6 +19,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # v3.2 fix: git identity BEFORE any script that commits internally
+      # (backlog one() lock/cycle commits) — without it every runner cycle
+      # "lost the push mutex" and executed nothing while staying green.
+      - name: git identity
+        run: |
+          git config user.name "mira-bot"
+          git config user.email "mira-bot@users.noreply.github.com"
+
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"

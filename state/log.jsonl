@@ -247,3 +247,7 @@
 {"ts": "2026-10-21T19:40:44Z", "kind": "commit_failed", "error": "global user.email \"you@example.com\"\n  git config --global user.name \"Your Name\"\n\nto set your account's default identity.\nOmit --global to set the identity only in this repository.\n\nfatal: empty ident name (for <runner@runnervmxehtw.wvrovd0155dehj0p2zzdp0rdca.phxx.internal.cloudapp.net>) not allowed\n"}
 {"ts": "2026-10-21T19:41:03Z", "kind": "brain", "source": "pollinations", "action": "git config user.email \"you@example.com\" && git config user.name \"Your Name\""}
 {"ts": "2026-10-21T19:41:03Z", "kind": "site_built", "cards": 9, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
+{"ts": "2026-10-21T19:49:34Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-10-21T19:49:34Z", "kind": "escalation_refused", "reason": "unposted 25 > cap 20 (sec.4)"}
+{"ts": "2026-10-21T19:49:34Z", "kind": "escalated_posting", "items": 1, "platforms": "telegram"}
+{"ts": "2026-10-21T19:49:34Z", "kind": "health_reported", "status": "healthy", "p": 15, "n": 1, "unposted": 13}
