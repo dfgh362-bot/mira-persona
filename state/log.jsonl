@@ -94,3 +94,10 @@
 {"ts": "2026-10-21T15:22:58Z", "kind": "voice_failed", "file": "voice_20.mp3", "error": "RuntimeError('edge-tts failed: Traceback (most recent call last):\\n  File \"/home/z/.venv/bin/edge-tts\", line 8, in <module>\\n    sys.exit(main())\\n             ^^^^^^\\n  File \"/home/z/.venv/lib/python3.12/site-packages/edge_tts/util.py')"}
 {"ts": "2026-10-21T15:22:58Z", "kind": "voice_batch", "generated": 0, "total": 20}
 {"ts": "2026-10-21T15:24:19Z", "kind": "voice_batch", "generated": 20, "total": 20}
+{"ts": "2026-10-21T15:26:14Z", "kind": "post_skipped", "platform": "bluesky", "reason": "missing credentials"}
+{"ts": "2026-10-21T15:26:14Z", "kind": "post_skipped", "platform": "telegram", "reason": "missing credentials"}
+{"ts": "2026-10-21T15:26:14Z", "kind": "post_skipped", "platform": "reddit", "reason": "missing credentials"}
+{"ts": "2026-10-21T15:26:14Z", "kind": "post_skipped", "platform": "mastodon", "reason": "missing credentials"}
+{"ts": "2026-10-21T15:26:14Z", "kind": "post_skipped", "platform": "x", "reason": "missing credentials"}
+{"ts": "2026-10-21T15:26:14Z", "kind": "post_skipped", "platform": "pinterest", "reason": "missing credentials"}
+{"ts": "2026-10-21T15:26:14Z", "kind": "post_skipped", "platform": "fanvue", "reason": "missing credentials"}
