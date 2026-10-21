@@ -219,3 +219,5 @@
 {"ts": "2026-10-21T18:43:31Z", "kind": "archived", "moved": 0, "older_than_hours": 48.0}
 {"ts": "2026-10-21T18:43:31Z", "kind": "backlog_exec", "id": "T-0008", "rc": 0, "tail": "archived 0 item(s); heartbeat written"}
 {"ts": "2026-10-21T18:43:31Z", "kind": "health_check", "escalation": "window not full (15/25)"}
+{"ts": "2026-10-21T18:47:33Z", "kind": "blocker_added", "line": "T-0010 needs human: onboard fanvue: AI creator flag + pricing 9.99/12.99/35 + tips 5/10/25 + DM auto-reply"}
+{"ts": "2026-10-21T18:47:33Z", "kind": "health_check", "escalation": "window not full (16/25)"}

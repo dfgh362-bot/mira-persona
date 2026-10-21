@@ -74,6 +74,11 @@
       "c": 21,
       "cls": "productive",
       "why": "T-0008 archived 0 item(s); heartbeat written"
+    },
+    {
+      "c": 22,
+      "cls": "noop",
+      "why": "T-0010 needs human"
     }
   ]
 }
