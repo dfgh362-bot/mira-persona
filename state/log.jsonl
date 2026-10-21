@@ -251,17 +251,7 @@
 {"ts": "2026-10-21T19:49:34Z", "kind": "escalation_refused", "reason": "unposted 25 > cap 20 (sec.4)"}
 {"ts": "2026-10-21T19:49:34Z", "kind": "escalated_posting", "items": 1, "platforms": "telegram"}
 {"ts": "2026-10-21T19:49:34Z", "kind": "health_reported", "status": "healthy", "p": 15, "n": 1, "unposted": 13}
-{"ts": "2026-10-21T19:49:51Z", "kind": "lint_ok", "files": 5}
-{"ts": "2026-10-21T19:49:51Z", "kind": "lint_ok", "files": 5}
-{"ts": "2026-10-21T19:49:53Z", "kind": "escalation_refused", "reason": "unposted 25 > cap 20 (sec.4)"}
-{"ts": "2026-10-21T19:49:53Z", "kind": "escalated_posting", "items": 1, "platforms": "telegram"}
-{"ts": "2026-10-21T19:49:53Z", "kind": "health_reported", "status": "healthy", "p": 15, "n": 1, "unposted": 13}
-{"ts": "2026-10-21T19:49:53Z", "kind": "backlog_exec", "id": "T-0034", "rc": 0, "tail": "-- 20/20 passed"}
-{"ts": "2026-10-21T19:49:53Z", "kind": "health_check", "funnel": "draining", "unposted": 13, "oldest_h": 5.1}
-{"ts": "2026-10-21T19:52:06Z", "kind": "brain", "source": "pollinations", "action": "python scripts/backlog.py --one"}
-{"ts": "2026-10-21T19:52:06Z", "kind": "site_built", "cards": 9, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
-{"ts": "2026-10-21T19:52:44Z", "kind": "lint_ok", "files": 5}
-{"ts": "2026-10-21T19:52:44Z", "kind": "keepalive_debug", "workflows_list_empty": "{}"}
-{"ts": "2026-10-21T19:52:44Z", "kind": "keepalive_ok", "workflows": 0}
-{"ts": "2026-10-21T19:52:44Z", "kind": "health_reported", "status": "healthy", "p": 16, "n": 1, "unposted": 13}
-{"ts": "2026-10-21T19:52:44Z", "kind": "archived", "moved": 0, "older_than_hours": 48.0}
+{"ts": "2026-10-21T19:52:33Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-10-21T19:52:33Z", "kind": "escalation_refused", "reason": "unposted 25 > cap 20 (sec.4)"}
+{"ts": "2026-10-21T19:52:33Z", "kind": "escalated_posting", "items": 1, "platforms": "telegram"}
+{"ts": "2026-10-21T19:52:33Z", "kind": "health_reported", "status": "healthy", "p": 15, "n": 1, "unposted": 13}

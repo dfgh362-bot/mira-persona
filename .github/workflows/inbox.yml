@@ -33,6 +33,8 @@ jobs:
 
       # v3.2 sec.2: silent-death guard — failure opens a "blocked" issue and halts the cycle
       - name: "yaml lint (silent-death guard, v3.2)"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python scripts/lint_workflows.py
 
       - name: sweep mail.tm inboxes + complete verification links

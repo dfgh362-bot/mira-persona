@@ -37,6 +37,8 @@ jobs:
 
       # v3.2 sec.2: silent-death guard — failure opens a "blocked" issue and halts the cycle
       - name: "yaml lint (silent-death guard, v3.2)"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python scripts/lint_workflows.py
 
       - name: images (4 free + 2 paid per run = 8/4 per day)

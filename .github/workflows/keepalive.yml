@@ -35,6 +35,8 @@ jobs:
       # v3.2 sec.2: the lint runs here too (opens the blocked issue), but
       # the watchdog layer must survive dead layers — it does NOT halt.
       - name: "yaml lint (watchdog exception, v3.2)"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python scripts/lint_workflows.py || echo "lint blocked (issue opened) — watchdog continues"
 
       # v3.2 sec.3: the real watchdog is cron (external). verify every
@@ -42,6 +44,8 @@ jobs:
       # open a "blocked" issue if any workflow has 0 runs in 24h, write
       # the dependency chain into HEALTH.md.
       - name: watchdog (v3.2 sec.3)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python scripts/keepalive.py
 
       - name: archive old items
