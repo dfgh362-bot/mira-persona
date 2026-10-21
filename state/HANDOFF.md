@@ -1,7 +1,7 @@
 ## CURRENT
-T-0023 verify R-07: idempotent ffmpeg dep step — -- 1/1 passed
+T-0024 verify R-08: self-dispatch via GITHUB_TOKEN+actions:write, PAT optional — -- 3/3 passed
 ## NEXT ACTION
-python scripts/selftest.py r08
+python scripts/selftest.py r09
 ## BLOCKERS
 - bluesky onboarding needs human: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-21T17:46:00Z)
 - telegram onboarding needs human: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-21T17:46:00Z)
@@ -10,6 +10,6 @@ python scripts/selftest.py r08
 - x onboarding needs human: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-21T17:46:00Z)
 - pinterest onboarding needs human: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-21T17:46:00Z)
 ## LAST COMMIT
-741b4be
+6ac3130
 ## CYCLE
-13
+14
