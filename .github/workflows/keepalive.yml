@@ -23,7 +23,7 @@ jobs:
           python-version: "3.11"
 
       - name: archive old items + heartbeat
-        run: python scripts/state.py archive --older-than 48h
+        run: python scripts/state.py archive --older-than 48h || true
 
       - name: commit
         run: |

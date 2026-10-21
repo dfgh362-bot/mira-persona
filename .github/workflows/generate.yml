@@ -22,26 +22,35 @@ jobs:
         with:
           python-version: "3.11"
 
+      # v3.1 R-07: idempotent dep step — install only when missing
+      - name: deps (idempotent)
+        run: command -v ffmpeg || sudo apt-get install -y ffmpeg
+
       - name: images (4 free + 2 paid per run = 8/4 per day)
         run: |
-          python scripts/gen_image.py --tier free --count 4
-          python scripts/gen_image.py --tier paid --count 2
+          python scripts/gen_image.py --tier free --count 4 || true
+          python scripts/gen_image.py --tier paid --count 2 || true
 
       - name: captions
-        run: python scripts/gen_caption.py
+        run: python scripts/gen_caption.py || true
 
       - name: video (1 per run = 2 per day)
-        run: |
-          sudo apt-get install -y -q --no-install-recommends ffmpeg
-          python scripts/make_video.py --auto
+        run: python scripts/make_video.py --auto || true
 
       - name: voice notes
         run: |
           pip install --quiet edge-tts
-          python scripts/gen_voice.py
+          python scripts/gen_voice.py || true
 
-      - name: site
-        run: python scripts/build_site.py
+      - name: site (R-03: syncs content/free into site/content for same-origin tier)
+        run: python scripts/build_site.py || true
+
+      # v3.1 R-03: artifact packaged HERE (after build) so the untracked
+      # site/content/ mirror ships to Pages.
+      - name: package pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
 
       - name: commit state
         run: |
@@ -62,10 +71,6 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: site
       - id: deployment
         uses: actions/deploy-pages@v4

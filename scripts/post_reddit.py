@@ -2,7 +2,8 @@
 
 Creds: env REDDIT_CLIENT_ID/SECRET/USERNAME/PASSWORD/SUBREDDIT or config/accounts.json.
 First post is the pinned disclosure post (section 9). Dupe check via posted.json.
-Image posts are link submissions to the jsDelivr CDN URL (repo must be pushed).
+Image posts are link submissions; media URL follows v3.1 R-03
+(jsDelivr -> raw.gh, retried at submit time).
 
 CLI: python scripts/post_reddit.py
 """
@@ -79,9 +80,19 @@ def main(argv):
             print("reddit: dupe blocked")
             return
 
-        submit({"sr": subreddit, "kind": "link",
-                "url": item.get("cdn") or util.jsdelivr(item["file"]),
-                "title": item["caption"], "api_type": "json", "resubmit": "true"})
+        submitted = False
+        for url in util.remote_media_candidates(item):
+            try:
+                submit({"sr": subreddit, "kind": "link",
+                        "url": url,
+                        "title": item["caption"], "api_type": "json", "resubmit": "true"})
+                submitted = True
+                break
+            except Exception as e:
+                util.log_event("media_fallback", platform=PLAT,
+                               failed_url=url[:120], error=repr(e)[:120])
+        if not submitted:
+            raise RuntimeError("all media URLs rejected")
         util.record_post(item, PLAT)
         util.mark_posted(item)
         print("reddit: posted %s to r/%s" % (item["id"], subreddit))

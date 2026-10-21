@@ -1,10 +1,19 @@
-"""MIRA shared utilities. stdlib only. never crash the workflow: catch, log, exit 0."""
+"""MIRA shared utilities. stdlib only.
+
+v3.1 sec.0: cli_guard no longer swallows exceptions — it logs the traceback
+tail, writes state/last_error.json, prints to stderr and exits 1. The parent
+(backlog run_cmd) copies the tail into the ITEM NOTE. A swallowed exception
+is a lie.
+"""
 import json
 import os
 import random
+import re
 import string
+import subprocess
 import sys
 import time
+import traceback
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -207,6 +216,10 @@ def append_blocker(line):
         txt = p.read_text(encoding="utf-8") if p.exists() else ""
     except Exception:
         txt = ""
+    key = line[:48]
+    for existing in txt.splitlines():          # v3.1 R-09: dedupe (no spam)
+        if key in existing:
+            return
     if "(none)" in txt:
         txt = txt.replace("(none)", "").rstrip() + "\n"
     with open(p, "a", encoding="utf-8") as f:
@@ -227,6 +240,67 @@ def raw_github(rel_path):
     while rel.startswith("/"):
         rel = rel[1:]
     return "https://raw.githubusercontent.com/%s/%s/main/%s" % (gh_user(), DEFAULTS["repo"], rel)
+
+
+def same_origin(rel_path):
+    """v3.1 R-03 site middle tier: same-origin /content/... (Pages artifact
+    carries site/content/ via build_site sync)."""
+    rel = str(rel_path).replace("\\", "/")
+    while rel.startswith("/"):
+        rel = rel[1:]
+    return "/" + rel
+
+
+def site_media_tiers(rel_path):
+    """v3.1 R-03: site delivery order jsDelivr -> /content/... -> raw.gh"""
+    return [jsdelivr(rel_path), same_origin(rel_path), raw_github(rel_path)]
+
+
+def remote_media_candidates(item):
+    """v3.1 R-03: remote (telegram/pinterest/reddit) delivery order
+    jsDelivr -> raw.gh, tried at send time."""
+    item = item or {}
+    primary = item.get("cdn") or jsdelivr(item.get("file", ""))
+    out = [primary]
+    raw = raw_github(item.get("file", ""))
+    if raw not in out:
+        out.append(raw)
+    return out
+
+
+def gh_token():
+    """v3.1: token for API calls. env GH_TOKEN/GITHUB_TOKEN (Actions),
+    else parsed from the origin remote URL (local runs). PAT optional per R-08."""
+    t = os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN")
+    if t:
+        return t
+    try:
+        url = subprocess.run(["git", "remote", "get-url", "origin"], cwd=ROOT,
+                             capture_output=True, text=True, timeout=15).stdout.strip()
+        m = re.search(r"://[^:/@]+:([^@]+)@", url)
+        if m:
+            return m.group(1)
+    except Exception:
+        pass
+    return None
+
+
+def effective_quota(key, default=None):
+    """v3.1 R-05: schedule.json quota x escalation multiplier while active
+    (state/quota_boost.json {multiplier, until})."""
+    sched = load_config("schedule.json").get("quotas", {})
+    if default is None:
+        default = DEFAULTS.get(key, 8)
+    base = sched.get(key, default)
+    boost = load_json(STATE / "quota_boost.json", {})
+    try:
+        until = datetime.strptime(boost.get("until") or "", "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
+        mult = int(boost.get("multiplier", 1))
+        if mult > 1 and until > utcnow():
+            return int(base) * mult
+    except Exception:
+        pass
+    return int(base)
 
 
 def rand_localpart():
@@ -305,6 +379,17 @@ def cli_guard(fn):
         except SystemExit:
             raise
         except Exception as e:
-            log_event("error", where=getattr(fn, "__name__", "cli"), error=repr(e))
-            sys.exit(0)
+            # v3.1 sec.0: invisible crashes are the worst bug class.
+            tb = traceback.format_exc().strip().splitlines()
+            tail = tb[-1] if tb else repr(e)
+            log_event("error", script=sys.argv[0], where=getattr(fn, "__name__", "cli"),
+                      error=tail[:300])
+            try:
+                save_json(STATE / "last_error.json",
+                          {"ts": ts(), "script": sys.argv[0],
+                           "fn": getattr(fn, "__name__", "cli"), "tb_tail": tail[:300]})
+            except Exception:
+                pass
+            print("mira-cli-guard: %s" % tail, file=sys.stderr)
+            sys.exit(1)   # the parent sees the failure; it records the note
     return wrapper

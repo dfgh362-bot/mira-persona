@@ -60,9 +60,9 @@ def main(argv):
     if tier not in ("free", "paid"):
         tier = "free"
 
-    # daily quota guard (schedule.json): skip or trim if today's cap is met
-    quotas = util.load_config("schedule.json").get("quotas", {})
-    cap = quotas.get("img_free_day" if tier == "free" else "img_paid_day", 8 if tier == "free" else 4)
+    # daily quota guard (schedule.json x R-05 escalation): skip or trim if cap met
+    cap = util.effective_quota("img_free_day" if tier == "free" else "img_paid_day",
+                               8 if tier == "free" else 4)
     day_dir = util.CONTENT / tier / date
     have = len(list(day_dir.glob("*.jpg"))) if day_dir.exists() else 0
     if have >= cap:

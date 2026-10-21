@@ -2,7 +2,7 @@
 
 Creds: env TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID or config/accounts.json.
 First post is the pinned disclosure post (section 9). Dupe check via posted.json.
-Image is sent by URL (jsDelivr CDN) — requires the repo to be pushed.
+Image delivery (v3.1 R-03): jsDelivr -> raw.github, tried at send time.
 
 CLI: python scripts/post_telegram.py
 """
@@ -52,11 +52,22 @@ def main(argv):
             print("telegram: dupe blocked")
             return
 
-        resp = api("sendPhoto", {
-            "chat_id": chat_id,
-            "photo": item.get("cdn") or util.jsdelivr(item["file"]),
-            "caption": item["caption"],
-        })
+        resp = None
+        last_err = None
+        for url in util.remote_media_candidates(item):
+            try:
+                resp = api("sendPhoto", {
+                    "chat_id": chat_id,
+                    "photo": url,
+                    "caption": item["caption"],
+                })
+                break
+            except Exception as e:
+                last_err = e
+                util.log_event("media_fallback", platform=PLAT,
+                               failed_url=url[:120], error=repr(e)[:120])
+        if resp is None:
+            raise last_err
         msg = resp.get("result", {}).get("message_id")
         util.record_post(item, PLAT, "tg://mid_%s" % msg)
         util.mark_posted(item)

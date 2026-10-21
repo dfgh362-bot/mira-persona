@@ -106,8 +106,7 @@ def main(argv):
         idx = argv.index("--from")
         paths = [Path(x) for x in argv[idx + 1:]]
     else:
-        sched = util.load_config("schedule.json").get("quotas", {})
-        if today_clips() >= sched.get("video_day", 2):
+        if today_clips() >= util.effective_quota("video_day", 2):
             print("video quota met (%d today), skipping" % today_clips())
             return
         items = pick_stills()

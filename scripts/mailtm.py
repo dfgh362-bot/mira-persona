@@ -12,10 +12,16 @@ Retry ladder on signup rejection: 1) new local-part  2) new domain  3) api.mail.
 CLI:
   python scripts/mailtm.py domains
   python scripts/mailtm.py create            # creates + saves one account
+  python scripts/mailtm.py import <address>   # v3.1: adopt a user-provided account
   python scripts/mailtm.py inbox <address>
   python scripts/mailtm.py read <address> <id>
   python scripts/mailtm.py verify --all      # sweep inboxes, GET verification links
+
+Passwords resolve in order: account entry -> env MAIL_PASS (Actions secret)
+-> git-ignored config/mail_secret.json. The user-provided mailbox (v3.1)
+never carries its password inside the repo (decision D43).
 """
+import os
 import re
 import sys
 import time
@@ -35,9 +41,21 @@ def _req(host, method, path, payload=None, token=None, retries=3):
     return util.http_json(method, host + path, payload=payload, headers=headers, retries=retries)
 
 
+def _password(acc):
+    """v3.1: password resolution — entry, env MAIL_PASS, mail_secret.json."""
+    pw = acc.get("password")
+    if pw:
+        return pw
+    pw = os.environ.get("MAIL_PASS")
+    if pw:
+        return pw
+    sec = util.load_json(util.CONFIG / "mail_secret.json", {})
+    return sec.get(acc.get("address") or "")
+
+
 def _refresh_token(acc):
     tok = _req(acc.get("host", HOSTS[0]), "POST", "/token",
-               {"address": acc["address"], "password": acc["password"]})
+               {"address": acc["address"], "password": _password(acc)})
     acc["token"] = tok.get("token")
     return acc
 
@@ -186,6 +204,28 @@ def main(argv):
         _save_account(acc)
         print("created %s (password %s) on %s" % (acc["address"], acc["password"], acc["host"]))
         return
+    if cmd == "import" and len(argv) > 1:
+        address = argv[1]
+        host = argv[2] if len(argv) > 2 else None
+        pw = _password({"address": address})
+        if not pw:
+            raise SystemExit("no password for %s: set MAIL_PASS env or "
+                             "config/mail_secret.json[address]" % address)
+        tried = []
+        for h in ([host] if host else HOSTS):
+            try:
+                tok = _req(h, "POST", "/token", {"address": address, "password": pw})
+                acc = {"address": address, "password": None,
+                       "secret": "env MAIL_PASS / mail_secret.json (D43)",
+                       "token": tok.get("token"), "id": tok.get("id"), "host": h,
+                       "created": util.ts(), "source": "user-provided (v3.1)"}
+                _save_account(acc)
+                util.log_event("mailtm_imported", address=address, host=h)
+                print("imported %s on %s (password NOT stored in repo)" % (address, h))
+                return
+            except Exception as e:
+                tried.append("%s: %r" % (h, e))
+        raise SystemExit("import failed: " + " | ".join(tried))
     if cmd == "inbox" and len(argv) > 1:
         acc = _acc_for(argv[1])
         msgs = messages(acc)

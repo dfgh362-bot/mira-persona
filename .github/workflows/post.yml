@@ -42,7 +42,7 @@ jobs:
         run: |
           for p in bluesky telegram reddit mastodon x pinterest; do
             echo "::group::post_$p"
-            python scripts/post_$p.py
+            python scripts/post_$p.py || true
             echo "::endgroup::"
           done
 

@@ -7,6 +7,7 @@ on:
 permissions:
   contents: write
   actions: write
+  issues: write        # v4 immune system: command channel + deadman + thrash notices
 
 concurrency:
   group: loop
@@ -18,6 +19,8 @@ jobs:
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0        # v3.1 R-06: pull/rebase needs real history
 
       - name: stop check
         id: stop
@@ -45,26 +48,35 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: one backlog item
+      - name: one backlog item (v4: issues channel, health, R-01..R-09)
         if: steps.stop.outputs.halt == 'false' && steps.cool.outputs.proceed == 'true'
         run: python scripts/backlog.py --one
 
-      - name: brain
+      - name: brain (skipped while PAUSEd)
         if: steps.stop.outputs.halt == 'false' && steps.cool.outputs.proceed == 'true'
-        run: python scripts/brain.py
+        run: |
+          if [ ! -f state/PAUSE ]; then python scripts/brain.py || true; fi
 
-      - name: site
+      - name: site (skipped while PAUSEd)
         if: steps.stop.outputs.halt == 'false' && steps.cool.outputs.proceed == 'true'
-        run: python scripts/build_site.py
+        run: |
+          if [ ! -f state/PAUSE ]; then python scripts/build_site.py || true; fi
 
-      - name: commit + push
+      - name: heartbeat bump (before commit so it lands remotely)
+        if: steps.stop.outputs.halt == 'false' && steps.cool.outputs.proceed == 'true'
+        run: |
+          python3 -c "import json,os,datetime; p='state/HEARTBEAT'; d=json.load(open(p)) if os.path.exists(p) else {'cycle':0}; d['ts']=datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'); open(p,'w').write(json.dumps(d))"
+
+      - name: commit + push (skipped while PAUSEd; one() commits pause heartbeats)
         if: steps.stop.outputs.halt == 'false' && steps.cool.outputs.proceed == 'true'
         run: |
           git config user.name "mira-bot"
           git config user.email "mira-bot@users.noreply.github.com"
-          python scripts/backlog.py --commit "auto: loop cycle $(date -u +%FT%TZ)"
+          if [ ! -f state/PAUSE ]; then
+            python scripts/backlog.py --commit "auto: loop cycle $(date -u +%FT%TZ)"
+          fi
 
-      - name: self-dispatch (heartbeat)
+      - name: self-dispatch (heartbeat, v3.1 R-08: GITHUB_TOKEN + actions:write)
         if: steps.stop.outputs.halt == 'false' && steps.cool.outputs.proceed == 'true'
         run: |
           code=$(curl -s -o /dev/null -w "%{http_code}" -X POST \
@@ -73,8 +85,3 @@ jobs:
             "https://api.github.com/repos/${{ github.repository }}/actions/workflows/loop.yml/dispatches" \
             -d '{"ref":"main"}')
           echo "self-dispatch http $code (cron */5 is the backstop)"
-
-      - name: heartbeat
-        if: steps.stop.outputs.halt == 'false' && steps.cool.outputs.proceed == 'true'
-        run: |
-          python3 -c "import json,os,datetime; p='state/HEARTBEAT'; d=json.load(open(p)) if os.path.exists(p) else {'cycle':0}; d['ts']=datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ'); open(p,'w').write(json.dumps(d))"

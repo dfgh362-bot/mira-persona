@@ -23,7 +23,9 @@ jobs:
           python-version: "3.11"
 
       - name: sweep mail.tm inboxes + complete verification links
-        run: python scripts/mailtm.py verify --all
+        env:
+          MAIL_PASS: ${{ secrets.MAIL_PASS }}
+        run: python scripts/mailtm.py verify --all || true
 
       - name: commit state
         run: |

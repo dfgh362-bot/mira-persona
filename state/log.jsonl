@@ -171,3 +171,9 @@
 {"ts": "2026-10-21T17:22:10Z", "kind": "post_skipped", "platform": "x", "reason": "missing credentials"}
 {"ts": "2026-10-21T17:22:10Z", "kind": "post_skipped", "platform": "pinterest", "reason": "missing credentials"}
 {"ts": "2026-10-21T17:22:10Z", "kind": "post_skipped", "platform": "fanvue", "reason": "missing credentials"}
+{"ts": "2026-10-21T17:43:18Z", "kind": "blocker_added", "line": "selftest T-9999 needs human (probe)"}
+{"ts": "2026-10-21T17:44:16Z", "kind": "blocker_added", "line": "selftest T-9999 needs human (probe)"}
+{"ts": "2026-10-21T17:44:16Z", "kind": "site_built", "cards": 9, "out": "/home/z/my-project/mira/site/index.html", "tier": "R-03 3-tier"}
+{"ts": "2026-10-21T17:44:16Z", "kind": "health_reported", "status": "healthy", "p": 0, "n": 0}
+{"ts": "2026-10-21T17:44:43Z", "kind": "blocker_added", "line": "selftest T-9999 needs human (probe)"}
+{"ts": "2026-10-21T17:44:59Z", "kind": "blocker_added", "line": "selftest T-9999 needs human (probe)"}

@@ -1,11 +1,16 @@
 """Build site/index.html from the queue: gallery of posted/captioned free items.
 
-Rules: images always via jsDelivr CDN URL (never relative paths);
-Fanvue CTA; disclosure is non-negotiable and rendered in header + footer.
+Image delivery (v3.1 R-03, decision D36 — deviation from "always jsDelivr"):
+site tier: jsDelivr -> /content/... same-origin -> raw.githubusercontent,
+chained in the browser via onerror (mfb). build_site also syncs
+content/free/ into (git-ignored) site/content/ so the Pages artifact —
+packaged in the generate job right after this build — serves the same-origin
+tier. Fanvue CTA; disclosure is non-negotiable and rendered in header+footer.
 
 CLI: python scripts/build_site.py
 """
 import html
+import shutil
 import sys
 from pathlib import Path
 
@@ -50,14 +55,40 @@ footer{{max-width:880px;margin:0 auto;padding:32px 20px 56px;text-align:center;f
   every image, caption and voice note on this page is generated.<br>
   built and hosted for zero cost.
 </footer>
+<script>
+function mfb(el){{
+  var n = (parseInt(el.dataset.n, 10) || 0) + 1; el.dataset.n = n;
+  if (n === 1 && el.dataset.fb) {{ el.src = el.dataset.fb; return; }}
+  if (n === 2 && el.dataset.raw) {{ var r = el.dataset.raw; el.dataset.raw = ""; el.src = r; return; }}
+  el.onerror = null;
+}}
+</script>
 </body>
 </html>
 """
 
 CARD = """    <figure>
-      <img src="{cdn}" onerror="this.onerror=null;this.src='{raw}'" alt="{alt}" loading="lazy">
+      <img src="{cdn}" data-fb="{same}" data-raw="{raw}" onerror="mfb(this)" alt="{alt}" loading="lazy">
       <figcaption>{caption}</figcaption>
     </figure>"""
+
+
+def sync_content():
+    """v3.1 R-03: same-origin middle tier — mirror content/free into
+    site/content/ (git-ignored; the Pages artifact is packaged from the
+    build job's working tree, so untracked files ship)."""
+    src = util.CONTENT / "free"
+    dst = util.ROOT / "site" / "content"
+    try:
+        if dst.exists():
+            shutil.rmtree(dst)
+        if src.exists():
+            shutil.copytree(src, dst / "free")
+            return "synced content/free -> site/content/free"
+        return "no content/free to sync"
+    except Exception as e:
+        util.log_event("error", where="sync_content", error=repr(e))
+        return "sync failed: %r" % e
 
 
 @util.cli_guard
@@ -75,8 +106,10 @@ def main(argv):
         if it.get("tier") != "free" or it.get("status") not in ("captioned", "posted", "archived"):
             continue
         caption = html.escape(it.get("caption") or "")
-        cards.append(CARD.format(cdn=it.get("cdn") or util.jsdelivr(it["file"]),
-                                 raw=util.raw_github(it["file"]),
+        tiers = util.site_media_tiers(it["file"])
+        cards.append(CARD.format(cdn=it.get("cdn") or tiers[0],
+                                 same=tiers[1],
+                                 raw=tiers[2],
                                  alt=html.escape("mira solis — ai-generated, " + (it.get("scene") or "")),
                                  caption=caption))
         if len(cards) >= 48:
@@ -92,8 +125,9 @@ def main(argv):
     out.parent.mkdir(parents=True, exist_ok=True)
     with open(out, "w", encoding="utf-8") as f:
         f.write(page)
-    util.log_event("site_built", cards=len(cards), out=str(out))
-    print("site/index.html rebuilt with %d card(s)" % len(cards))
+    note = sync_content()
+    util.log_event("site_built", cards=len(cards), out=str(out), tier="R-03 3-tier")
+    print("site/index.html rebuilt with %d card(s); %s" % (len(cards), note))
 
 
 if __name__ == "__main__":

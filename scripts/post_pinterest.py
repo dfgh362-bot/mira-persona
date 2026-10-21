@@ -33,18 +33,28 @@ def main(argv):
     disclosure = util.load_config("platforms.json").get("disclosure", {})
     auth = {"Authorization": "Bearer " + token}
 
-    def pin(title, desc, image_url):
-        return util.http_json("POST", API + "/pins", {
-            "board_id": board_id,
-            "title": title[:100],
-            "description": desc[:500],
-            "media_source": {"source_type": "image_url", "url": image_url},
-        }, headers=auth)
+    def pin(title, desc, image_urls):
+        """v3.1 R-03: try each media URL (jsDelivr -> raw.gh) at send time."""
+        last_err = None
+        for u in image_urls:
+            try:
+                return util.http_json("POST", API + "/pins", {
+                    "board_id": board_id,
+                    "title": title[:100],
+                    "description": desc[:500],
+                    "media_source": {"source_type": "image_url", "url": u},
+                }, headers=auth)
+            except Exception as e:
+                last_err = e
+                util.log_event("media_fallback", platform=PLAT,
+                               failed_url=u[:120], error=repr(e)[:120])
+        raise last_err
 
     try:
         if not util.has_pinned(posted, PLAT):
             resp = pin("about this account", disclosure["pinned_post"],
-                       util.jsdelivr("content/free/2026-10-21/mira_free_20261021_001_582427.jpg"))
+                       [util.jsdelivr("content/free/2026-10-21/mira_free_20261021_001_582427.jpg"),
+                        util.raw_github("content/free/2026-10-21/mira_free_20261021_001_582427.jpg")])
             util.record_post(None, PLAT, resp.get("id"), pinned=True, item_id="pinned")
             print("pinterest: pinned disclosure pin created")
             return
@@ -59,7 +69,7 @@ def main(argv):
             return
 
         resp = pin("mira solis", "%s (ai-generated)" % item["caption"],
-                   item.get("cdn") or util.jsdelivr(item["file"]))
+                   util.remote_media_candidates(item))
         util.record_post(item, PLAT, resp.get("id"))
         util.mark_posted(item)
         print("pinterest: posted %s -> pin %s" % (item["id"], resp.get("id")))

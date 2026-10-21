@@ -1,9 +1,20 @@
 # BACKLOG — infinite queue (never empty)
 
-- [ ] T-0006 | create first mail.tm account | onboarding | cmd: python scripts/mailtm.py create
+- [ ] T-0017 | verify R-01: repair queue scans error/commit_failed/push_failed/backlog_timeout, cap 3 | v3.1 repair queue | cmd: python scripts/selftest.py r01
+- [ ] T-0018 | verify R-02: 400/day cap lives in shared commit_and_push path | v3.1 repair queue | cmd: python scripts/selftest.py r02
+- [ ] T-0019 | verify R-03: image delivery tiers (site 3-tier, remote 2-tier, D36) | v3.1 repair queue | cmd: python scripts/selftest.py r03
+- [ ] T-0020 | verify R-04: onboard_check pending->ready wiring | v3.1 repair queue | cmd: python scripts/selftest.py r04
+- [ ] T-0021 | verify R-05: quota escalation on low productivity | v3.1 repair queue | cmd: python scripts/selftest.py r05
+- [ ] T-0022 | verify R-06: push-as-mutex atomic lock | v3.1 repair queue | cmd: python scripts/selftest.py r06
+- [ ] T-0023 | verify R-07: idempotent ffmpeg dep step | v3.1 repair queue | cmd: python scripts/selftest.py r07
+- [ ] T-0024 | verify R-08: self-dispatch via GITHUB_TOKEN+actions:write, PAT optional | v3.1 repair queue | cmd: python scripts/selftest.py r08
+- [ ] T-0025 | verify R-09: no-cmd items append to BLOCKERS.md (dedupe) | v3.1 repair queue | cmd: python scripts/selftest.py r09
+- [ ] T-0026 | activate v4: issues channel, HEALTH, deadman, anti-thrash, anti-drift, self-term | v3.1 v4 | cmd: python scripts/selftest.py v4
+- [ ] T-0027 | freeze specs: docs/SPEC-v2.md, v3.md, v3.1.md (D44) | v3.1 | cmd: python scripts/selftest.py specs
+- [ ] T-0028 | import provided mail.tm account (demetrisvariable@maxxspace.com) | v3.1 user-provided (D43) | cmd: python scripts/mailtm.py import demetrisvariable@maxxspace.com
+- [ ] T-0006 | sweep mail.tm inboxes with the imported account | verification | cmd: python scripts/mailtm.py verify --all
 - [ ] T-0007 | rebuild site | pipeline | cmd: python scripts/build_site.py
-- [ ] T-0008 | sweep mail.tm inboxes | verification | cmd: python scripts/mailtm.py verify --all
-- [ ] T-0009 | archive old items | hygiene | cmd: python scripts/state.py archive --older-than 48h
+- [ ] T-0008 | archive old items | hygiene | cmd: python scripts/state.py archive --older-than 48h
 - [ ] T-0010 | onboard fanvue: AI creator flag + pricing 9.99/12.99/35 + tips 5/10/25 + DM auto-reply | onboarding (human)
 - [ ] T-0011 | onboard bluesky: account + app password, set as Actions Secrets | onboarding (human)
 - [ ] T-0012 | onboard telegram: bot via BotFather, token + chat id | onboarding (human)
@@ -11,8 +22,7 @@
 - [ ] T-0014 | onboard mastodon: account + app token | onboarding (human)
 - [ ] T-0015 | onboard x: developer account + bearer token | onboarding (human)
 - [ ] T-0016 | onboard pinterest: account + board + token | onboarding (human)
-- [x] T-0005 | generate 2 paid images | ok: quota met (4/4 paid images today), skipping | cmd: python scripts/gen_image.py --tier paid --count 2
-- [x] T-0004 | generate 3 free images | ok: quota met (9/8 free images today), skipping | cmd: python scripts/gen_image.py --tier free --count 3
+- [x] T-0009 | create first mail.tm account | ok: superseded by T-0028 (v3.1 user-provided mailbox demetrisvariable@maxxspace.com)
 - [x] T-0003 | caption queued items | ok: captioned 0 item(s) | cmd: python scripts/gen_caption.py
 - [x] T-0001 | finish v2: remote bring-up (repo, push, Pages, topics, dispatch all) | ok: bringup complete: https://github.com/dfgh362-bot/mira-person | cmd: python scripts/bringup_remote.py
 - [x] T-0002 | build 1 video clip | ok: built content/video/mira_clip_20261021_02.mp4 from 3 stills

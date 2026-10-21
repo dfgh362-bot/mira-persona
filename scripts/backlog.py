@@ -6,14 +6,18 @@ Item format (state/BACKLOG.md):
   - [x] T-0003 | <action> | ok: <result> (or commit sha)
 
 CLI:
-  --one            run one cycle: lock -> refill -> top item -> guards -> HANDOFF -> commit
+  --one            run one cycle: lock(R-06) -> refill -> top item -> guards -> HANDOFF -> commit
   --refill         ensure >= 5 unchecked items (section 4 sources), commit if changed
   --mark ID x|~ n  mark an item manually
   --check-lock     exit 1 if loop.lock is fresher than 4 minutes (cooldown guard)
   --expand-prompts move +5 scenes / +5 captions from spare pools into the library
+  --insert-top <action> <why> <cmd>   priority insertion (v4 issues channel)
 
-Guards implemented per section 9: 4-min cooldown, max 400 commits/day,
-1 commit per 2 minutes, log rotation at 5MB, repo prune at 900MB.
+Guards per section 9 + v3.1: 4-min cooldown, max 400 commits/day INSIDE the
+shared commit path (R-02), 1 commit per 2 min, log rotation at 5MB, repo
+prune at 900MB. v4 immune system wired into one(): issues command channel
+at top priority, HEALTH every 25 cycles (+R-05 escalation), anti-drift every
+50, deadman + anti-thrash + self-termination.
 """
 import json
 import re
@@ -26,6 +30,9 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import util
+import issues
+import health
+import onboard_check
 
 BACKLOG = util.STATE / "BACKLOG.md"
 HANDOFF = util.STATE / "HANDOFF.md"
@@ -116,6 +123,22 @@ def touch_lock():
     util.save_json(LOCK, {"ts": util.ts(), "run_id": uuid.uuid4().hex[:12]})
 
 
+def acquire_lock():
+    """v3.1 R-06: the push is the mutex. write loop.lock{run_id,ts} -> commit
+    -> push -> pull -> re-read. If run_id != mine, someone else won: exit 0
+    (caller idles). Lock commit skips the pace-sleep but not the daily cap."""
+    run_id = uuid.uuid4().hex[:12]
+    util.save_json(LOCK, {"ts": util.ts(), "run_id": run_id})
+    if commit_and_push("loop: lock %s" % run_id, throttle=False) is None:
+        return False   # budget exhausted or commit/push failed — mutex not ours
+    sh("git pull --rebase origin main")
+    won = util.load_json(LOCK, {}).get("run_id") == run_id
+    if not won:
+        util.log_event("lock_lost", run_id=run_id,
+                       winner=util.load_json(LOCK, {}).get("run_id"))
+    return won
+
+
 def lock_is_fresh():
     try:
         lock = util.load_json(LOCK, {})
@@ -147,11 +170,11 @@ def commits_today():
         return 0
 
 
-def throttle():
+def pace():
     delta = time.time() - last_commit_ts()
     if delta < THROTTLE_SECONDS:
         wait = THROTTLE_SECONDS - delta
-        print("throttle: sleeping %.0fs (max 1 commit / 2 min)" % wait)
+        print("pace: sleeping %.0fs (max 1 commit / 2 min)" % wait)
         time.sleep(wait)
 
 
@@ -180,21 +203,27 @@ def prune_repo():
 
 def _push_with_recovery():
     p = sh_list(["git", "push"])
-    if p.returncode != 0:
-        # multi-runner race: fold remote state under ours, retry once
-        sh("git fetch origin main")
-        r = sh("git rebase -X theirs origin/main")
-        if r.returncode == 0:
-            p2 = sh_list(["git", "push"])
-            if p2.returncode != 0:
-                util.log_event("push_failed", error=redact((p2.stderr or p2.stdout))[-300:])
-                print("push failed after rebase (logged)")
-        else:
-            util.log_event("rebase_failed", error=redact((r.stderr or ""))[-300:])
-            print("rebase failed (logged)")
+    if p.returncode == 0:
+        return True
+    # multi-runner race: fold remote state under ours, retry once
+    sh("git fetch origin main")
+    r = sh("git rebase -X theirs origin/main")
+    if r.returncode == 0:
+        p2 = sh_list(["git", "push"])
+        if p2.returncode == 0:
+            return True
+        util.log_event("push_failed", error=redact((p2.stderr or p2.stdout))[-300:])
+        print("push failed after rebase (logged)")
+        return False
+    util.log_event("rebase_failed", error=redact((r.stderr or ""))[-300:])
+    print("rebase failed (logged)")
+    return False
 
 
-def commit_and_push(msg):
+def commit_and_push(msg, throttle=True):
+    """v3.1 R-02: THE shared commit path — every workflow routes through here.
+    The 400/day cap lives in this function and always applies. throttle=False
+    is for workflow commits and the lock (cron self-limits, D32)."""
     try:
         sh("git add -A")
         if sh("git diff --cached --quiet").returncode == 0:
@@ -202,12 +231,14 @@ def commit_and_push(msg):
         if commits_today() >= MAX_COMMITS_PER_DAY:
             util.log_event("commit_skipped", reason="daily cap %d reached" % MAX_COMMITS_PER_DAY)
             return None
-        throttle()
+        if throttle:
+            pace()
         c = sh_list(["git", "commit", "-m", msg])
         if c.returncode != 0:
             util.log_event("commit_failed", error=redact(c.stderr)[-300:])
             return None
-        _push_with_recovery()
+        if not _push_with_recovery():
+            return None  # v3.1: a sha only counts when the push landed
         return sh("git rev-parse --short HEAD").stdout.strip()
     except Exception as e:
         util.log_event("commit_error", error=repr(e))
@@ -215,23 +246,12 @@ def commit_and_push(msg):
 
 
 def workflow_commit(msg):
-    """commit+push for workflow steps: no throttle (own cron rate-limits), race recovery."""
-    try:
-        sh("git add -A")
-        if sh("git diff --cached --quiet").returncode == 0:
-            print("nothing to commit")
-            return
-        if commits_today() >= MAX_COMMITS_PER_DAY:
-            util.log_event("commit_skipped", reason="daily cap %d reached" % MAX_COMMITS_PER_DAY)
-            return
-        c = sh_list(["git", "commit", "-m", msg])
-        if c.returncode != 0:
-            util.log_event("commit_failed", where="workflow", error=redact(c.stderr)[-300:])
-            return
-        _push_with_recovery()
-        print("workflow commit pushed: %s" % msg)
-    except Exception as e:
-        util.log_event("commit_error", where="workflow", error=repr(e))
+    """workflow commits: same shared path, no pace-sleep (D32) — the cap
+    still applies because it lives in commit_and_push (R-02)."""
+    sha = commit_and_push(msg, throttle=False)
+    if sha:
+        print("workflow commit pushed: %s (%s)" % (msg, sha))
+    return sha
 
 
 # ---------------------------------------------------------------- refill sources
@@ -269,33 +289,47 @@ def spare_prompts_available():
 
 
 def repair_candidates():
+    """v3.1 R-01: scan kinds error, commit_failed, push_failed, backlog_timeout
+    — not just image_failed. R-01 kinds claim slots first; legacy image/caption
+    kinds fill what's left. Cap 3 repair items per refill."""
     out = []
     try:
-        lines = (util.STATE / "log.jsonl").read_text(encoding="utf-8").splitlines()[-150:]
+        lines = (util.STATE / "log.jsonl").read_text(encoding="utf-8").splitlines()[-200:]
     except Exception:
         return out
-    seen = set()
+    recs = []
     for line in reversed(lines):
         try:
-            rec = json.loads(line)
+            recs.append(json.loads(line))
         except Exception:
             continue
-        kind = rec.get("kind", "")
-        if kind in seen:
-            continue
-        if kind in ("image_failed", "image_attempt_failed"):
-            out.append(("retry image generation (recent failure)", "self-repair",
-                        "python scripts/gen_image.py --tier free --count 1"))
-            seen.add(kind)
-        elif kind == "caption_gen_failed":
-            out.append(("retry caption generation", "self-repair", "python scripts/gen_caption.py"))
-            seen.add(kind)
-        elif kind == "push_failed":
-            out.append(("retry git push", "self-repair", "git push"))
-            seen.add(kind)
-        if len(out) >= 2:
-            break
-    return out
+    for kinds in (("error", "commit_failed", "push_failed", "backlog_timeout"),
+                  ("image_failed", "image_attempt_failed", "caption_gen_failed")):
+        for rec in recs:
+            if len(out) >= 3:
+                break
+            kind = rec.get("kind", "")
+            if kind not in kinds or kind in [o[0] for o in out]:
+                continue
+            if kind == "error":
+                out.append((kind, "self-heal recent errors (scan, map, re-run)",
+                            "self-repair (R-01)", "python scripts/selfheal.py --scan"))
+            elif kind == "commit_failed":
+                out.append((kind, "retry commit via shared path",
+                            "self-repair (R-01)",
+                            "python scripts/backlog.py --commit repair: retry after commit_failed"))
+            elif kind == "push_failed":
+                out.append((kind, "retry git push", "self-repair (R-01)", "git push"))
+            elif kind == "backlog_timeout":
+                out.append((kind, "self-heal: requeue timed-out items",
+                            "self-repair (R-01)", "python scripts/selfheal.py --scan"))
+            elif kind == "caption_gen_failed":
+                out.append((kind, "retry caption generation", "self-repair",
+                            "python scripts/gen_caption.py"))
+            else:  # image_failed / image_attempt_failed
+                out.append((kind, "retry image generation (recent failure)", "self-repair",
+                            "python scripts/gen_image.py --tier free --count 1"))
+    return [(a, b, c) for _k, a, b, c in out]
 
 
 def refill():
@@ -320,12 +354,11 @@ def refill():
         unchecked_actions.add(action)
         all_actions.add(action)
 
-    # source 1: daily quotas (aware of today's counts)
+    # source 1: daily quotas (aware of today's counts + R-05 escalation)
     c = today_counts()
-    sched = util.load_config("schedule.json").get("quotas", {})
-    fmax = sched.get("img_free_day", 8)
-    pmax = sched.get("img_paid_day", 4)
-    vmax = sched.get("video_day", 2)
+    fmax = util.effective_quota("img_free_day")
+    pmax = util.effective_quota("img_paid_day")
+    vmax = util.effective_quota("video_day")
     if c["free"] < fmax:
         n = min(4, fmax - c["free"])
         add("generate %d free images" % n, "daily quota (%d/%d today)" % (c["free"], fmax),
@@ -394,6 +427,73 @@ def expand_prompts():
           % (len(take), len(takec), len(rest), len(restc)))
 
 
+# ---------------------------------------------------------------- v4 helpers
+
+def _thrash_capped(target, reason):
+    """v4 anti-thrash: same item 3x same reason -> stop, issue, move on."""
+    reason = str(reason).replace("|", "/")[:80]
+    p = util.STATE / "thrash.json"
+    d = util.load_json(p, {})
+    e = d.get(target["id"]) or {}
+    if e.get("reason") == reason:
+        e["count"] = int(e.get("count", 0)) + 1
+    else:
+        e = {"reason": reason, "count": 1}
+    d[target["id"]] = e
+    if e["count"] >= 3:
+        d.pop(target["id"], None)
+        util.save_json(p, d)
+        issues.thrash_notice(target["id"], reason)
+        util.log_event("thrash_capped", id=target["id"], reason=reason[:60])
+        return True
+    util.save_json(p, d)
+    return False
+
+
+def drift_check(cycle):
+    """v4 anti-drift: every 50 cycles re-read the frozen specs, verify
+    invariants, write state/DRIFT.md."""
+    docs = util.ROOT / "docs"
+    specs = {n: (docs / n).read_text(encoding="utf-8")
+             for n in ("SPEC-v2.md", "SPEC-v3.md", "SPEC-v3.1.md")
+             if (docs / n).exists()}
+    src = (util.ROOT / "scripts" / "backlog.py").read_text(encoding="utf-8")
+    site = (util.ROOT / "scripts" / "build_site.py").read_text(encoding="utf-8")
+    checks = [
+        ("specs frozen (v2/v3/v3.1)", len(specs) == 3),
+        ("queue never empty", len([i for i in parse_items() if i["marker"] == " "]) >= 1),
+        ("commit caps in shared path", "MAX_COMMITS_PER_DAY" in src),
+        ("lock push-mutex present", "acquire_lock" in src),
+        ("disclosure rendered on site", "ai-generated" in site),
+        ("site tier chain present", "data-fb" in site),
+        ("quotas config intact", util.effective_quota("img_free_day") >= 8),
+    ]
+    lines = ["# DRIFT — spec conformance audit", "",
+             "cycle: %d" % cycle,
+             "specs re-read: %s" % (", ".join(specs) or "NONE"), ""]
+    for name, ok in checks:
+        lines.append("- [%s] %s" % ("ok" if ok else "DRIFT", name))
+    lines.append("")
+    lines.append("generated: %s" % util.ts())
+    (util.STATE / "DRIFT.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
+    util.log_event("drift_checked", cycle=cycle,
+                   drifts=sum(1 for _, ok in checks if not ok))
+    print("DRIFT.md written (%d drifts)" % sum(1 for _, ok in checks if not ok))
+
+
+def selfterm_update(productive):
+    """v4 self-termination: only after 100 clean cycles with no work."""
+    p = util.STATE / "loop.json"
+    d = util.load_json(p, {"clean_streak": 0})
+    d["clean_streak"] = 0 if productive else int(d.get("clean_streak", 0)) + 1
+    util.save_json(p, d)
+    if d["clean_streak"] >= 100:
+        (util.STATE / "STOP").write_text("ts %s self-terminated\n" % util.ts())
+        issues.selfterm_notice(d["clean_streak"])
+        util.log_event("self_terminated", cycles=d["clean_streak"])
+    return d["clean_streak"]
+
+
 # ---------------------------------------------------------------- execution
 
 def run_cmd(target):
@@ -403,26 +503,47 @@ def run_cmd(target):
         proc = subprocess.run(cmd, shell=True, cwd=util.ROOT,
                               capture_output=True, text=True, timeout=MAX_ITEM_RUNTIME)
         out = (proc.stdout or "").strip()
+        err = (proc.stderr or "").strip()
         if out:
             print(out[-1500:])
         tail = out.splitlines()[-1] if out else ""
-        util.log_event("backlog_exec", id=target["id"], rc=proc.returncode, tail=tail[:200])
+        # v3.1 sec.0: a swallowed exception is a lie — surface the traceback
+        # tail in the ITEM NOTE (cli_guard prints 'mira-cli-guard: <tail>')
+        guard_tail = ""
+        for ln in reversed(err.splitlines()):
+            if ln.startswith("mira-cli-guard:"):
+                guard_tail = ln[len("mira-cli-guard:"):].strip()
+                break
+        if guard_tail:
+            print("cli-guard: %s" % guard_tail)
+        if not tail and guard_tail:
+            tail = guard_tail
+        tail = tail.replace("|", "/")
+        util.log_event("backlog_exec", id=target["id"], rc=proc.returncode,
+                       tail=(tail or guard_tail)[:200])
         if proc.returncode == 0 and "generated 0/" not in out:
             target["marker"] = "x"
             target["note"] = "ok: %s" % (tail[:60] or "rc=0")
-            return (tail or "ok")[:80]
+            return (tail or "ok")[:80], "productive"
+        reason = (guard_tail or tail or "blocked").replace("|", "/")[:80]
+        if _thrash_capped(target, reason):
+            target["marker"] = "~"
+            target["note"] = "moved on (anti-thrash 3x): %s" % reason[:60]
+            return reason[:80], "noop"
         target["marker"] = "~"
-        target["note"] = "attempted: %s (rc=%d)" % (tail[:60] or "blocked", proc.returncode)
-        return (tail or "blocked")[:80]
+        target["note"] = "attempted: %s (rc=%d)" % (reason[:60], proc.returncode)
+        return reason[:80], "noop"
     except subprocess.TimeoutExpired:
+        reason = "timeout"
+        _thrash_capped(target, reason)
         target["marker"] = "~"
         target["note"] = "attempted, timeout"
         util.log_event("backlog_timeout", id=target["id"])
-        return "timeout"
+        return reason, "noop"
     except Exception as e:
         target["marker"] = "~"
         target["note"] = "attempted: %r" % e
-        return repr(e)[:80]
+        return repr(e)[:80], "noop"
 
 
 def rewrite_handoff(cycle, target, summary, sha):
@@ -447,35 +568,83 @@ def rewrite_handoff(cycle, target, summary, sha):
             % (target["id"], target["action"], summary, next_action,
                blockers, sha or "none", cycle))
     HANDOFF.write_text(text, encoding="utf-8")
+    return next_action
 
 
 def one():
-    touch_lock()
-    refill()
-    items = parse_items()
-    target = next((i for i in items if i["marker"] == " "), None)
-    if target is None:
-        target = {"marker": " ", "id": next_id(items),
-                  "action": "cycle audit: stats + guard checks",
-                  "note": "invented (queue was empty)",
-                  "cmd": "python scripts/state.py stats"}
-        items.append(target)
-    print("== cycle item: %s | %s" % (target["id"], target["action"]))
-    if target["cmd"]:
-        summary = run_cmd(target)
-    else:
-        util.append_blocker("%s needs human: %s" % (target["id"], target["action"]))
-        target["marker"] = "~"
-        target["note"] = "attempted, needs human (BLOCKERS.md)"
-        summary = "needs human"
-    write_items(prune_done(items))
-    rotate_logs()
-    prune_repo()
-    cycle = heartbeat_bump()
-    sha = sh("git rev-parse --short HEAD").stdout.strip()
-    rewrite_handoff(cycle, target, summary, sha)
-    csha = commit_and_push("cycle %d: %s %s" % (cycle, target["id"], target["action"][:40]))
-    print("== cycle %d done: %s [%s] commit %s" % (cycle, target["id"], target["marker"], csha or "none"))
+    # v3 sentinels: STOP is terminal; PAUSE idles with heartbeat
+    if (util.STATE / "STOP").exists():
+        print("| - | STOP | halted (delete state/STOP to revive) | - | - |")
+        return
+    if (util.STATE / "PAUSE").exists():
+        cycle = heartbeat_bump()
+        if cycle % 6 == 0:   # commit a heartbeat every ~30 min while paused
+            rewrite_handoff(cycle, {"id": "-", "action": "paused"}, "paused (state/PAUSE)", None)
+            commit_and_push("cycle %d: paused heartbeat" % cycle)
+        print("| %d | PAUSE | idle heartbeat | - | - |" % cycle)
+        return
+    # v4 deadman: heartbeat gap > 60 min -> blocked issue (once, deduped)
+    issues.deadman_check()
+    if lock_is_fresh():
+        print("| - | lock | fresh — another runner is active, idling | - | - |")
+        return
+    if not acquire_lock():   # v3.1 R-06: push is the mutex
+        print("| - | lock | lost the push mutex — another runner won | - | - |")
+        return
+    productive = False
+    # v4: issues command channel executes at top priority
+    try:
+        n_cmds = issues.poll_commands()
+        if n_cmds:
+            productive = True
+            print("issues: %d command(s) executed" % n_cmds)
+        # v3.1 R-04: onboard watch runs every cycle before refill
+        flipped = onboard_check.run()
+        if flipped:
+            productive = True
+        changed = refill()
+        items = parse_items()
+        target = next((i for i in items if i["marker"] == " "), None)
+        if target is None:
+            target = {"marker": " ", "id": next_id(items),
+                      "action": "cycle audit: stats + guard checks",
+                      "note": "invented (queue was empty)",
+                      "cmd": "python scripts/state.py stats"}
+            items.append(target)
+        print("== cycle item: %s | %s" % (target["id"], target["action"]))
+        if target.get("cmd"):
+            summary, cls = run_cmd(target)
+        else:
+            # v3.1 R-09: no-cmd items MUST append to BLOCKERS.md
+            util.append_blocker("%s needs human: %s" % (target["id"], target["action"]))
+            target["marker"] = "~"
+            target["note"] = "attempted, needs human (BLOCKERS.md)"
+            summary, cls = "needs human", "noop"
+        if cls == "productive":
+            productive = True
+        write_items(prune_done(items))
+        rotate_logs()
+        prune_repo()
+        cycle = heartbeat_bump()
+        # v4 health + v3.1 R-05 escalation + 25-cycle formal report
+        overall = "productive" if productive else "noop"
+        health.record(cycle, overall, "%s %s" % (target["id"], summary[:40]))
+        health.check(cycle)
+        # v4 anti-drift every 50 cycles
+        if cycle % 50 == 0:
+            drift_check(cycle)
+        # v4 self-termination streak (only after 100 clean cycles)
+        selfterm_update(productive)
+        sha = sh("git rev-parse --short HEAD").stdout.strip()
+        next_action = rewrite_handoff(cycle, target, summary, sha)
+        csha = commit_and_push("cycle %d: %s %s" % (cycle, target["id"], target["action"][:40]))
+        print("| %d | %s %s | %s | %s | %s |" % (cycle, target["id"], target["action"][:30],
+                                                summary[:40], csha or "none",
+                                                next_action[:60]))
+    except Exception as e:
+        # the cycle itself must never crash the workflow — record and move on
+        util.log_event("cycle_error", error=repr(e)[:300])
+        print("| - | cycle | error %r | - | - |" % e)
 
 
 @util.cli_guard
@@ -497,6 +666,17 @@ def main(argv):
     if "--mark" in argv and len(argv) >= 3:
         mark(argv[1], argv[2], " ".join(argv[3:]) or "manual")
         commit_and_push("backlog: mark %s" % argv[1])
+        return
+    if "--insert-top" in argv and len(argv) > 1:
+        i = argv.index("--insert-top")
+        action = argv[i + 1]
+        why = argv[i + 2] if len(argv) > i + 2 else "priority"
+        cmd = argv[i + 3] if len(argv) > i + 3 else ""
+        items = parse_items()
+        items.insert(0, {"marker": " ", "id": next_id(items), "action": action,
+                         "note": why, "cmd": cmd})
+        write_items(prune_done(items))
+        commit_and_push("backlog: insert-top %s" % action[:40])
         return
     one()
 
