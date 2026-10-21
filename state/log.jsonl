@@ -313,3 +313,5 @@
 {"ts": "2026-10-21T22:22:13Z", "kind": "inbox_swept", "address": "demetrisvariable@maxxspace.com", "count": 0}
 {"ts": "2026-10-21T22:52:33Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-21T22:52:33Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-10-21T22:52:35Z", "kind": "blocker_added", "line": "T-0016 needs human: onboard pinterest: account + board + token"}
+{"ts": "2026-10-21T22:52:35Z", "kind": "health_check", "funnel": "draining", "unposted": 13, "oldest_h": 8.2}
