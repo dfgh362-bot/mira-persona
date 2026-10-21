@@ -1,7 +1,7 @@
 ## CURRENT
-T-0018 verify R-02: 400/day cap lives in shared commit_and_push path — -- 4/4 passed
+T-0019 verify R-03: image delivery tiers (site 3-tier, remote 2-tier, D36) — -- 4/4 passed
 ## NEXT ACTION
-python scripts/selftest.py r03
+python scripts/selftest.py r04
 ## BLOCKERS
 - bluesky onboarding needs human: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-21T17:46:00Z)
 - telegram onboarding needs human: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-21T17:46:00Z)
@@ -10,6 +10,6 @@ python scripts/selftest.py r03
 - x onboarding needs human: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-21T17:46:00Z)
 - pinterest onboarding needs human: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-21T17:46:00Z)
 ## LAST COMMIT
-97c0a20
+99d1b65
 ## CYCLE
-8
+9
