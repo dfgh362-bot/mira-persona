@@ -36,10 +36,10 @@
     "mastodon": {
       "status": "pending",
       "tier": 1,
-      "instance": "https://mastodon.social",
+      "instance": "https://social.cleverlibre.org",
       "email": null,
       "token": null,
-      "note": "env override: MASTODON_INSTANCE, MASTODON_TOKEN"
+      "note": "env override: MASTODON_INSTANCE, MASTODON_TOKEN | 2026-10-21: account mirasolis@social.cleverlibre.org created (app 'mira-loop' registered, password in local .secrets, API token blocked by pending email confirmation); application mirasolis@mstdn.social submitted; both await a real-email confirmation — see BLOCKERS FUNNEL EMAIL WALL"
     },
     "reddit": {
       "status": "pending",
