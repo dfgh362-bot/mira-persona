@@ -25,6 +25,12 @@ def clip_index(n):
     return len(existing) + 1
 
 
+def today_clips():
+    d = util.today().replace("-", "")
+    vdir = util.CONTENT / "video"
+    return len(list(vdir.glob("mira_clip_%s_*.json" % d))) if vdir.exists() else 0
+
+
 def pick_stills():
     queue = util.load_queue()
     cand = [it for it in queue.get("items", [])
@@ -100,6 +106,10 @@ def main(argv):
         idx = argv.index("--from")
         paths = [Path(x) for x in argv[idx + 1:]]
     else:
+        sched = util.load_config("schedule.json").get("quotas", {})
+        if today_clips() >= sched.get("video_day", 2):
+            print("video quota met (%d today), skipping" % today_clips())
+            return
         items = pick_stills()
         if len(items) < 3:
             util.log_event("video_skipped", reason="not enough stills (need >=3)")

@@ -55,7 +55,7 @@ footer{{max-width:880px;margin:0 auto;padding:32px 20px 56px;text-align:center;f
 """
 
 CARD = """    <figure>
-      <img src="{cdn}" alt="{alt}" loading="lazy">
+      <img src="{cdn}" onerror="this.onerror=null;this.src='{raw}'" alt="{alt}" loading="lazy">
       <figcaption>{caption}</figcaption>
     </figure>"""
 
@@ -76,6 +76,7 @@ def main(argv):
             continue
         caption = html.escape(it.get("caption") or "")
         cards.append(CARD.format(cdn=it.get("cdn") or util.jsdelivr(it["file"]),
+                                 raw=util.raw_github(it["file"]),
                                  alt=html.escape("mira solis — ai-generated, " + (it.get("scene") or "")),
                                  caption=caption))
         if len(cards) >= 48:

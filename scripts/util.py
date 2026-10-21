@@ -221,6 +221,14 @@ def jsdelivr(rel_path):
     return "https://cdn.jsdelivr.net/gh/%s/%s@main/%s" % (gh_user(), DEFAULTS["repo"], rel)
 
 
+def raw_github(rel_path):
+    """fallback origin when jsDelivr has an upstream outage (D35)"""
+    rel = str(rel_path).replace("\\", "/")
+    while rel.startswith("/"):
+        rel = rel[1:]
+    return "https://raw.githubusercontent.com/%s/%s/main/%s" % (gh_user(), DEFAULTS["repo"], rel)
+
+
 def rand_localpart():
     words = ["mira", "solis", "lisbon", "film", "oat", "cortado", "grain", "camera",
              "light", "rooftop", "roll", "quiet", "golden", "window", "tea"]
