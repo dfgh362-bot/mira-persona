@@ -1,7 +1,7 @@
 ## CURRENT
-T-0020 verify R-04: onboard_check pending->ready wiring — -- 2/2 passed
+T-0021 verify R-05: quota escalation on low productivity — -- 3/3 passed
 ## NEXT ACTION
-python scripts/selftest.py r05
+python scripts/selftest.py r06
 ## BLOCKERS
 - bluesky onboarding needs human: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-21T17:46:00Z)
 - telegram onboarding needs human: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-21T17:46:00Z)
@@ -10,6 +10,6 @@ python scripts/selftest.py r05
 - x onboarding needs human: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-21T17:46:00Z)
 - pinterest onboarding needs human: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-21T17:46:00Z)
 ## LAST COMMIT
-fcc4bba
+0d990b5
 ## CYCLE
-10
+11

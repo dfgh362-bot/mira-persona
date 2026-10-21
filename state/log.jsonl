@@ -192,3 +192,5 @@
 {"ts": "2026-10-21T17:57:56Z", "kind": "inbox", "note": "no mailtm accounts stored"}
 {"ts": "2026-10-21T17:58:27Z", "kind": "backlog_exec", "id": "T-0020", "rc": 0, "tail": "-- 2/2 passed"}
 {"ts": "2026-10-21T17:58:27Z", "kind": "health_check", "escalation": "window not full (4/25)"}
+{"ts": "2026-10-21T18:02:29Z", "kind": "backlog_exec", "id": "T-0021", "rc": 0, "tail": "-- 3/3 passed"}
+{"ts": "2026-10-21T18:02:29Z", "kind": "health_check", "escalation": "window not full (5/25)"}
