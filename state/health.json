@@ -1,3 +1,9 @@
 {
-  "cycles": []
+  "cycles": [
+    {
+      "c": 7,
+      "cls": "productive",
+      "why": "T-0017 -- 3/3 passed"
+    }
+  ]
 }

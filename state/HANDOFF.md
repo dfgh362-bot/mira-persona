@@ -1,10 +1,15 @@
 ## CURRENT
-T-0005 generate 2 paid images — quota met (4/4 paid images today), skipping
+T-0017 verify R-01: repair queue scans error/commit_failed/push_failed/backlog_timeout, cap 3 — -- 3/3 passed
 ## NEXT ACTION
-python scripts/mailtm.py create
+python scripts/selftest.py r02
 ## BLOCKERS
-none
+- bluesky onboarding needs human: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-21T17:46:00Z)
+- telegram onboarding needs human: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-21T17:46:00Z)
+- reddit onboarding needs human: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-21T17:46:00Z)
+- mastodon onboarding needs human: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-21T17:46:00Z)
+- x onboarding needs human: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-21T17:46:00Z)
+- pinterest onboarding needs human: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-21T17:46:00Z)
 ## LAST COMMIT
-5796945
+6d6aa10
 ## CYCLE
-6
+7

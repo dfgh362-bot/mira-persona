@@ -177,3 +177,11 @@
 {"ts": "2026-10-21T17:44:16Z", "kind": "health_reported", "status": "healthy", "p": 0, "n": 0}
 {"ts": "2026-10-21T17:44:43Z", "kind": "blocker_added", "line": "selftest T-9999 needs human (probe)"}
 {"ts": "2026-10-21T17:44:59Z", "kind": "blocker_added", "line": "selftest T-9999 needs human (probe)"}
+{"ts": "2026-10-21T17:46:00Z", "kind": "blocker_added", "line": "bluesky onboarding needs human: create account, bio + pinned, creds to Actions Secrets"}
+{"ts": "2026-10-21T17:46:00Z", "kind": "blocker_added", "line": "telegram onboarding needs human: create account, bio + pinned, creds to Actions Secrets"}
+{"ts": "2026-10-21T17:46:00Z", "kind": "blocker_added", "line": "reddit onboarding needs human: create account, bio + pinned, creds to Actions Secrets"}
+{"ts": "2026-10-21T17:46:00Z", "kind": "blocker_added", "line": "mastodon onboarding needs human: create account, bio + pinned, creds to Actions Secrets"}
+{"ts": "2026-10-21T17:46:00Z", "kind": "blocker_added", "line": "x onboarding needs human: create account, bio + pinned, creds to Actions Secrets"}
+{"ts": "2026-10-21T17:46:00Z", "kind": "blocker_added", "line": "pinterest onboarding needs human: create account, bio + pinned, creds to Actions Secrets"}
+{"ts": "2026-10-21T17:46:01Z", "kind": "backlog_exec", "id": "T-0017", "rc": 0, "tail": "-- 3/3 passed"}
+{"ts": "2026-10-21T17:46:01Z", "kind": "health_check", "escalation": "window not full (1/25)"}
