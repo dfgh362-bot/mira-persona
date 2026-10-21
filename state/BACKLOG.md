@@ -1,6 +1,5 @@
 # BACKLOG — infinite queue (never empty)
 
-- [ ] T-0023 | verify R-07: idempotent ffmpeg dep step | v3.1 repair queue | cmd: python scripts/selftest.py r07
 - [ ] T-0024 | verify R-08: self-dispatch via GITHUB_TOKEN+actions:write, PAT optional | v3.1 repair queue | cmd: python scripts/selftest.py r08
 - [ ] T-0025 | verify R-09: no-cmd items append to BLOCKERS.md (dedupe) | v3.1 repair queue | cmd: python scripts/selftest.py r09
 - [ ] T-0026 | activate v4: issues channel, HEALTH, deadman, anti-thrash, anti-drift, self-term | v3.1 v4 | cmd: python scripts/selftest.py v4
@@ -16,6 +15,7 @@
 - [ ] T-0014 | onboard mastodon: account + app token | onboarding (human)
 - [ ] T-0015 | onboard x: developer account + bearer token | onboarding (human)
 - [ ] T-0016 | onboard pinterest: account + board + token | onboarding (human)
+- [x] T-0023 | verify R-07: idempotent ffmpeg dep step | ok: -- 1/1 passed | cmd: python scripts/selftest.py r07
 - [x] T-0022 | verify R-06: push-as-mutex atomic lock | ok: -- 2/2 passed | cmd: python scripts/selftest.py r06
 - [x] T-0021 | verify R-05: quota escalation on low productivity | ok: -- 3/3 passed | cmd: python scripts/selftest.py r05
 - [x] T-0020 | verify R-04: onboard_check pending->ready wiring | ok: -- 2/2 passed | cmd: python scripts/selftest.py r04

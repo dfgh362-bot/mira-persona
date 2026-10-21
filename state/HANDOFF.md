@@ -1,7 +1,7 @@
 ## CURRENT
-T-0022 verify R-06: push-as-mutex atomic lock — -- 2/2 passed
+T-0023 verify R-07: idempotent ffmpeg dep step — -- 1/1 passed
 ## NEXT ACTION
-python scripts/selftest.py r07
+python scripts/selftest.py r08
 ## BLOCKERS
 - bluesky onboarding needs human: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-21T17:46:00Z)
 - telegram onboarding needs human: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-21T17:46:00Z)
@@ -10,6 +10,6 @@ python scripts/selftest.py r07
 - x onboarding needs human: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-21T17:46:00Z)
 - pinterest onboarding needs human: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-21T17:46:00Z)
 ## LAST COMMIT
-fdf5526
+741b4be
 ## CYCLE
-12
+13
