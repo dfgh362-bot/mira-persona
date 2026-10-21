@@ -299,3 +299,5 @@
 {"ts": "2026-10-21T21:30:54Z", "kind": "inbox_swept", "address": "demetrisvariable@maxxspace.com", "count": 0}
 {"ts": "2026-10-21T21:49:55Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-21T21:49:55Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-10-21T21:49:57Z", "kind": "blocker_added", "line": "T-0014 needs human: onboard mastodon: account + app token"}
+{"ts": "2026-10-21T21:49:57Z", "kind": "health_check", "funnel": "draining", "unposted": 13, "oldest_h": 7.1}

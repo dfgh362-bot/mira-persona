@@ -12,3 +12,4 @@
 - T-0011 needs human: onboard bluesky: account + app password, set as Actions Secrets (ts 2026-10-21T20:02:14Z)
 - T-0012 needs human: onboard telegram: bot via BotFather, token + chat id (ts 2026-10-21T20:36:54Z)
 - T-0013 needs human: onboard reddit: script app OAuth, sub + creds (ts 2026-10-21T21:10:55Z)
+- T-0014 needs human: onboard mastodon: account + app token (ts 2026-10-21T21:49:57Z)

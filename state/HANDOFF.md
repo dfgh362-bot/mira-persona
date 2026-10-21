@@ -1,7 +1,7 @@
 ## CURRENT
-T-0013 onboard reddit: script app OAuth, sub + creds — needs human
+T-0014 onboard mastodon: account + app token — needs human
 ## NEXT ACTION
-python scripts/backlog.py --one  # T-0014 (needs human)
+python scripts/backlog.py --one  # T-0015 (needs human)
 ## BLOCKERS
 - WIRE bluesky: onboarding needs human — secrets expected: BSKY_HANDLE, BSKY_APP_PASSWORD (or body lines KEY=value in a 'WIRE bluesky' issue, label: command) (ts 2026-10-22T00:00:00Z)
 - WIRE telegram: onboarding needs human — secrets expected: TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID (or body lines KEY=value in a 'WIRE telegram' issue, label: command) (ts 2026-10-22T00:00:00Z)
@@ -14,6 +14,6 @@ python scripts/backlog.py --one  # T-0014 (needs human)
 - WIRE needs GH_PAT: secret uploads require a token with secrets access (GITHUB_TOKEN cannot write secrets) — store a PAT (repo scope) once as Actions secret GH_PAT, or run scripts/issues.py --poll locally (ts 2026-10-22T00:00:00Z)
 - T-0011 needs human: onboard bluesky: account + app password, set as Actions Secrets (ts 2026-10-21T20:02:14Z)
 ## LAST COMMIT
-8674d34
+4d4afda
 ## CYCLE
-26
+27
