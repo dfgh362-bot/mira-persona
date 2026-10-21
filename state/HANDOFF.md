@@ -1,7 +1,7 @@
 ## CURRENT
-T-0021 verify R-05: quota escalation on low productivity — -- 3/3 passed
+T-0022 verify R-06: push-as-mutex atomic lock — -- 2/2 passed
 ## NEXT ACTION
-python scripts/selftest.py r06
+python scripts/selftest.py r07
 ## BLOCKERS
 - bluesky onboarding needs human: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-21T17:46:00Z)
 - telegram onboarding needs human: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-21T17:46:00Z)
@@ -10,6 +10,6 @@ python scripts/selftest.py r06
 - x onboarding needs human: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-21T17:46:00Z)
 - pinterest onboarding needs human: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-21T17:46:00Z)
 ## LAST COMMIT
-0d990b5
+fdf5526
 ## CYCLE
-11
+12
