@@ -272,3 +272,5 @@
 {"ts": "2026-10-21T20:02:14Z", "kind": "health_check", "funnel": "draining", "unposted": 13, "oldest_h": 5.3}
 {"ts": "2026-10-21T20:04:21Z", "kind": "brain", "source": "pollinations", "action": "python scripts/backlog.py --one"}
 {"ts": "2026-10-21T20:04:21Z", "kind": "site_built", "cards": 9, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
+{"ts": "2026-10-21T20:36:51Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-10-21T20:36:51Z", "kind": "lint_ok", "files": 5}
