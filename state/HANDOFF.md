@@ -1,7 +1,7 @@
 ## CURRENT
-T-0006 sweep mail.tm inboxes with the imported account — demetrisvariable@maxxspace.com: 0 message(s)
+T-0007 rebuild site — site/index.html rebuilt with 9 card(s); synced content/free -> site/content/free
 ## NEXT ACTION
-python scripts/build_site.py
+python scripts/state.py archive --older-than 48h
 ## BLOCKERS
 - bluesky onboarding needs human: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-21T17:46:00Z)
 - telegram onboarding needs human: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-21T17:46:00Z)
@@ -10,6 +10,6 @@ python scripts/build_site.py
 - x onboarding needs human: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-21T17:46:00Z)
 - pinterest onboarding needs human: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-21T17:46:00Z)
 ## LAST COMMIT
-6e9b3bf
+f6bb10a
 ## CYCLE
-19
+20
