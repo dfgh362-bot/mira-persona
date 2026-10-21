@@ -42,7 +42,7 @@ jobs:
           pip install --quiet edge-tts
           python scripts/gen_voice.py || true
 
-      - name: site (R-03: syncs content/free into site/content for same-origin tier)
+      - name: "site (R-03 syncs content/free into site/content for same-origin tier)"
         run: python scripts/build_site.py || true
 
       # v3.1 R-03: artifact packaged HERE (after build) so the untracked

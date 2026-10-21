@@ -48,7 +48,7 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: one backlog item (v4: issues channel, health, R-01..R-09)
+      - name: "one backlog item (v4 immune wired in)"
         if: steps.stop.outputs.halt == 'false' && steps.cool.outputs.proceed == 'true'
         run: python scripts/backlog.py --one
 
@@ -76,7 +76,7 @@ jobs:
             python scripts/backlog.py --commit "auto: loop cycle $(date -u +%FT%TZ)"
           fi
 
-      - name: self-dispatch (heartbeat, v3.1 R-08: GITHUB_TOKEN + actions:write)
+      - name: "self-dispatch (heartbeat, R-08 GITHUB_TOKEN + actions:write)"
         if: steps.stop.outputs.halt == 'false' && steps.cool.outputs.proceed == 'true'
         run: |
           code=$(curl -s -o /dev/null -w "%{http_code}" -X POST \
