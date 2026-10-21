@@ -251,3 +251,5 @@
 {"ts": "2026-10-21T19:49:34Z", "kind": "escalation_refused", "reason": "unposted 25 > cap 20 (sec.4)"}
 {"ts": "2026-10-21T19:49:34Z", "kind": "escalated_posting", "items": 1, "platforms": "telegram"}
 {"ts": "2026-10-21T19:49:34Z", "kind": "health_reported", "status": "healthy", "p": 15, "n": 1, "unposted": 13}
+{"ts": "2026-10-21T19:49:51Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-10-21T19:49:51Z", "kind": "lint_ok", "files": 5}
