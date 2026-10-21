@@ -1,6 +1,6 @@
 {
   "gh": {
-    "user": null,
+    "user": "dfgh362-bot",
     "repo": "mira-persona",
     "branch": "main",
     "note": "set gh.user here or export GH_USER; workflows auto-inject github.repository_owner"

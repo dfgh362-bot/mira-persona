@@ -109,3 +109,4 @@
 {"ts": "2026-10-21T16:04:25Z", "kind": "video_built", "file": "content/video/mira_clip_20261021_02.mp4", "stills": 3}
 {"ts": "2026-10-21T16:04:25Z", "kind": "backlog_exec", "id": "T-0002", "rc": 0, "tail": "built content/video/mira_clip_20261021_02.mp4 from 3 stills"}
 {"ts": "2026-10-21T16:06:23Z", "kind": "push_failed", "error": "fatal: No configured push destination.\nEither specify the URL from the command-line or configure a remote repository using\n\n    git remote add <name> <url>\n\nand then push using the remote name\n\n    git push <name>\n\n"}
+{"ts": "2026-10-21T16:08:15Z", "kind": "error", "where": "main", "error": "KeyError('margin')"}
