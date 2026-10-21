@@ -1,1 +1,1 @@
-python scripts/mailtm.py create
+python scripts/backlog.py --one
