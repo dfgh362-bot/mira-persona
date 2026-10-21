@@ -164,3 +164,10 @@
 {"ts": "2026-10-21T17:14:34Z", "kind": "commit_failed", "error": "global user.email \"you@example.com\"\n  git config --global user.name \"Your Name\"\n\nto set your account's default identity.\nOmit --global to set the identity only in this repository.\n\nfatal: empty ident name (for <runner@runnervm8k3b6.2fvbbrm5ht2erfgp2g5ajppu1b.phxx.internal.cloudapp.net>) not allowed\n"}
 {"ts": "2026-10-21T17:14:48Z", "kind": "brain", "source": "pollinations", "action": "python scripts/mailtm.py create"}
 {"ts": "2026-10-21T17:14:48Z", "kind": "site_built", "cards": 9, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html"}
+{"ts": "2026-10-21T17:22:10Z", "kind": "post_skipped", "platform": "bluesky", "reason": "missing credentials"}
+{"ts": "2026-10-21T17:22:10Z", "kind": "post_skipped", "platform": "telegram", "reason": "missing credentials"}
+{"ts": "2026-10-21T17:22:10Z", "kind": "post_skipped", "platform": "reddit", "reason": "missing credentials"}
+{"ts": "2026-10-21T17:22:10Z", "kind": "post_skipped", "platform": "mastodon", "reason": "missing credentials"}
+{"ts": "2026-10-21T17:22:10Z", "kind": "post_skipped", "platform": "x", "reason": "missing credentials"}
+{"ts": "2026-10-21T17:22:10Z", "kind": "post_skipped", "platform": "pinterest", "reason": "missing credentials"}
+{"ts": "2026-10-21T17:22:10Z", "kind": "post_skipped", "platform": "fanvue", "reason": "missing credentials"}
