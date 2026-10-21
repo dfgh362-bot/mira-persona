@@ -285,3 +285,5 @@
 {"ts": "2026-10-21T21:10:53Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-21T21:10:55Z", "kind": "blocker_added", "line": "T-0013 needs human: onboard reddit: script app OAuth, sub + creds"}
 {"ts": "2026-10-21T21:10:55Z", "kind": "health_check", "funnel": "draining", "unposted": 13, "oldest_h": 6.5}
+{"ts": "2026-10-21T21:13:05Z", "kind": "brain", "source": "pollinations", "action": "python scripts/backlog.py --one"}
+{"ts": "2026-10-21T21:13:05Z", "kind": "site_built", "cards": 9, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
