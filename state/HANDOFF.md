@@ -1,7 +1,7 @@
 ## CURRENT
-T-0026 activate v4: issues channel, HEALTH, deadman, anti-thrash, anti-drift, self-term — -- 4/4 passed
+T-0027 freeze specs: docs/SPEC-v2.md, v3.md, v3.1.md (D44) — -- 5/5 passed
 ## NEXT ACTION
-python scripts/selftest.py specs
+python scripts/mailtm.py import demetrisvariable@maxxspace.com
 ## BLOCKERS
 - bluesky onboarding needs human: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-21T17:46:00Z)
 - telegram onboarding needs human: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-21T17:46:00Z)
@@ -10,6 +10,6 @@ python scripts/selftest.py specs
 - x onboarding needs human: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-21T17:46:00Z)
 - pinterest onboarding needs human: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-21T17:46:00Z)
 ## LAST COMMIT
-e34c759
+574c886
 ## CYCLE
-16
+17

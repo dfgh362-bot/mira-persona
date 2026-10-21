@@ -1,6 +1,5 @@
 # BACKLOG — infinite queue (never empty)
 
-- [ ] T-0027 | freeze specs: docs/SPEC-v2.md, v3.md, v3.1.md (D44) | v3.1 | cmd: python scripts/selftest.py specs
 - [ ] T-0028 | import provided mail.tm account (demetrisvariable@maxxspace.com) | v3.1 user-provided (D43) | cmd: python scripts/mailtm.py import demetrisvariable@maxxspace.com
 - [ ] T-0006 | sweep mail.tm inboxes with the imported account | verification | cmd: python scripts/mailtm.py verify --all
 - [ ] T-0007 | rebuild site | pipeline | cmd: python scripts/build_site.py
@@ -12,6 +11,7 @@
 - [ ] T-0014 | onboard mastodon: account + app token | onboarding (human)
 - [ ] T-0015 | onboard x: developer account + bearer token | onboarding (human)
 - [ ] T-0016 | onboard pinterest: account + board + token | onboarding (human)
+- [x] T-0027 | freeze specs: docs/SPEC-v2.md, v3.md, v3.1.md (D44) | ok: -- 5/5 passed | cmd: python scripts/selftest.py specs
 - [x] T-0026 | activate v4: issues channel, HEALTH, deadman, anti-thrash, anti-drift, self-term | ok: -- 4/4 passed | cmd: python scripts/selftest.py v4
 - [x] T-0025 | verify R-09: no-cmd items append to BLOCKERS.md (dedupe) | ok: -- 3/3 passed | cmd: python scripts/selftest.py r09
 - [x] T-0024 | verify R-08: self-dispatch via GITHUB_TOKEN+actions:write, PAT optional | ok: -- 3/3 passed | cmd: python scripts/selftest.py r08
