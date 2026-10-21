@@ -10,6 +10,7 @@ concurrency:
 
 permissions:
   contents: write
+  issues: write       # v3.2 sec.2: lint blocked-issues
 
 jobs:
   generate:
@@ -25,6 +26,10 @@ jobs:
       # v3.1 R-07: idempotent dep step — install only when missing
       - name: deps (idempotent)
         run: command -v ffmpeg || sudo apt-get install -y ffmpeg
+
+      # v3.2 sec.2: silent-death guard — failure opens a "blocked" issue and halts the cycle
+      - name: "yaml lint (silent-death guard, v3.2)"
+        run: python scripts/lint_workflows.py
 
       - name: images (4 free + 2 paid per run = 8/4 per day)
         run: |

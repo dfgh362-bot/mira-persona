@@ -200,15 +200,164 @@ def v4():
                       "self-termination only after 100 clean cycles with no work.")
 
 
+# ---------------------------------------------------------------- v3.2
+def v32():
+    import tempfile
+    import shutil
+    from datetime import timedelta
+    import lint_workflows
+    import issues
+    import onboard_check
+    import health
+
+    # sec.2 — the lint itself is clean on the real tree
+    errs = lint_workflows.lint_all()
+    check("lint-clean", errs == [], "; ".join(errs[:2]))
+
+    # sec.2 — the lint catches the silent-death class (synthetic tree)
+    tmp = Path(tempfile.mkdtemp())
+    try:
+        wf = tmp / ".github" / "workflows"
+        wf.mkdir(parents=True)
+        (wf / "bad.yml").write_text("name: bad\n  step: [unclosed\n", encoding="utf-8")
+        (wf / "notrig.yml").write_text("name: nt\njobs:\n  a:\n    runs-on: ubuntu-latest\n", encoding="utf-8")
+        (wf / "nojobs.yml").write_text("name: nj\non:\n  workflow_dispatch:\n", encoding="utf-8")
+        errs = lint_workflows.lint_all(root=tmp)
+        joined = " || ".join(errs)
+        check("lint-detects", ("bad.yml" in joined and "notrig.yml" in joined
+                               and "nojobs.yml" in joined), "; ".join(errs[:3]))
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+    # sec.2 — lint wired into every workflow as a top step + backlog.one()
+    ymls = sorted((ROOT / ".github" / "workflows").glob("*.yml"))
+    with_lint = [y.name for y in ymls if "lint_workflows.py" in read(y)]
+    check("lint-in-every-workflow", len(with_lint) == len(ymls), "%s" % with_lint)
+    check("lint-in-one", "lint_workflows.run()" in read(ROOT / "scripts" / "backlog.py"),
+          "backlog.one() lints before anything else")
+
+    # sec.1 — WIRE pair parsing (title tokens + body lines, spaces in values)
+    pairs = issues.parse_wire_pairs("telegram TELEGRAM_BOT_TOKEN=abc123",
+                                    ["TELEGRAM_CHAT_ID=-1001234567890",
+                                     "REDDIT_SECRET=my pass word", "junk line"])
+    check("wire-parse", pairs.get("TELEGRAM_BOT_TOKEN") == "abc123"
+          and pairs.get("TELEGRAM_CHAT_ID") == "-1001234567890"
+          and pairs.get("REDDIT_SECRET") == "my pass word", str(sorted(pairs)))
+
+    # sec.1/5 — WIRE validation is deterministic + prints canonical names
+    res, ok = issues._wire("nosuch", [], None, "WIRE nosuch", "")
+    check("wire-unknown-platform", ok and "canonical env names" in res, res[:80])
+    res2, ok2 = issues._wire("telegram X_INVALID=1", [], None, "WIRE telegram", "")
+    check("wire-unknown-key", ok2 and "TELEGRAM_BOT_TOKEN" in res2
+          and "TELEGRAM_CHAT_ID" in res2, res2[:120])
+
+    # sec.1 — command resolution: title OR first body line
+    check("cmd-title", issues._resolve_command("DRAIN", []) == "DRAIN")
+    check("cmd-body", issues._resolve_command("please wire this", ["WIRE telegram A=1", "x"])
+          == "WIRE telegram A=1",
+          issues._resolve_command("please wire this", ["WIRE telegram A=1", "x"]))
+
+    # sec.5 — the name contract is complete: post.yml env == ENV_NAMES union
+    posty = read(ROOT / ".github" / "workflows" / "post.yml")
+    in_yml = set(re.findall(r"secrets\.([A-Z0-9_]+)", posty))
+    expected = set()
+    for names in onboard_check.ENV_NAMES.values():
+        expected |= set(names)
+    check("name-contract-vs-post-yml", in_yml == expected,
+          "yml-only: %s contract-only: %s" % (sorted(in_yml - expected), sorted(expected - in_yml)))
+
+    # sec.5 — full-contract readiness (all names, env OR accounts.json block)
+    full_env = {k: "x" for k in onboard_check.ENV_NAMES["reddit"]}
+    part_env = dict(full_env)
+    part_env.pop("REDDIT_PASSWORD")
+    check("reddit-full", onboard_check.eval_platform("reddit", {}, full_env)
+          and not onboard_check.eval_platform("reddit", {}, part_env),
+          "all 5 names required")
+    check("fanvue-contract", onboard_check.eval_platform("fanvue", {}, {"FANVUE_EMAIL": "e", "FANVUE_PASSWORD": "p"})
+          and not onboard_check.eval_platform("fanvue", {}, {}), "FANVUE_EMAIL + FANVUE_PASSWORD")
+    check("acc-block-fires-it", onboard_check.eval_platform(
+        "telegram", {"bot_token": "t", "chat_id": "c"}, {})
+        and onboard_check.eval_platform("telegram", {}, {"TELEGRAM_BOT_TOKEN": "t", "TELEGRAM_CHAT_ID": "c"}),
+        "hand-added accounts.json creds still fire the flip")
+
+    # sec.4 — funnel-first escalation (state save/restore)
+    sq = json.dumps(util.load_queue())
+    sh = json.dumps(util.load_json(util.STATE / "health.json", {}))
+    sb = read(util.STATE / "BACKLOG.md")
+    sboost = json.dumps(util.load_json(util.STATE / "quota_boost.json", {}))
+    sacc = json.dumps(util.load_config("accounts.json"))
+    try:
+        old = (util.utcnow() - timedelta(hours=30)).strftime("%Y-%m-%dT%H:%M:%SZ")
+        fresh = util.ts()
+        util.save_queue({"items": [{"id": "x1", "tier": "free", "status": "captioned",
+                                    "created": old, "caption": "c"}]})
+        esc, why = health.should_escalate_posting()
+        check("funnel-stuck-detected", esc, why)
+        util.save_queue({"items": [{"id": "f1", "tier": "free", "status": "captioned",
+                                    "created": fresh}]})
+        esc2, why2 = health.should_escalate_posting()
+        check("funnel-fresh-no-escalation", not esc2, why2)
+        # > 20 unposted -> generation boost refused (never raise img_free_day)
+        util.save_queue({"items": [{"id": "u%d" % i, "tier": "free", "status": "captioned",
+                                    "created": old} for i in range(25)]})
+        health.escalate()
+        b = util.load_json(util.STATE / "quota_boost.json", {})
+        check("gen-boost-refused-over-cap", int(b.get("multiplier", 1)) == 1,
+              "no raise while unposted > 20")
+        # ready platform -> post-now item inserted at the TOP, ahead of quotas
+        acc = util.load_config("accounts.json")
+        acc.setdefault("platforms", {}).setdefault("telegram", {})["status"] = "ready"
+        util.save_json(util.CONFIG / "accounts.json", acc)
+        util.save_queue({"items": [{"id": "x1", "tier": "free", "status": "captioned",
+                                    "created": old, "caption": "c"}]})
+        health.escalate_posting()
+        items = backlog.parse_items()
+        check("post-now-ahead", items and items[0]["action"] == "post now: telegram"
+              and items[0]["cmd"] == "python scripts/post_telegram.py",
+              "top item: %s" % (items[0]["action"] if items else "-"))
+        # legacy generation escalation only when the unposted queue is empty
+        util.save_queue({"items": [{"id": "p1", "tier": "free", "status": "posted",
+                                    "created": old, "posted_at": old}]})
+        util.save_json(util.STATE / "health.json",
+                       {"cycles": [{"c": i, "cls": "noop", "why": "synthetic"} for i in range(25)]})
+        esc3, why3 = health.should_escalate()
+        check("legacy-only-when-empty", esc3, why3)
+    finally:
+        util.save_json(util.CONTENT / "queue.json", json.loads(sq))
+        util.save_json(util.STATE / "health.json", json.loads(sh))
+        (util.STATE / "BACKLOG.md").write_text(sb, encoding="utf-8")
+        util.save_json(util.STATE / "quota_boost.json", json.loads(sboost))
+        util.save_json(util.CONFIG / "accounts.json", json.loads(sacc))
+
+    # sec.3 — dependency chain lands in HEALTH.md
+    health.report()
+    hm = read(util.STATE / "HEALTH.md")
+    check("chain-in-health", "cron (external) -> loop run -> deadman -> issue" in hm
+          and "funnel" in hm, "HEALTH.md carries chain + funnel")
+    ky = read(ROOT / ".github" / "workflows" / "keepalive.yml")
+    check("keepalive-watchdog", "keepalive.py" in ky
+          and re.search(r"actions:\s*write", ky) is not None
+          and re.search(r"issues:\s*write", ky) is not None,
+          "cron watchdog hardened (runs keepalive.py, actions+issues:write)")
+    util.log_decision("D48: v3.2 — lint_workflows (silent-death guard) at the top of "
+                      "every cycle in all 5 workflows + backlog.one(); D49: keepalive "
+                      "hardened — workflow runs verified via API every 6h, disabled "
+                      "schedules re-enabled, 24h stall opens a blocked issue; chain "
+                      "written into HEALTH.md.")
+
+
 # ---------------------------------------------------------------- specs
 def specs():
-    for n in ("SPEC-v2.md", "SPEC-v3.md", "SPEC-v3.1.md"):
+    for n in ("SPEC-v2.md", "SPEC-v3.md", "SPEC-v3.1.md", "SPEC-v3.2.md"):
         t = read(ROOT / "docs" / n)
         check(n, len(t) > 200, "%d bytes" % len(t))
     v31 = read(ROOT / "docs" / "SPEC-v3.1.md")
     check("verbatim-markers", "R-09" in v31 and "immune system" in v31,
           "v3.1 order frozen verbatim")
     check("redacted", "V4y24" not in v31, "credential redacted in frozen spec")
+    v32 = read(ROOT / "docs" / "SPEC-v3.2.md")
+    check("v32-frozen", "OPEN THE FUNNEL" in v32 and "WIRE" in v32
+          and "FIRST POST CEREMONY" in v32, "v3.2 order frozen verbatim")
 
 
 # ---------------------------------------------------------------- remote
@@ -230,14 +379,16 @@ def remote():
 
 
 CHECKS = {"r01": r01, "r02": r02, "r03": r03, "r04": r04, "r05": r05, "r06": r06,
-          "r07": r07, "r08": r08, "r09": r09, "v4": v4, "specs": specs, "remote": remote}
+          "r07": r07, "r08": r08, "r09": r09, "v4": v4, "v32": v32, "specs": specs,
+          "remote": remote}
 
 
 @util.cli_guard
 def main(argv):
     which = argv[0] if argv else "all"
     if which == "all":
-        order = ["r01", "r02", "r03", "r04", "r05", "r06", "r07", "r08", "r09", "v4", "specs", "remote"]
+        order = ["r01", "r02", "r03", "r04", "r05", "r06", "r07", "r08", "r09",
+                 "v4", "v32", "specs", "remote"]
         for k in order:
             print("== %s" % k)
             CHECKS[k]()
@@ -245,7 +396,7 @@ def main(argv):
         print("== %s" % which)
         CHECKS[which]()
     else:
-        print("unknown check: %s (r01..r09, v4, specs, remote, all)" % which)
+        print("unknown check: %s (r01..r09, v4, v32, specs, remote, all)" % which)
         raise SystemExit(2)
     failed = [n for n, ok, _ in RESULTS if not ok]
     print("-- %d/%d passed" % (len(RESULTS) - len(failed), len(RESULTS)))

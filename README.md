@@ -52,6 +52,8 @@ Order: Fanvue, Bluesky, Telegram, Reddit, Mastodon, X, Pinterest.
 
 ### 4. Secrets (Actions -> Secrets -> Actions)
 
+Easiest path: **WIRE them via an issue** (v3.2) — see below; you only need `GH_PAT` stored once. Manual path — set the secrets yourself:
+
 | secret | used by |
 |---|---|
 | `BSKY_HANDLE`, `BSKY_APP_PASSWORD` | post_bluesky.py |
@@ -61,6 +63,7 @@ Order: Fanvue, Bluesky, Telegram, Reddit, Mastodon, X, Pinterest.
 | `X_BEARER_TOKEN` | post_x.py |
 | `PINTEREST_TOKEN`, `PINTEREST_BOARD_ID` | post_pinterest.py |
 | `FANVUE_EMAIL`, `FANVUE_PASSWORD` | post_fanvue.py (tier 3) |
+| `GH_PAT` (optional, once) | lets the loop upload all other secrets itself (WIRE) |
 
 `GH_USER` is injected automatically from `github.repository_owner`. No tokens are ever committed; only disposable mail.tm passwords live in `config/accounts.json` (accepted risk R5).
 
@@ -73,7 +76,8 @@ Workflow_dispatch each workflow once, then leave it on cron:
 | generate.yml | 0 6,18 * * * | 4 free + 2 paid images, captions, 1 ken-burns video, voice notes, site rebuild, pages deploy |
 | post.yml | 0 9,13,17,21 * * * | one due item to all authed tier-1 platforms (pinned disclosure first) |
 | inbox.yml | */30 * * * * | mail.tm inbox sweep, completes verification links |
-| keepalive.yml | 0 3 * * * | commit + archive old items (repo activity < 48h) |
+| keepalive.yml | 0 */6 * * * | cron watchdog: verifies every workflow's last run via the API, re-enables disabled schedules, opens a "blocked" issue on 24h stalls |
+| loop.yml | */5 * * * * + self-dispatch | one backlog item per cycle; YAML lint at the top of every cycle |
 
 All workflows: concurrency guard, timeout 20 min, `contents: write`, commit state at end. All scripts catch-log-exit-0; nothing crashes a run.
 
@@ -101,3 +105,20 @@ The repo now runs itself:
 - **`run_forever.sh`** — local watchdog running the same loop on this machine.
 - **Controls**: `touch state/STOP` + commit = halt everything; `touch state/PAUSE` + commit = idle. Absence of both = run.
 - **Guards**: max 400 commits/day, max 1 commit / 2 min, log rotation at 5MB, repo prune at 900MB, 4-min runner cooldown, authenticated API < 5000 req/hr.
+
+## v3.2 — the WIRE channel (open the funnel)
+
+The issues channel is the human wiring path. Open an issue with the label **`command`** (labeling needs write access, so strangers cannot inject):
+
+```
+title:  WIRE telegram
+body:   TELEGRAM_BOT_TOKEN=123456:ABC-...
+        TELEGRAM_CHAT_ID=-1001234567890
+```
+
+- **WIRE <platform>** parses the pairs, uploads each as an Actions secret (sealed box), flips the platform to `ready`, redacts the values from the issue (public repo), and closes it. Next cycle the first post ceremony runs: pinned disclosure first, then the oldest unposted item; the live URLs are commented back on the wire issue.
+- **DRAIN** posts every unposted item immediately, ignoring the schedule.
+- **STATUS / HEALTH / PAUSE / RESUME / STOP / REPAIR / REFILL / PRIORITY / RUN** — see `scripts/issues.py`.
+- Secret uploads need a token with `secrets` permission (GITHUB_TOKEN cannot write secrets — GitHub limitation): store a PAT (repo scope) once as Actions secret **`GH_PAT`**, or run `python scripts/issues.py --poll` locally (the PAT in `.git/config` is picked up automatically).
+
+Funnel-first escalation (v3.2 sec.4): unposted items older than 24h escalate **posting** ("post now" items jump ahead of quota items); generation quotas are never raised while the unposted queue exceeds 20.

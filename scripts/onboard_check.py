@@ -1,10 +1,29 @@
-"""MIRA v3.1 R-04 — onboarding watch. Runs every cycle, BEFORE refill.
+"""MIRA v3.1 R-04 + v3.2 sec.5/6 — onboarding watch + first post ceremony.
 
-For each platform with status "pending": if creds are present in env or
-config, flip status to "ready" (accounts.json + platforms.json) and insert a
-top backlog item "wire <platform> + first post".
-Still-pending platforms are surfaced in BLOCKERS.md (deduped) so the human
-always sees the onboarding queue without waiting for queue order (R-09 aid).
+Runs every cycle, BEFORE refill:
+
+- for each tier-1 platform with status "pending": if ALL canonical env names
+  (v3.2 sec.5 contract) are present — from the environment (Actions
+  secrets, incl. those a WIRE issue uploaded) OR the config/accounts.json
+  creds block — flip status to "ready" and insert a top backlog item
+  "wire <platform> + first post".
+- v3.2: platforms set "ready" by a WIRE issue (no pending transition) get
+  the same top item next cycle — onboard_check picks them up.
+- the item's cmd runs the platform's post script TWICE: pinned disclosure
+  FIRST (verbatim), then the oldest unposted item (sec.6 ceremony). Once
+  both are live, their URLs are commented on the wire issue (if any).
+- still-pending platforms are surfaced in BLOCKERS.md with the EXACT
+  expected env names, so the human cannot guess wrong.
+
+Name contract (canonical env names, exact — v3.2 sec.5):
+  telegram  TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID
+  bluesky   BSKY_HANDLE, BSKY_APP_PASSWORD
+  mastodon  MASTODON_INSTANCE, MASTODON_TOKEN
+  reddit    REDDIT_CLIENT_ID, REDDIT_SECRET, REDDIT_USERNAME,
+            REDDIT_PASSWORD, REDDIT_SUBREDDIT
+  x         X_BEARER_TOKEN
+  pinterest PINTEREST_TOKEN, PINTEREST_BOARD_ID
+  fanvue    FANVUE_EMAIL, FANVUE_PASSWORD   (tier 3: no ceremony item)
 """
 import os
 import sys
@@ -24,68 +43,141 @@ POST_CMD = {
     "pinterest": "python scripts/post_pinterest.py",
 }
 
+# v3.2 sec.5 — canonical env names, exact
+ENV_NAMES = {
+    "telegram": ("TELEGRAM_BOT_TOKEN", "TELEGRAM_CHAT_ID"),
+    "bluesky": ("BSKY_HANDLE", "BSKY_APP_PASSWORD"),
+    "mastodon": ("MASTODON_INSTANCE", "MASTODON_TOKEN"),
+    "reddit": ("REDDIT_CLIENT_ID", "REDDIT_SECRET", "REDDIT_USERNAME",
+               "REDDIT_PASSWORD", "REDDIT_SUBREDDIT"),
+    "x": ("X_BEARER_TOKEN",),
+    "pinterest": ("PINTEREST_TOKEN", "PINTEREST_BOARD_ID"),
+    "fanvue": ("FANVUE_EMAIL", "FANVUE_PASSWORD"),
+}
 
-def _first(*vals):
-    for v in vals:
-        if v:
-            return v
-    return None
+ENV_TO_ACC = {
+    "BSKY_HANDLE": "handle", "BSKY_APP_PASSWORD": "app_password",
+    "TELEGRAM_BOT_TOKEN": "bot_token", "TELEGRAM_CHAT_ID": "chat_id",
+    "MASTODON_INSTANCE": "instance", "MASTODON_TOKEN": "token",
+    "REDDIT_CLIENT_ID": "client_id", "REDDIT_SECRET": "secret",
+    "REDDIT_USERNAME": "username", "REDDIT_PASSWORD": "password",
+    "REDDIT_SUBREDDIT": "subreddit",
+    "X_BEARER_TOKEN": "bearer_token",
+    "PINTEREST_TOKEN": "token", "PINTEREST_BOARD_ID": "board_id",
+    "FANVUE_EMAIL": "email", "FANVUE_PASSWORD": "password",
+}
 
 
 def eval_platform(name, acc, env):
-    """pure readiness check — selftest exercises this (R-04)."""
-    e = lambda k: env.get(k)
-    if name == "bluesky":
-        return bool(_first(e("BSKY_HANDLE"), acc.get("handle"))
-                    and _first(e("BSKY_APP_PASSWORD"), acc.get("app_password")))
-    if name == "telegram":
-        return bool(_first(e("TELEGRAM_BOT_TOKEN"), acc.get("bot_token"))
-                    and _first(e("TELEGRAM_CHAT_ID"), acc.get("chat_id")))
-    if name == "mastodon":
-        return bool(_first(e("MASTODON_TOKEN"), acc.get("token")))
-    if name == "reddit":
-        return bool(_first(e("REDDIT_CLIENT_ID"), acc.get("client_id"))
-                    and _first(e("REDDIT_SECRET"), acc.get("secret")))
-    if name == "x":
-        return bool(_first(e("X_BEARER_TOKEN"), acc.get("bearer_token")))
-    if name == "pinterest":
-        return bool(_first(e("PINTEREST_TOKEN"), acc.get("token"))
-                    and _first(e("PINTEREST_BOARD_ID"), acc.get("board_id")))
-    return False
+    """v3.2 sec.5: EVERY canonical name must resolve — from env (Actions
+    secrets / WIRE upload) OR the config/accounts.json creds block.
+    Pure check — selftest exercises this (r04, v32)."""
+    need = ENV_NAMES.get(name, ())
+    acc = acc or {}
+    for key in need:
+        if not (env.get(key) or acc.get(ENV_TO_ACC.get(key, key.lower()))):
+            return False
+    return bool(need)
+
+
+def _wire_item_action(name):
+    return "wire %s + first post" % name
+
+
+def _introduced(name):
+    """platform already went through the ceremony (pinned disclosure live)."""
+    return util.has_pinned(util.load_posted(), name)
 
 
 def _queue_wire(name):
+    """insert the ceremony item at the TOP — ahead of quota items (sec.6):
+    cmd runs the post script twice: pinned disclosure FIRST, then the
+    oldest unposted item. Requeues after a failed attempt (marker ~),
+    capped at 5 total attempts; post.yml remains the steady drip."""
     import backlog  # lazy: backlog imports onboard_check at module scope of one()
     items = backlog.parse_items()
-    action = "wire %s + first post" % name
-    if any(i["action"] == action for i in items):
-        return
+    action = _wire_item_action(name)
+    if any(i["marker"] == " " and i["action"] == action for i in items):
+        return                                  # already queued
+    if len([i for i in items if i["action"] == action and i["marker"] == "~"]) >= 5:
+        return                                  # 5 failed attempts — stop requeueing
+    cmd = POST_CMD.get(name, "")
     items.insert(0, {"marker": " ", "id": backlog.next_id(items), "action": action,
-                     "note": "creds detected (R-04)", "cmd": POST_CMD.get(name, "")})
+                     "note": "creds detected / WIRE (v3.2 sec.6 ceremony)",
+                     "cmd": ("%s && %s" % (cmd, cmd)) if cmd else ""})
     backlog.write_items(backlog.prune_done(items))
+
+
+def _comment_wire_urls(name, acc):
+    """sec.6: once the ceremony is live, comment the URLs on the wire issue
+    (closed issues still accept comments). One-shot per platform.
+    Returns True when acc was mutated (caller persists)."""
+    num = acc.get("wire_issue")
+    if not num or acc.get("wire_commented"):
+        return False
+    posts = [p for p in util.load_posted().get("posts", [])
+             if p.get("platform") == name and p.get("url")]
+    pinned = next((p for p in posts if p.get("pinned")), None)
+    first = next((p for p in posts if not p.get("pinned")), None)
+    if not (pinned and first):
+        return False   # ceremony incomplete — retry next cycle
+    import issues
+    body = ("first posts are live (v3.2 sec.6):\n"
+            "- pinned disclosure: %s\n- first post: %s\nfunnel continues on "
+            "the post.yml schedule + funnel-first escalation." % (pinned["url"], first["url"]))
+    issues.comment(num, body)
+    acc["wire_commented"] = True
+    util.log_event("wire_urls_commented", platform=name, issue=num)
+    return True
+
+
+def _blocker_line(name):
+    return ("WIRE %s: onboarding needs human — secrets expected: %s "
+            "(or body lines KEY=value in a 'WIRE %s' issue, label: command)"
+            % (name, ", ".join(ENV_NAMES.get(name, ())), name))
 
 
 def run():
     cfg = util.load_config("accounts.json")
     platforms = cfg.get("platforms", {})
     flipped = []
+    changed = False
+    # tier-1: pending -> ready on creds; queue the ceremony
     for name in PENDING_PLATFORMS:
         acc = platforms.get(name) or {}
         if acc.get("status") == "pending" and eval_platform(name, acc, os.environ):
             acc["status"] = "ready"
             flipped.append(name)
+            changed = True
             util.set_platform_status(name, "ready")
-    if flipped:
+            util.remove_blockers("%s onboarding needs human" % name)
+        if acc.get("status") == "ready" and not _introduced(name):
+            _queue_wire(name)          # covers flip AND WIRE-set ready (sec.1)
+        if acc.get("status") == "ready":
+            changed = _comment_wire_urls(name, acc) or changed
+    # fanvue (tier 3): creds -> ready, no ceremony item (post.yml tier-3 step)
+    fv = platforms.get("fanvue") or {}
+    if fv.get("status") in ("pending", "manual") and eval_platform("fanvue", fv, os.environ):
+        fv["status"] = "ready"
+        flipped.append("fanvue")
+        changed = True
+        util.set_platform_status("fanvue", "ready")
+        util.remove_blockers("WIRE fanvue")
+        util.log_event("onboard_ready", platform="fanvue", tier=3)
+    if changed:
         util.save_json(util.CONFIG / "accounts.json", cfg)
+    if flipped:
         for name in flipped:
-            _queue_wire(name)
-            util.log_event("onboard_ready", platform=name)
-    # R-09 aid: surface still-pending onboarding in BLOCKERS.md (deduped)
+            if name != "fanvue":
+                util.log_event("onboard_ready", platform=name)
+    # R-09 aid + v3.2 sec.5: surface still-pending onboarding with the EXACT
+    # expected env names in BLOCKERS.md (deduped by prefix)
     for name in PENDING_PLATFORMS:
         acc = platforms.get(name) or {}
         if acc.get("status") == "pending":
-            util.append_blocker("%s onboarding needs human: create account, "
-                                "bio + pinned, creds to Actions Secrets" % name)
+            util.append_blocker(_blocker_line(name))
+    if (platforms.get("fanvue") or {}).get("status") != "ready":
+        util.append_blocker(_blocker_line("fanvue"))
     return flipped
 
 

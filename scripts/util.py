@@ -229,6 +229,24 @@ def append_blocker(line):
     log_event("blocker_added", line=line[:200])
 
 
+def remove_blockers(substr):
+    """v3.2: drop BLOCKERS.md lines containing substr (e.g. a platform went
+    ready — its onboarding blocker is resolved)."""
+    p = STATE / "BLOCKERS.md"
+    try:
+        txt = p.read_text(encoding="utf-8") if p.exists() else ""
+    except Exception:
+        return
+    if substr not in txt:
+        return
+    lines = [l for l in txt.splitlines() if substr not in l]
+    body = "\n".join(lines).rstrip() + "\n"
+    if not [l for l in lines if l.strip() and not l.startswith("#")]:
+        body = "# BLOCKERS — things needing the human\n\n(none)\n"
+    p.write_text(body, encoding="utf-8")
+    log_event("blocker_removed", substr=substr[:100])
+
+
 def jsdelivr(rel_path):
     rel = str(rel_path).replace("\\", "/")
     while rel.startswith("/"):

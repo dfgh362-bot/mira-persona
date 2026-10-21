@@ -1,0 +1,6 @@
+{
+  "ts": "2026-10-21T19:39:15Z",
+  "script": "scripts/selftest.py",
+  "fn": "main",
+  "tb_tail": "TypeError: can only concatenate str (not \"list\") to str"
+}

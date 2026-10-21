@@ -1,7 +1,7 @@
 name: keepalive
 on:
   schedule:
-    - cron: "0 3 * * *"
+    - cron: "0 */6 * * *"   # v3.2 sec.3: the cron watchdog checks 4x/day
   workflow_dispatch:
 
 concurrency:
@@ -10,6 +10,8 @@ concurrency:
 
 permissions:
   contents: write
+  actions: write      # v3.2 sec.3: list/enable workflows via the API
+  issues: write       # v3.2 sec.3: open "blocked" issues on 24h stalls
 
 jobs:
   keepalive:
@@ -22,7 +24,19 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: archive old items + heartbeat
+      # v3.2 sec.2: the lint runs here too (opens the blocked issue), but
+      # the watchdog layer must survive dead layers — it does NOT halt.
+      - name: "yaml lint (watchdog exception, v3.2)"
+        run: python scripts/lint_workflows.py || echo "lint blocked (issue opened) — watchdog continues"
+
+      # v3.2 sec.3: the real watchdog is cron (external). verify every
+      # workflow's last run via the API, re-enable disabled schedules,
+      # open a "blocked" issue if any workflow has 0 runs in 24h, write
+      # the dependency chain into HEALTH.md.
+      - name: watchdog (v3.2 sec.3)
+        run: python scripts/keepalive.py
+
+      - name: archive old items
         run: python scripts/state.py archive --older-than 48h || true
 
       - name: commit

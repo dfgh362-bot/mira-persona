@@ -33,6 +33,7 @@ import util
 import issues
 import health
 import onboard_check
+import lint_workflows
 
 BACKLOG = util.STATE / "BACKLOG.md"
 HANDOFF = util.STATE / "HANDOFF.md"
@@ -455,12 +456,12 @@ def drift_check(cycle):
     invariants, write state/DRIFT.md."""
     docs = util.ROOT / "docs"
     specs = {n: (docs / n).read_text(encoding="utf-8")
-             for n in ("SPEC-v2.md", "SPEC-v3.md", "SPEC-v3.1.md")
+             for n in ("SPEC-v2.md", "SPEC-v3.md", "SPEC-v3.1.md", "SPEC-v3.2.md")
              if (docs / n).exists()}
     src = (util.ROOT / "scripts" / "backlog.py").read_text(encoding="utf-8")
     site = (util.ROOT / "scripts" / "build_site.py").read_text(encoding="utf-8")
     checks = [
-        ("specs frozen (v2/v3/v3.1)", len(specs) == 3),
+        ("specs frozen (v2/v3/v3.1/v3.2)", len(specs) == 4),
         ("queue never empty", len([i for i in parse_items() if i["marker"] == " "]) >= 1),
         ("commit caps in shared path", "MAX_COMMITS_PER_DAY" in src),
         ("lock push-mutex present", "acquire_lock" in src),
@@ -583,6 +584,13 @@ def one():
             commit_and_push("cycle %d: paused heartbeat" % cycle)
         print("| %d | PAUSE | idle heartbeat | - | - |" % cycle)
         return
+    # v3.2 sec.2: YAML lint at the TOP of every cycle, before anything else —
+    # a silent-death class must never recur silently. (workflow-level lint
+    # usually catches it first; this covers local --one invocations)
+    if lint_workflows.run():
+        commit_and_push("cycle: lint blocked — workflow YAML failed (v3.2 sec.2)")
+        print("| - | lint | blocked: workflow YAML failed — cycle halted | - | - |")
+        return
     # v4 deadman: heartbeat gap > 60 min -> blocked issue (once, deduped)
     issues.deadman_check()
     if lock_is_fresh():
@@ -592,12 +600,12 @@ def one():
         print("| - | lock | lost the push mutex — another runner won | - | - |")
         return
     productive = False
-    # v4: issues command channel executes at top priority
+    # v4: issues command channel executes at top priority (start comment,
+    # result comment, close on success — v3.2 sec.1)
     try:
         n_cmds = issues.poll_commands()
         if n_cmds:
             productive = True
-            print("issues: %d command(s) executed" % n_cmds)
         # v3.1 R-04: onboard watch runs every cycle before refill
         flipped = onboard_check.run()
         if flipped:
@@ -611,7 +619,6 @@ def one():
                       "note": "invented (queue was empty)",
                       "cmd": "python scripts/state.py stats"}
             items.append(target)
-        print("== cycle item: %s | %s" % (target["id"], target["action"]))
         if target.get("cmd"):
             summary, cls = run_cmd(target)
         else:

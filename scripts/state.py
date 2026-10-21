@@ -92,8 +92,7 @@ def main(argv):
                 moved += 1
         util.save_queue(queue)
         util.log_event("archived", moved=moved, older_than_hours=hours)
-        util.save_json(util.STATE / "keepalive.json", {"last": util.ts()})
-        print("archived %d item(s); heartbeat written" % moved)
+        print("archived %d item(s)" % moved)
         return
 
     print(__doc__)

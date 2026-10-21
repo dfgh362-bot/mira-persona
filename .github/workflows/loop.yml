@@ -44,12 +44,40 @@ jobs:
           fi
 
       - uses: actions/setup-python@v5
-        if: steps.stop.outputs.halt == 'false' && steps.cool.outputs.proceed == 'true'
+        if: steps.stop.outputs.halt == 'false'
         with:
           python-version: "3.11"
 
-      - name: "one backlog item (v4 immune wired in)"
+      # v3.2 sec.2: yaml lint at the TOP of every cycle, before anything
+      # else — a silent-death class must never recur silently. Runs even
+      # when the lock is fresh (idling cycles still lint). Failure opens a
+      # "blocked" issue and halts the cycle (red step, rest skipped).
+      - name: "yaml lint (silent-death guard, v3.2)"
+        if: steps.stop.outputs.halt == 'false'
+        run: python scripts/lint_workflows.py
+
+      - name: "one backlog item (v4+v3.2 immune wired in)"
         if: steps.stop.outputs.halt == 'false' && steps.cool.outputs.proceed == 'true'
+        env:
+          WIRE_PAT: ${{ secrets.GH_PAT }}
+          MAIL_ADDR: ${{ secrets.MAIL_ADDR }}
+          MAIL_PASS: ${{ secrets.MAIL_PASS }}
+          BSKY_HANDLE: ${{ secrets.BSKY_HANDLE }}
+          BSKY_APP_PASSWORD: ${{ secrets.BSKY_APP_PASSWORD }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          MASTODON_INSTANCE: ${{ secrets.MASTODON_INSTANCE }}
+          MASTODON_TOKEN: ${{ secrets.MASTODON_TOKEN }}
+          REDDIT_CLIENT_ID: ${{ secrets.REDDIT_CLIENT_ID }}
+          REDDIT_SECRET: ${{ secrets.REDDIT_SECRET }}
+          REDDIT_USERNAME: ${{ secrets.REDDIT_USERNAME }}
+          REDDIT_PASSWORD: ${{ secrets.REDDIT_PASSWORD }}
+          REDDIT_SUBREDDIT: ${{ secrets.REDDIT_SUBREDDIT }}
+          X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
+          PINTEREST_TOKEN: ${{ secrets.PINTEREST_TOKEN }}
+          PINTEREST_BOARD_ID: ${{ secrets.PINTEREST_BOARD_ID }}
+          FANVUE_EMAIL: ${{ secrets.FANVUE_EMAIL }}
+          FANVUE_PASSWORD: ${{ secrets.FANVUE_PASSWORD }}
         run: python scripts/backlog.py --one
 
       - name: brain (skipped while PAUSEd)

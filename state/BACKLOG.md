@@ -1,5 +1,6 @@
 # BACKLOG — infinite queue (never empty)
 
+- [ ] T-0034 | selftest v32: wire channel, lint, funnel-first, name contract | v3.2 build proof (live on Actions) | cmd: python scripts/selftest.py v32
 - [~] T-0010 | onboard fanvue: AI creator flag + pricing 9.99/12.99/35 + tips 5/10/25 + DM auto-reply | attempted, needs human (BLOCKERS.md)
 - [ ] T-0011 | onboard bluesky: account + app password, set as Actions Secrets | onboarding (human)
 - [ ] T-0012 | onboard telegram: bot via BotFather, token + chat id | onboarding (human)

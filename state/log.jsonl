@@ -227,3 +227,18 @@
 {"ts": "2026-10-21T19:27:33Z", "kind": "commit_failed", "error": "--global user.email \"you@example.com\"\n  git config --global user.name \"Your Name\"\n\nto set your account's default identity.\nOmit --global to set the identity only in this repository.\n\nfatal: empty ident name (for <runner@runnervmxehtw.1twmjawpi4yejnswvcxnlxfa3a.cx.internal.cloudapp.net>) not allowed\n"}
 {"ts": "2026-10-21T19:27:51Z", "kind": "brain", "source": "pollinations", "action": "git config --global user.email \"you@example.com\" && git config --global user.name \"Your Name\""}
 {"ts": "2026-10-21T19:27:51Z", "kind": "site_built", "cards": 9, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
+{"ts": "2026-10-21T18:54:58Z", "kind": "health_reported", "status": "healthy", "p": 15, "n": 1}
+{"ts": "2026-10-21T19:39:15Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-10-21T19:39:15Z", "kind": "blocker_added", "line": "selftest T-9999 needs human (probe)"}
+{"ts": "2026-10-21T19:39:15Z", "kind": "error", "script": "scripts/selftest.py", "where": "main", "error": "TypeError: can only concatenate str (not \"list\") to str"}
+{"ts": "2026-10-21T19:39:29Z", "kind": "blocker_added", "line": "selftest T-9999 needs human (probe)"}
+{"ts": "2026-10-21T19:39:29Z", "kind": "escalation_refused", "reason": "unposted 25 > cap 20 (sec.4)"}
+{"ts": "2026-10-21T19:39:29Z", "kind": "escalated_posting", "items": 1, "platforms": "telegram"}
+{"ts": "2026-10-21T19:39:29Z", "kind": "health_reported", "status": "healthy", "p": 15, "n": 1, "unposted": 13}
+{"ts": "2026-10-21T19:39:52Z", "kind": "blocker_added", "line": "selftest T-9999 needs human (probe)"}
+{"ts": "2026-10-21T19:39:52Z", "kind": "escalation_refused", "reason": "unposted 25 > cap 20 (sec.4)"}
+{"ts": "2026-10-21T19:39:52Z", "kind": "escalated_posting", "items": 1, "platforms": "telegram"}
+{"ts": "2026-10-21T19:39:52Z", "kind": "health_reported", "status": "healthy", "p": 15, "n": 1, "unposted": 13}
+{"ts": "2026-10-21T19:39:53Z", "kind": "escalation_refused", "reason": "unposted 25 > cap 20 (sec.4)"}
+{"ts": "2026-10-21T19:39:53Z", "kind": "escalated_posting", "items": 1, "platforms": "telegram"}
+{"ts": "2026-10-21T19:39:53Z", "kind": "health_reported", "status": "healthy", "p": 15, "n": 1, "unposted": 13}
