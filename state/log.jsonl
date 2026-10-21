@@ -185,3 +185,5 @@
 {"ts": "2026-10-21T17:46:00Z", "kind": "blocker_added", "line": "pinterest onboarding needs human: create account, bio + pinned, creds to Actions Secrets"}
 {"ts": "2026-10-21T17:46:01Z", "kind": "backlog_exec", "id": "T-0017", "rc": 0, "tail": "-- 3/3 passed"}
 {"ts": "2026-10-21T17:46:01Z", "kind": "health_check", "escalation": "window not full (1/25)"}
+{"ts": "2026-10-21T17:50:12Z", "kind": "backlog_exec", "id": "T-0018", "rc": 0, "tail": "-- 4/4 passed"}
+{"ts": "2026-10-21T17:50:12Z", "kind": "health_check", "escalation": "window not full (2/25)"}
