@@ -1,6 +1,5 @@
 # BACKLOG — infinite queue (never empty)
 
-- [ ] T-0006 | sweep mail.tm inboxes with the imported account | verification | cmd: python scripts/mailtm.py verify --all
 - [ ] T-0007 | rebuild site | pipeline | cmd: python scripts/build_site.py
 - [ ] T-0008 | archive old items | hygiene | cmd: python scripts/state.py archive --older-than 48h
 - [ ] T-0010 | onboard fanvue: AI creator flag + pricing 9.99/12.99/35 + tips 5/10/25 + DM auto-reply | onboarding (human)
@@ -11,6 +10,8 @@
 - [ ] T-0015 | onboard x: developer account + bearer token | onboarding (human)
 - [ ] T-0016 | onboard pinterest: account + board + token | onboarding (human)
 - [ ] T-0029 | onboard bluesky: create account, bio + pinned, creds to Actions Secrets | onboarding (human)
+- [ ] T-0030 | onboard telegram: create account, bio + pinned, creds to Actions Secrets | onboarding (human)
+- [x] T-0006 | sweep mail.tm inboxes with the imported account | ok: demetrisvariable@maxxspace.com: 0 message(s) | cmd: python scripts/mailtm.py verify --all
 - [x] T-0028 | import provided mail.tm account (demetrisvariable@maxxspace.com) | ok: imported demetrisvariable@maxxspace.com on https://api.mail. | cmd: python scripts/mailtm.py import demetrisvariable@maxxspace.com
 - [x] T-0027 | freeze specs: docs/SPEC-v2.md, v3.md, v3.1.md (D44) | ok: -- 5/5 passed | cmd: python scripts/selftest.py specs
 - [x] T-0026 | activate v4: issues channel, HEALTH, deadman, anti-thrash, anti-drift, self-term | ok: -- 4/4 passed | cmd: python scripts/selftest.py v4

@@ -1,7 +1,7 @@
 ## CURRENT
-T-0028 import provided mail.tm account (demetrisvariable@maxxspace.com) — imported demetrisvariable@maxxspace.com on https://api.mail.tm (password NOT sto
+T-0006 sweep mail.tm inboxes with the imported account — demetrisvariable@maxxspace.com: 0 message(s)
 ## NEXT ACTION
-python scripts/mailtm.py verify --all
+python scripts/build_site.py
 ## BLOCKERS
 - bluesky onboarding needs human: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-21T17:46:00Z)
 - telegram onboarding needs human: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-21T17:46:00Z)
@@ -10,6 +10,6 @@ python scripts/mailtm.py verify --all
 - x onboarding needs human: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-21T17:46:00Z)
 - pinterest onboarding needs human: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-21T17:46:00Z)
 ## LAST COMMIT
-751a3da
+6e9b3bf
 ## CYCLE
-18
+19
