@@ -258,8 +258,10 @@ def v32():
           issues._resolve_command("please wire this", ["WIRE telegram A=1", "x"]))
 
     # sec.5 — the name contract is complete: post.yml env == ENV_NAMES union
+    # (GITHUB_TOKEN is the runner token for the lint/issues channel, not a
+    # platform secret — excluded)
     posty = read(ROOT / ".github" / "workflows" / "post.yml")
-    in_yml = set(re.findall(r"secrets\.([A-Z0-9_]+)", posty))
+    in_yml = set(re.findall(r"secrets\.([A-Z0-9_]+)", posty)) - {"GITHUB_TOKEN"}
     expected = set()
     for names in onboard_check.ENV_NAMES.values():
         expected |= set(names)

@@ -255,3 +255,6 @@
 {"ts": "2026-10-21T19:52:33Z", "kind": "escalation_refused", "reason": "unposted 25 > cap 20 (sec.4)"}
 {"ts": "2026-10-21T19:52:33Z", "kind": "escalated_posting", "items": 1, "platforms": "telegram"}
 {"ts": "2026-10-21T19:52:33Z", "kind": "health_reported", "status": "healthy", "p": 15, "n": 1, "unposted": 13}
+{"ts": "2026-10-21T19:52:54Z", "kind": "escalation_refused", "reason": "unposted 25 > cap 20 (sec.4)"}
+{"ts": "2026-10-21T19:52:54Z", "kind": "escalated_posting", "items": 1, "platforms": "telegram"}
+{"ts": "2026-10-21T19:52:54Z", "kind": "health_reported", "status": "healthy", "p": 15, "n": 1, "unposted": 13}
