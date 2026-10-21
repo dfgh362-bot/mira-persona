@@ -84,6 +84,11 @@
       "c": 23,
       "cls": "productive",
       "why": "T-0034 -- 20/20 passed"
+    },
+    {
+      "c": 24,
+      "cls": "productive",
+      "why": "T-0011 needs human"
     }
   ]
 }

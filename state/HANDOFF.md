@@ -1,7 +1,7 @@
 ## CURRENT
-T-0034 selftest v32: wire channel, lint, funnel-first, name contract — -- 20/20 passed
+T-0011 onboard bluesky: account + app password, set as Actions Secrets — needs human
 ## NEXT ACTION
-python scripts/backlog.py --one  # T-0011 (needs human)
+python scripts/backlog.py --one  # T-0012 (needs human)
 ## BLOCKERS
 - WIRE bluesky: onboarding needs human — secrets expected: BSKY_HANDLE, BSKY_APP_PASSWORD (or body lines KEY=value in a 'WIRE bluesky' issue, label: command) (ts 2026-10-22T00:00:00Z)
 - WIRE telegram: onboarding needs human — secrets expected: TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID (or body lines KEY=value in a 'WIRE telegram' issue, label: command) (ts 2026-10-22T00:00:00Z)
@@ -12,7 +12,8 @@ python scripts/backlog.py --one  # T-0011 (needs human)
 - WIRE fanvue: onboarding needs human — secrets expected: FANVUE_EMAIL, FANVUE_PASSWORD (or body lines KEY=value in a 'WIRE fanvue' issue, label: command) (ts 2026-10-22T00:00:00Z)
 - T-0010 needs human: onboard fanvue: AI creator flag + pricing 9.99/12.99/35 + tips 5/10/25 + DM auto-reply (ts 2026-10-21T18:47:33Z)
 - WIRE needs GH_PAT: secret uploads require a token with secrets access (GITHUB_TOKEN cannot write secrets) — store a PAT (repo scope) once as Actions secret GH_PAT, or run scripts/issues.py --poll locally (ts 2026-10-22T00:00:00Z)
+- T-0011 needs human: onboard bluesky: account + app password, set as Actions Secrets (ts 2026-10-21T20:02:14Z)
 ## LAST COMMIT
-3c278b5
+b3f29bb
 ## CYCLE
-23
+24

@@ -9,3 +9,4 @@
 - WIRE fanvue: onboarding needs human — secrets expected: FANVUE_EMAIL, FANVUE_PASSWORD (or body lines KEY=value in a 'WIRE fanvue' issue, label: command) (ts 2026-10-22T00:00:00Z)
 - T-0010 needs human: onboard fanvue: AI creator flag + pricing 9.99/12.99/35 + tips 5/10/25 + DM auto-reply (ts 2026-10-21T18:47:33Z)
 - WIRE needs GH_PAT: secret uploads require a token with secrets access (GITHUB_TOKEN cannot write secrets) — store a PAT (repo scope) once as Actions secret GH_PAT, or run scripts/issues.py --poll locally (ts 2026-10-22T00:00:00Z)
+- T-0011 needs human: onboard bluesky: account + app password, set as Actions Secrets (ts 2026-10-21T20:02:14Z)
