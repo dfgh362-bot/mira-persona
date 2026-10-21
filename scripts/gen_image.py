@@ -81,12 +81,14 @@ def main(argv):
         fname = "mira_%s_%s_%03d_%06d.jpg" % (tier, date.replace("-", ""), seq, seed)
         rel = "content/%s/%s/%s" % (tier, date, fname)
         used_model = None
-        # zero-cost model ladder: flux first, turbo fallback (anonymous tier throttles)
+        # zero-cost model ladder: flux first, turbo fallback.
+        # pollinations anonymous tier intermittently 402s (per-IP quota);
+        # actions runners get a fresh IP each run and 4 attempts x cooldowns fit the 20-min window.
         for model in ("flux", "turbo", "flux", "turbo"):
             url = ("https://image.pollinations.ai/prompt/%s"
                    "?width=1024&height=1536&model=%s&seed=%d&nologo=true" % (q, model, seed))
             try:
-                dest = util.http_download(url, util.ROOT / rel, timeout=300,
+                dest = util.http_download(url, util.ROOT / rel, timeout=180,
                                           retries=1, min_size=2000)
                 with open(dest, "rb") as f:
                     magic = f.read(2)
@@ -99,7 +101,7 @@ def main(argv):
                 util.log_event("image_attempt_failed", scene=scene, seed=seed,
                                model=model, error=repr(e))
                 print("retry %s/%s %r" % (model, scene[:40], e))
-                time.sleep(random.uniform(8, 14))
+                time.sleep(random.uniform(20, 30))
         try:
             if used_model is None:
                 raise RuntimeError("all models failed")
