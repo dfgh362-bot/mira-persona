@@ -222,6 +222,8 @@ def append_blocker(line):
             return
     if "(none)" in txt:
         txt = txt.replace("(none)", "").rstrip() + "\n"
+        with open(p, "w", encoding="utf-8") as f:   # strip the placeholder
+            f.write(txt)
     with open(p, "a", encoding="utf-8") as f:
         f.write("- %s (ts %s)\n" % (line, ts()))
     log_event("blocker_added", line=line[:200])
