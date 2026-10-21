@@ -193,8 +193,17 @@ def commit_and_push(msg):
             return None
         p = sh_list(["git", "push"])
         if p.returncode != 0:
-            util.log_event("push_failed", error=redact((p.stderr or p.stdout))[-300:])
-            print("push failed (logged)")
+            # multi-runner race (sandbox/Actions overlap): fold remote under ours, retry once
+            sh("git fetch origin main")
+            r = sh("git rebase -X theirs origin/main")
+            if r.returncode == 0:
+                p2 = sh_list(["git", "push"])
+                if p2.returncode != 0:
+                    util.log_event("push_failed", error=redact((p2.stderr or p2.stdout))[-300:])
+                    print("push failed after rebase (logged)")
+            else:
+                util.log_event("rebase_failed", error=redact((r.stderr or ""))[-300:])
+                print("rebase failed (logged)")
         return sh("git rev-parse --short HEAD").stdout.strip()
     except Exception as e:
         util.log_event("commit_error", error=repr(e))
