@@ -1,7 +1,33 @@
 {
-  "checked": "2026-10-21T19:52:44Z",
+  "checked": "2026-10-21T19:53:38Z",
   "stalled": [],
-  "workflows": {},
+  "workflows": {
+    "generate": {
+      "state": "active",
+      "last_run": "2026-10-21T18:49:33Z",
+      "age_h": 1.1
+    },
+    "inbox": {
+      "state": "active",
+      "last_run": "2026-10-21T19:27:23Z",
+      "age_h": 0.4
+    },
+    "keepalive": {
+      "state": "active",
+      "last_run": "2026-10-21T19:53:28Z",
+      "age_h": 0.0
+    },
+    "loop": {
+      "state": "active",
+      "last_run": "2026-10-21T19:53:26Z",
+      "age_h": 0.0
+    },
+    "post": {
+      "state": "active",
+      "last_run": "2026-10-21T17:22:04Z",
+      "age_h": 2.5
+    }
+  },
   "cycle": 23,
   "cycle_ts": "2026-10-21T19:52:44Z"
 }
