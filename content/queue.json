@@ -9,8 +9,8 @@
       "modifier": "candid expression",
       "seed": 582427,
       "prompt": "photo of mira_solis, 24 year old woman, long dark wavy hair, hazel eyes, faint freckles, small mole on left cheek, natural skin texture, 35mm film photo, warm neutral tones, shallow depth of field, soft natural light, sitting on a windowsill with a vintage camera, candid expression",
-      "caption": null,
-      "status": "queued",
+      "caption": "window sill, old camera, and a quiet afternoon",
+      "status": "captioned",
       "created": "2026-10-21T14:43:35Z",
       "posted_at": null
     },
@@ -24,13 +24,13 @@
       "seed": 789976,
       "model": "flux",
       "prompt": "photo of mira_solis, 24 year old woman, long dark wavy hair, hazel eyes, faint freckles, small mole on left cheek, natural skin texture, 35mm film photo, warm neutral tones, shallow depth of field, soft natural light, morning bed hair, oversized cream sweater, window light, candid expression",
-      "caption": null,
-      "status": "queued",
+      "caption": "cream sweater, window light, morning bed hair, plain coziness.",
+      "status": "captioned",
       "created": "2026-10-21T14:50:31Z",
       "posted_at": null
     },
     {
-      "id": "2026--1-0--free-004",
+      "id": "2026-01-00-free-004",
       "tier": "free",
       "file": "content/free/2026-10-21/mira_free_20261021_004_048323.jpg",
       "cdn": "https://cdn.jsdelivr.net/gh/GH_USER_PLACEHOLDER/mira-persona@main/content/free/2026-10-21/mira_free_20261021_004_048323.jpg",
@@ -39,13 +39,13 @@
       "seed": 48323,
       "model": "flux",
       "prompt": "photo of mira_solis, 24 year old woman, long dark wavy hair, hazel eyes, faint freckles, small mole on left cheek, natural skin texture, 35mm film photo, warm neutral tones, shallow depth of field, soft natural light, rooftop at dusk, city behind her, wind in hair, candid expression",
-      "caption": null,
-      "status": "queued",
+      "caption": "dusk on her rooftop. city lights blink. wind lifts her hair.",
+      "status": "captioned",
       "created": "2026-10-21T15:02:16Z",
       "posted_at": null
     },
     {
-      "id": "2026--1-0--free-005",
+      "id": "2026-01-00-free-005",
       "tier": "free",
       "file": "content/free/2026-10-21/mira_free_20261021_005_742350.jpg",
       "cdn": "https://cdn.jsdelivr.net/gh/GH_USER_PLACEHOLDER/mira-persona@main/content/free/2026-10-21/mira_free_20261021_005_742350.jpg",
@@ -54,13 +54,13 @@
       "seed": 742350,
       "model": "flux",
       "prompt": "photo of mira_solis, 24 year old woman, long dark wavy hair, hazel eyes, faint freckles, small mole on left cheek, natural skin texture, 35mm film photo, warm neutral tones, shallow depth of field, soft natural light, browsing a film roll at a camera shop, candid expression",
-      "caption": null,
-      "status": "queued",
+      "caption": "sifting through film reels, letting the old grind warm the afternoon",
+      "status": "captioned",
       "created": "2026-10-21T15:02:16Z",
       "posted_at": null
     },
     {
-      "id": "2026--1-0--free-006",
+      "id": "2026-01-00-free-006",
       "tier": "free",
       "file": "content/free/2026-10-21/mira_free_20261021_006_458486.jpg",
       "cdn": "https://cdn.jsdelivr.net/gh/GH_USER_PLACEHOLDER/mira-persona@main/content/free/2026-10-21/mira_free_20261021_006_458486.jpg",
@@ -69,8 +69,8 @@
       "seed": 458486,
       "model": "flux",
       "prompt": "photo of mira_solis, 24 year old woman, long dark wavy hair, hazel eyes, faint freckles, small mole on left cheek, natural skin texture, 35mm film photo, warm neutral tones, shallow depth of field, soft natural light, beach in beige linen dress, overcast light, candid expression",
-      "caption": null,
-      "status": "queued",
+      "caption": "overcast is the best free filter",
+      "status": "captioned",
       "created": "2026-10-21T15:02:16Z",
       "posted_at": null
     }
