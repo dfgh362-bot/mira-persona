@@ -1,0 +1,17 @@
+{
+  "tz": "UTC",
+  "post_times_utc": ["09:00", "13:00", "17:00", "21:00"],
+  "cron": {
+    "generate": "0 6,18 * * *",
+    "post": "0 9,13,17,21 * * *",
+    "inbox": "*/30 * * * *",
+    "keepalive": "0 3 * * *"
+  },
+  "quotas": {
+    "img_free_day": 8,
+    "img_paid_day": 4,
+    "video_day": 2,
+    "per_generate_run": { "free": 4, "paid": 2, "video": 1 }
+  },
+  "on_ambiguity": "pick, log, continue"
+}

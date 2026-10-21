@@ -1,0 +1,75 @@
+{
+  "gh": {
+    "user": null,
+    "repo": "mira-persona",
+    "branch": "main",
+    "note": "set gh.user here or export GH_USER; workflows auto-inject github.repository_owner"
+  },
+  "mailtm": [],
+  "platforms": {
+    "bluesky": {
+      "status": "pending",
+      "tier": 1,
+      "handle": "mirasolis.bsky.social",
+      "email": null,
+      "app_password": null,
+      "note": "env override: BSKY_HANDLE, BSKY_APP_PASSWORD"
+    },
+    "telegram": {
+      "status": "pending",
+      "tier": 1,
+      "bot_token": null,
+      "chat_id": null,
+      "note": "env override: TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID"
+    },
+    "mastodon": {
+      "status": "pending",
+      "tier": 1,
+      "instance": "https://mastodon.social",
+      "email": null,
+      "token": null,
+      "note": "env override: MASTODON_INSTANCE, MASTODON_TOKEN"
+    },
+    "reddit": {
+      "status": "pending",
+      "tier": 1,
+      "client_id": null,
+      "secret": null,
+      "username": null,
+      "password": null,
+      "subreddit": null,
+      "note": "script-type OAuth app; env override: REDDIT_*"
+    },
+    "x": {
+      "status": "pending",
+      "tier": 1,
+      "bearer_token": null,
+      "note": "env override: X_BEARER_TOKEN; free tier = text + link posts"
+    },
+    "pinterest": {
+      "status": "pending",
+      "tier": 1,
+      "token": null,
+      "board_id": null,
+      "note": "env override: PINTEREST_TOKEN, PINTEREST_BOARD_ID"
+    },
+    "fanvue": {
+      "status": "manual",
+      "tier": 3,
+      "email": null,
+      "password": null,
+      "url": "https://fanvue.com/mirasolis",
+      "note": "Tier 3 Playwright; enable AI creator flag in platform settings"
+    },
+    "tiktok": {
+      "status": "manual",
+      "tier": 2,
+      "note": "Content Posting API requires app approval; manual until approved"
+    },
+    "instagram": {
+      "status": "manual",
+      "tier": 2,
+      "note": "Graph API requires business verification; manual until approved"
+    }
+  }
+}

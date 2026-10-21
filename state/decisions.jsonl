@@ -1,0 +1,15 @@
+{"ts": "2026-10-21T00:00:00Z", "id": "R1", "decision": "persona is not a real person — handled via disclosure strings (section 9). accepted, built."}
+{"ts": "2026-10-21T00:00:00Z", "id": "R2", "decision": "disclosure unspecified — false, section 9 strings ratified. built as specified."}
+{"ts": "2026-10-21T00:00:00Z", "id": "R3", "decision": "temp emails may break signup — retry ladder in mailtm.py (local-part, domain, api.mail.gw). accepted."}
+{"ts": "2026-10-21T00:00:00Z", "id": "R4", "decision": "platforms forbidding automation go status:manual. built-in."}
+{"ts": "2026-10-21T00:00:00Z", "id": "R5", "decision": "disposable mail.tm passwords committed to public repo. accepted (mail.tm creds only)."}
+{"ts": "2026-10-21T00:00:00Z", "id": "R6", "decision": "PAT lands in .git/config. accepted, documented in README."}
+{"ts": "2026-10-21T00:00:00Z", "id": "R7", "decision": "GitHub Actions used as bot host. accepted."}
+{"ts": "2026-10-21T00:00:00Z", "id": "R8", "decision": "missing values -> DEFAULTS (section 2), logged. applied."}
+{"ts": "2026-10-21T00:00:00Z", "id": "D9", "decision": "WORKDIR mapped ~/mira -> /home/z/my-project/mira (sandbox base-path constraint)."}
+{"ts": "2026-10-21T00:00:00Z", "id": "D10", "decision": "GH_USER/GH_TOKEN blank at build time: push, Pages enable, Secrets, workflow_dispatch deferred to first run with credentials."}
+{"ts": "2026-10-21T00:00:00Z", "id": "D11", "decision": "platform signups (Fanvue/Bluesky/Telegram/Reddit/Mastodon/X/Pinterest) require interactive verification; accounts.json staged with status pending/manual; poster scripts consume creds from env or accounts.json."}
+{"ts": "2026-10-21T00:00:00Z", "id": "D12", "decision": "scripts/gen_voice.py + content/voice/ added beyond section-5 tree to satisfy section-11 voice-note requirement (zero-cost TTS: edge-tts)."}
+{"ts": "2026-10-21T00:00:00Z", "id": "D13", "decision": "python 3.12 present in build env (spec says 3.11); stdlib-only code, both compatible. workflows pin 3.11."}
+{"ts": "2026-10-21T00:00:00Z", "id": "D14", "decision": "GitHub Pages served via upload-pages-artifact job in generate.yml (branch deploy cannot target /site subfolder) — site stays at /site on main per spec."}
+{"ts": "2026-10-21T00:00:00Z", "id": "D15", "decision": "pinned disclosure post fired automatically as each platform's first-ever post (checked against posted.json), not via flag."}

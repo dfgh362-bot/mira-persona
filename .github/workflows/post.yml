@@ -1,0 +1,63 @@
+name: post
+on:
+  schedule:
+    - cron: "0 9,13,17,21 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: post
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: post to all enabled tier-1 platforms
+        env:
+          GH_USER: ${{ github.repository_owner }}
+          BSKY_HANDLE: ${{ secrets.BSKY_HANDLE }}
+          BSKY_APP_PASSWORD: ${{ secrets.BSKY_APP_PASSWORD }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          MASTODON_INSTANCE: ${{ secrets.MASTODON_INSTANCE }}
+          MASTODON_TOKEN: ${{ secrets.MASTODON_TOKEN }}
+          REDDIT_CLIENT_ID: ${{ secrets.REDDIT_CLIENT_ID }}
+          REDDIT_SECRET: ${{ secrets.REDDIT_SECRET }}
+          REDDIT_USERNAME: ${{ secrets.REDDIT_USERNAME }}
+          REDDIT_PASSWORD: ${{ secrets.REDDIT_PASSWORD }}
+          REDDIT_SUBREDDIT: ${{ secrets.REDDIT_SUBREDDIT }}
+          X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
+          PINTEREST_TOKEN: ${{ secrets.PINTEREST_TOKEN }}
+          PINTEREST_BOARD_ID: ${{ secrets.PINTEREST_BOARD_ID }}
+        run: |
+          for p in bluesky telegram reddit mastodon x pinterest; do
+            echo "::group::post_$p"
+            python scripts/post_$p.py
+            echo "::endgroup::"
+          done
+
+      - name: fanvue (tier 3, best-effort)
+        continue-on-error: true
+        env:
+          FANVUE_EMAIL: ${{ secrets.FANVUE_EMAIL }}
+          FANVUE_PASSWORD: ${{ secrets.FANVUE_PASSWORD }}
+        run: python scripts/post_fanvue.py
+
+      - name: commit state
+        run: |
+          git config user.name "mira-bot"
+          git config user.email "mira-bot@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet && echo "nothing to commit" && exit 0
+          git commit -m "auto: post $(date -u +%FT%TZ)"
+          git push

@@ -1,0 +1,32 @@
+{
+  "disclosure": {
+    "bio_suffix": " · ai-generated",
+    "pinned_post": "i'm an ai-generated persona. mira isn't a real person — everything you see is generated. yes, the voice notes too.",
+    "caption_rule": "never claim to be human, never deny being ai when asked"
+  },
+  "fanvue": {
+    "subscription_monthly": 9.99,
+    "welcome_bundle": 12.99,
+    "custom_image": 35,
+    "tips": [5, 10, 25],
+    "dm_autoreply": "first 3 msgs in-voice, then handoff",
+    "voice_notes_rotation": "weekly",
+    "ai_creator_flag": true
+  },
+  "rules": {
+    "sfw": "tier 1 platforms",
+    "paid_teaser": "fanvue only",
+    "dupe_check": "check content/posted.json before every post"
+  },
+  "tiers": {
+    "bluesky":   { "tier": 1, "enabled": true,  "status": "pending" },
+    "telegram":  { "tier": 1, "enabled": true,  "status": "pending" },
+    "mastodon":  { "tier": 1, "enabled": true,  "status": "pending" },
+    "reddit":    { "tier": 1, "enabled": true,  "status": "pending" },
+    "x":         { "tier": 1, "enabled": true,  "status": "pending" },
+    "pinterest": { "tier": 1, "enabled": true,  "status": "pending" },
+    "tiktok":    { "tier": 2, "enabled": false, "status": "manual" },
+    "instagram": { "tier": 2, "enabled": false, "status": "manual" },
+    "fanvue":    { "tier": 3, "enabled": false, "status": "manual" }
+  }
+}
