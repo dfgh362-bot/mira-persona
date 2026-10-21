@@ -305,3 +305,5 @@
 {"ts": "2026-10-21T21:52:15Z", "kind": "site_built", "cards": 9, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
 {"ts": "2026-10-21T22:17:19Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-21T22:17:19Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-10-21T22:17:22Z", "kind": "blocker_added", "line": "T-0015 needs human: onboard x: developer account + bearer token"}
+{"ts": "2026-10-21T22:17:22Z", "kind": "health_check", "funnel": "draining", "unposted": 13, "oldest_h": 7.6}

@@ -5,7 +5,7 @@
 - [~] T-0012 | onboard telegram: bot via BotFather, token + chat id | attempted, needs human (BLOCKERS.md)
 - [~] T-0013 | onboard reddit: script app OAuth, sub + creds | attempted, needs human (BLOCKERS.md)
 - [~] T-0014 | onboard mastodon: account + app token | attempted, needs human (BLOCKERS.md)
-- [ ] T-0015 | onboard x: developer account + bearer token | onboarding (human)
+- [~] T-0015 | onboard x: developer account + bearer token | attempted, needs human (BLOCKERS.md)
 - [ ] T-0016 | onboard pinterest: account + board + token | onboarding (human)
 - [ ] T-0029 | onboard bluesky: create account, bio + pinned, creds to Actions Secrets | onboarding (human)
 - [ ] T-0030 | onboard telegram: create account, bio + pinned, creds to Actions Secrets | onboarding (human)
@@ -16,6 +16,7 @@
 - [ ] T-0036 | rebuild site | pipeline | cmd: python scripts/build_site.py
 - [ ] T-0037 | sweep mail.tm inboxes | verification | cmd: python scripts/mailtm.py verify --all
 - [ ] T-0038 | archive old items | hygiene | cmd: python scripts/state.py archive --older-than 48h
+- [ ] T-0039 | cycle audit: stats + guard checks | self-improve | cmd: python scripts/state.py stats
 - [x] T-0034 | selftest v32: wire channel, lint, funnel-first, name contract | ok: -- 20/20 passed | cmd: python scripts/selftest.py v32
 - [x] T-0008 | archive old items | ok: archived 0 item(s); heartbeat written | cmd: python scripts/state.py archive --older-than 48h
 - [x] T-0007 | rebuild site | ok: site/index.html rebuilt with 9 card(s); synced content/free | cmd: python scripts/build_site.py
