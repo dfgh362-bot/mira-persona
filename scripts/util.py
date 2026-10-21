@@ -195,8 +195,23 @@ def http_download(url, dest, timeout=300, retries=3, min_size=2000):
 
 def gh_user():
     return (os.environ.get("GH_USER")
+            or load_json(CONFIG / "gh.json", {}).get("user")
             or load_config("accounts.json").get("gh", {}).get("user")
             or "GH_USER_PLACEHOLDER")
+
+
+def append_blocker(line):
+    p = STATE / "BLOCKERS.md"
+    p.parent.mkdir(parents=True, exist_ok=True)
+    try:
+        txt = p.read_text(encoding="utf-8") if p.exists() else ""
+    except Exception:
+        txt = ""
+    if "(none)" in txt:
+        txt = txt.replace("(none)", "").rstrip() + "\n"
+    with open(p, "a", encoding="utf-8") as f:
+        f.write("- %s (ts %s)\n" % (line, ts()))
+    log_event("blocker_added", line=line[:200])
 
 
 def jsdelivr(rel_path):

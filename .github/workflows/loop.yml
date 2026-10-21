@@ -1,0 +1,83 @@
+name: loop
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: loop
+  cancel-in-progress: false
+
+jobs:
+  loop:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: stop check
+        id: stop
+        run: |
+          if [ -f state/STOP ]; then
+            echo "halt=true" >> "$GITHUB_OUTPUT"
+            echo "state/STOP present — halting (delete the file to resume)"
+          else
+            echo "halt=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: cooldown check (loop.lock fresher than 4 min -> idle)
+        id: cool
+        if: steps.stop.outputs.halt == 'false'
+        run: |
+          if python3 scripts/backlog.py --check-lock; then
+            echo "proceed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "proceed=false" >> "$GITHUB_OUTPUT"
+            echo "lock fresh — another runner is active, idling"
+          fi
+
+      - uses: actions/setup-python@v5
+        if: steps.stop.outputs.halt == 'false' && steps.cool.outputs.proceed == 'true'
+        with:
+          python-version: "3.11"
+
+      - name: one backlog item
+        if: steps.stop.outputs.halt == 'false' && steps.cool.outputs.proceed == 'true'
+        run: python scripts/backlog.py --one
+
+      - name: brain
+        if: steps.stop.outputs.halt == 'false' && steps.cool.outputs.proceed == 'true'
+        run: python scripts/brain.py
+
+      - name: site
+        if: steps.stop.outputs.halt == 'false' && steps.cool.outputs.proceed == 'true'
+        run: python scripts/build_site.py
+
+      - name: commit + push
+        if: steps.stop.outputs.halt == 'false' && steps.cool.outputs.proceed == 'true'
+        run: |
+          git config user.name "mira-bot"
+          git config user.email "mira-bot@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet && echo "nothing to commit" && exit 0
+          git commit -m "auto: loop cycle $(date -u +%FT%TZ)"
+          git push
+
+      - name: self-dispatch (heartbeat)
+        if: steps.stop.outputs.halt == 'false' && steps.cool.outputs.proceed == 'true'
+        run: |
+          code=$(curl -s -o /dev/null -w "%{http_code}" -X POST \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/actions/workflows/loop.yml/dispatches" \
+            -d '{"ref":"main"}')
+          echo "self-dispatch http $code (cron */5 is the backstop)"
+
+      - name: heartbeat
+        if: steps.stop.outputs.halt == 'false' && steps.cool.outputs.proceed == 'true'
+        run: |
+          python3 -c "import json,os,datetime; p='state/HEARTBEAT'; d=json.load(open(p)) if os.path.exists(p) else {'cycle':0}; d['ts']=datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ'); open(p,'w').write(json.dumps(d))"

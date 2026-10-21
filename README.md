@@ -89,3 +89,15 @@ All workflows: concurrency guard, timeout 20 min, `contents: write`, commit stat
 ## Accepted risks (from build order, R1-R8)
 
 Passwords in repo = disposable mail.tm only. PAT in `.git/config`. Platforms that reject automated posting go `status: "manual"` in `config/platforms.json`. Full log: `state/decisions.jsonl`.
+
+## v3 — operations mode
+
+The repo now runs itself:
+
+- **`loop.yml`** fires every 5 min (cron backstop) and self-dispatches (heartbeat) — executes exactly one backlog item per cycle. Cron delays under load are covered by the self-dispatch; the 4-minute `state/loop.lock` cooldown prevents dispatch storms.
+- **`state/BACKLOG.md`** — infinite queue, refilled by `scripts/backlog.py` (quotas -> posting -> onboarding -> analytics -> prompt growth (+5) -> self-repair -> self-improve -> invent).
+- **`state/HANDOFF.md`** — resume protocol, fully rewritten every cycle (`CURRENT / NEXT ACTION / BLOCKERS / LAST COMMIT / CYCLE`).
+- **`scripts/brain.py`** — free one-line planner (pollinations, no key) -> `state/NEXT_ACTION`.
+- **`run_forever.sh`** — local watchdog running the same loop on this machine.
+- **Controls**: `touch state/STOP` + commit = halt everything; `touch state/PAUSE` + commit = idle. Absence of both = run.
+- **Guards**: max 400 commits/day, max 1 commit / 2 min, log rotation at 5MB, repo prune at 900MB, 4-min runner cooldown, authenticated API < 5000 req/hr.

@@ -71,6 +71,7 @@ def main(argv):
     seq_start = ledger["counts"].get(tier, 0)
 
     made = 0
+    consec_fails = 0
     for i in range(count):
         seq = seq_start + i
         scene = scenes[seq % len(scenes)]
@@ -123,6 +124,7 @@ def main(argv):
             queue["items"].append(item)
             ledger["counts"][tier] = seq + 1
             made += 1
+            consec_fails = 0
             util.save_queue(queue)      # persist per item: partial progress survives kills
             util.save_ledger(ledger)
             util.log_event("image_generated", id=item["id"], file=rel, seed=seed, model=used_model)
@@ -130,6 +132,10 @@ def main(argv):
         except Exception as e:
             util.log_event("image_failed", scene=scene, seed=seed, error=repr(e))
             print("FAIL %s: %r" % (scene, e))
+            consec_fails += 1
+            if consec_fails >= 2:
+                print("early abort: %d consecutive failures — upstream blocked, next cycle retries" % consec_fails)
+                break
         time.sleep(random.uniform(2, 4))
 
     util.save_queue(queue)
