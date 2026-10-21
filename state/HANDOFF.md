@@ -1,10 +1,10 @@
 ## CURRENT
-T-0001 finish v2: remote bring-up (repo, push, Pages, topics, dispatch all) — bringup complete: https://github.com/dfgh362-bot/mira-persona
+T-0003 caption queued items — captioned 0 item(s)
 ## NEXT ACTION
-python scripts/gen_caption.py
+python scripts/gen_image.py --tier free --count 3
 ## BLOCKERS
 none
 ## LAST COMMIT
-2be1be3
+8681fc0
 ## CYCLE
-3
+4
