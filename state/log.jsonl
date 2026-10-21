@@ -301,3 +301,5 @@
 {"ts": "2026-10-21T21:49:55Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-21T21:49:57Z", "kind": "blocker_added", "line": "T-0014 needs human: onboard mastodon: account + app token"}
 {"ts": "2026-10-21T21:49:57Z", "kind": "health_check", "funnel": "draining", "unposted": 13, "oldest_h": 7.1}
+{"ts": "2026-10-21T21:52:14Z", "kind": "brain", "source": "pollinations", "action": "python scripts/backlog.py --one"}
+{"ts": "2026-10-21T21:52:15Z", "kind": "site_built", "cards": 9, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
