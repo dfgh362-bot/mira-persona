@@ -178,6 +178,22 @@ def prune_repo():
         util.log_event("guard_error", where="prune_repo", error=repr(e))
 
 
+def _push_with_recovery():
+    p = sh_list(["git", "push"])
+    if p.returncode != 0:
+        # multi-runner race: fold remote state under ours, retry once
+        sh("git fetch origin main")
+        r = sh("git rebase -X theirs origin/main")
+        if r.returncode == 0:
+            p2 = sh_list(["git", "push"])
+            if p2.returncode != 0:
+                util.log_event("push_failed", error=redact((p2.stderr or p2.stdout))[-300:])
+                print("push failed after rebase (logged)")
+        else:
+            util.log_event("rebase_failed", error=redact((r.stderr or ""))[-300:])
+            print("rebase failed (logged)")
+
+
 def commit_and_push(msg):
     try:
         sh("git add -A")
@@ -191,23 +207,31 @@ def commit_and_push(msg):
         if c.returncode != 0:
             util.log_event("commit_failed", error=redact(c.stderr)[-300:])
             return None
-        p = sh_list(["git", "push"])
-        if p.returncode != 0:
-            # multi-runner race (sandbox/Actions overlap): fold remote under ours, retry once
-            sh("git fetch origin main")
-            r = sh("git rebase -X theirs origin/main")
-            if r.returncode == 0:
-                p2 = sh_list(["git", "push"])
-                if p2.returncode != 0:
-                    util.log_event("push_failed", error=redact((p2.stderr or p2.stdout))[-300:])
-                    print("push failed after rebase (logged)")
-            else:
-                util.log_event("rebase_failed", error=redact((r.stderr or ""))[-300:])
-                print("rebase failed (logged)")
+        _push_with_recovery()
         return sh("git rev-parse --short HEAD").stdout.strip()
     except Exception as e:
         util.log_event("commit_error", error=repr(e))
         return None
+
+
+def workflow_commit(msg):
+    """commit+push for workflow steps: no throttle (own cron rate-limits), race recovery."""
+    try:
+        sh("git add -A")
+        if sh("git diff --cached --quiet").returncode == 0:
+            print("nothing to commit")
+            return
+        if commits_today() >= MAX_COMMITS_PER_DAY:
+            util.log_event("commit_skipped", reason="daily cap %d reached" % MAX_COMMITS_PER_DAY)
+            return
+        c = sh_list(["git", "commit", "-m", msg])
+        if c.returncode != 0:
+            util.log_event("commit_failed", where="workflow", error=redact(c.stderr)[-300:])
+            return
+        _push_with_recovery()
+        print("workflow commit pushed: %s" % msg)
+    except Exception as e:
+        util.log_event("commit_error", where="workflow", error=repr(e))
 
 
 # ---------------------------------------------------------------- refill sources
@@ -463,6 +487,9 @@ def main(argv):
         print("refill: %s" % ("changed" if changed else "no change"))
         if changed:
             commit_and_push("backlog: refill")
+        return
+    if "--commit" in argv and len(argv) > 1:
+        workflow_commit(" ".join(argv[1:]))
         return
     if "--expand-prompts" in argv:
         expand_prompts()

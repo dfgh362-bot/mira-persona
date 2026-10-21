@@ -27,3 +27,5 @@
 {"ts": "2026-10-21T16:00:23Z", "id": "D28", "decision": "3x-retry policy enforced inside scripts (model ladder, mailtm ladder, brain 2x); cycle-level retries skipped to respect the 20-min window."}
 {"ts": "2026-10-21T16:00:23Z", "id": "D29", "decision": "one commit per cycle; HANDOFF LAST COMMIT = HEAD at cycle start (pre-commit sha) to stay under the 400/day cap."}
 {"ts": "2026-10-21T16:00:23Z", "id": "D30", "decision": "if T-0004 (free images) hard-fails on upstream 402, T-0005 (paid images) is marked [~] deferred in the same session — same endpoint, same IP; runners retry with fresh IPs."}
+{"ts": "2026-10-21T16:13:15Z", "id": "D31", "decision": "push-race recovery standardized: all workflow commits route through backlog.py --commit (fetch + rebase -X theirs + retry). Concurrent dispatch of 4 workflows caused non-fast-forward push failures at bring-up (inbox, keepalive red)."}
+{"ts": "2026-10-21T16:13:15Z", "id": "D32", "decision": "workflow_commit skips the 2-min throttle: workflow crons self-limit; only loop cycles (backlog --one) throttle. Rationale: race-recovery pushes must not be delayed."}

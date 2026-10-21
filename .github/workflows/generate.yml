@@ -45,10 +45,7 @@ jobs:
         run: |
           git config user.name "mira-bot"
           git config user.email "mira-bot@users.noreply.github.com"
-          git add -A
-          git diff --cached --quiet && echo "nothing to commit" && exit 0
-          git commit -m "auto: generate $(date -u +%F)"
-          git push
+          python scripts/backlog.py --commit "auto: generate $(date -u +%FT%TZ)"
 
   pages:
     needs: generate
