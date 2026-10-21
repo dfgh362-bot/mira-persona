@@ -1,6 +1,5 @@
 # BACKLOG — infinite queue (never empty)
 
-- [ ] T-0020 | verify R-04: onboard_check pending->ready wiring | v3.1 repair queue | cmd: python scripts/selftest.py r04
 - [ ] T-0021 | verify R-05: quota escalation on low productivity | v3.1 repair queue | cmd: python scripts/selftest.py r05
 - [ ] T-0022 | verify R-06: push-as-mutex atomic lock | v3.1 repair queue | cmd: python scripts/selftest.py r06
 - [ ] T-0023 | verify R-07: idempotent ffmpeg dep step | v3.1 repair queue | cmd: python scripts/selftest.py r07
@@ -19,6 +18,7 @@
 - [ ] T-0014 | onboard mastodon: account + app token | onboarding (human)
 - [ ] T-0015 | onboard x: developer account + bearer token | onboarding (human)
 - [ ] T-0016 | onboard pinterest: account + board + token | onboarding (human)
+- [x] T-0020 | verify R-04: onboard_check pending->ready wiring | ok: -- 2/2 passed | cmd: python scripts/selftest.py r04
 - [x] T-0019 | verify R-03: image delivery tiers (site 3-tier, remote 2-tier, D36) | ok: -- 4/4 passed | cmd: python scripts/selftest.py r03
 - [x] T-0018 | verify R-02: 400/day cap lives in shared commit_and_push path | ok: -- 4/4 passed | cmd: python scripts/selftest.py r02
 - [x] T-0017 | verify R-01: repair queue scans error/commit_failed/push_failed/backlog_timeout, cap 3 | ok: -- 3/3 passed | cmd: python scripts/selftest.py r01
