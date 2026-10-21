@@ -207,3 +207,4 @@
 {"ts": "2026-10-21T18:22:49Z", "kind": "health_check", "escalation": "window not full (10/25)"}
 {"ts": "2026-10-21T18:27:00Z", "kind": "backlog_exec", "id": "T-0027", "rc": 0, "tail": "-- 5/5 passed"}
 {"ts": "2026-10-21T18:27:00Z", "kind": "health_check", "escalation": "window not full (11/25)"}
+{"ts": "2026-10-21T18:31:07Z", "kind": "inbox", "note": "no mailtm accounts stored"}
