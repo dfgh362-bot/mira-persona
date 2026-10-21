@@ -287,3 +287,11 @@
 {"ts": "2026-10-21T21:10:55Z", "kind": "health_check", "funnel": "draining", "unposted": 13, "oldest_h": 6.5}
 {"ts": "2026-10-21T21:13:05Z", "kind": "brain", "source": "pollinations", "action": "python scripts/backlog.py --one"}
 {"ts": "2026-10-21T21:13:05Z", "kind": "site_built", "cards": 9, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
+{"ts": "2026-10-21T21:21:19Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-10-21T21:21:19Z", "kind": "post_skipped", "platform": "bluesky", "reason": "missing credentials"}
+{"ts": "2026-10-21T21:21:20Z", "kind": "post_skipped", "platform": "telegram", "reason": "missing credentials"}
+{"ts": "2026-10-21T21:21:20Z", "kind": "post_skipped", "platform": "reddit", "reason": "missing credentials"}
+{"ts": "2026-10-21T21:21:20Z", "kind": "post_skipped", "platform": "mastodon", "reason": "missing credentials"}
+{"ts": "2026-10-21T21:21:20Z", "kind": "post_skipped", "platform": "x", "reason": "missing credentials"}
+{"ts": "2026-10-21T21:21:20Z", "kind": "post_skipped", "platform": "pinterest", "reason": "missing credentials"}
+{"ts": "2026-10-21T21:21:20Z", "kind": "post_skipped", "platform": "fanvue", "reason": "missing credentials"}
