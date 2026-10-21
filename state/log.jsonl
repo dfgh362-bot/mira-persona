@@ -102,3 +102,5 @@
 {"ts": "2026-10-21T15:26:14Z", "kind": "post_skipped", "platform": "pinterest", "reason": "missing credentials"}
 {"ts": "2026-10-21T15:26:14Z", "kind": "post_skipped", "platform": "fanvue", "reason": "missing credentials"}
 {"ts": "2026-10-21T15:26:45Z", "kind": "error", "where": "main", "error": "KeyError('margin')"}
+{"ts": "2026-10-21T16:00:32Z", "kind": "blocker_added", "line": "GH_TOKEN env missing — set it and re-run scripts/bringup_remote.py"}
+{"ts": "2026-10-21T16:00:32Z", "kind": "backlog_exec", "id": "T-0001", "rc": 1, "tail": "BLOCKER: GH_TOKEN env missing — set it and re-run scripts/bringup_remote.py"}

@@ -1,10 +1,10 @@
 ## CURRENT
-v3 loop infrastructure committed; T-0001 remote bring-up is next
+T-0001 finish v2: remote bring-up (repo, push, Pages, topics, dispatch all) — BLOCKER: GH_TOKEN env missing — set it and re-run scripts/bringup_remote.py
 ## NEXT ACTION
-python scripts/backlog.py --one
+python scripts/make_video.py --auto
 ## BLOCKERS
-none
+- GH_TOKEN env missing — set it and re-run scripts/bringup_remote.py (ts 2026-10-21T16:00:32Z)
 ## LAST COMMIT
-daa375a
+fc0e919
 ## CYCLE
 1
