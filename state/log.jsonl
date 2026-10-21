@@ -104,3 +104,4 @@
 {"ts": "2026-10-21T15:26:45Z", "kind": "error", "where": "main", "error": "KeyError('margin')"}
 {"ts": "2026-10-21T16:00:32Z", "kind": "blocker_added", "line": "GH_TOKEN env missing — set it and re-run scripts/bringup_remote.py"}
 {"ts": "2026-10-21T16:00:32Z", "kind": "backlog_exec", "id": "T-0001", "rc": 1, "tail": "BLOCKER: GH_TOKEN env missing — set it and re-run scripts/bringup_remote.py"}
+{"ts": "2026-10-21T16:02:23Z", "kind": "push_failed", "error": "fatal: No configured push destination.\nEither specify the URL from the command-line or configure a remote repository using\n\n    git remote add <name> <url>\n\nand then push using the remote name\n\n    git push <name>\n\n"}
