@@ -1,6 +1,5 @@
 # BACKLOG — infinite queue (never empty)
 
-- [ ] T-0025 | verify R-09: no-cmd items append to BLOCKERS.md (dedupe) | v3.1 repair queue | cmd: python scripts/selftest.py r09
 - [ ] T-0026 | activate v4: issues channel, HEALTH, deadman, anti-thrash, anti-drift, self-term | v3.1 v4 | cmd: python scripts/selftest.py v4
 - [ ] T-0027 | freeze specs: docs/SPEC-v2.md, v3.md, v3.1.md (D44) | v3.1 | cmd: python scripts/selftest.py specs
 - [ ] T-0028 | import provided mail.tm account (demetrisvariable@maxxspace.com) | v3.1 user-provided (D43) | cmd: python scripts/mailtm.py import demetrisvariable@maxxspace.com
@@ -14,6 +13,7 @@
 - [ ] T-0014 | onboard mastodon: account + app token | onboarding (human)
 - [ ] T-0015 | onboard x: developer account + bearer token | onboarding (human)
 - [ ] T-0016 | onboard pinterest: account + board + token | onboarding (human)
+- [x] T-0025 | verify R-09: no-cmd items append to BLOCKERS.md (dedupe) | ok: -- 3/3 passed | cmd: python scripts/selftest.py r09
 - [x] T-0024 | verify R-08: self-dispatch via GITHUB_TOKEN+actions:write, PAT optional | ok: -- 3/3 passed | cmd: python scripts/selftest.py r08
 - [x] T-0023 | verify R-07: idempotent ffmpeg dep step | ok: -- 1/1 passed | cmd: python scripts/selftest.py r07
 - [x] T-0022 | verify R-06: push-as-mutex atomic lock | ok: -- 2/2 passed | cmd: python scripts/selftest.py r06
