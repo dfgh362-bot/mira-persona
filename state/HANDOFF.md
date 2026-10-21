@@ -1,7 +1,7 @@
 ## CURRENT
-T-0025 verify R-09: no-cmd items append to BLOCKERS.md (dedupe) — -- 3/3 passed
+T-0026 activate v4: issues channel, HEALTH, deadman, anti-thrash, anti-drift, self-term — -- 4/4 passed
 ## NEXT ACTION
-python scripts/selftest.py v4
+python scripts/selftest.py specs
 ## BLOCKERS
 - bluesky onboarding needs human: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-21T17:46:00Z)
 - telegram onboarding needs human: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-21T17:46:00Z)
@@ -10,6 +10,6 @@ python scripts/selftest.py v4
 - x onboarding needs human: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-21T17:46:00Z)
 - pinterest onboarding needs human: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-21T17:46:00Z)
 ## LAST COMMIT
-04314fe
+e34c759
 ## CYCLE
-15
+16

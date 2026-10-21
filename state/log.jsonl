@@ -203,3 +203,5 @@
 {"ts": "2026-10-21T18:18:47Z", "kind": "blocker_added", "line": "selftest T-9999 needs human (probe)"}
 {"ts": "2026-10-21T18:18:47Z", "kind": "backlog_exec", "id": "T-0025", "rc": 0, "tail": "-- 3/3 passed"}
 {"ts": "2026-10-21T18:18:47Z", "kind": "health_check", "escalation": "window not full (9/25)"}
+{"ts": "2026-10-21T18:22:49Z", "kind": "backlog_exec", "id": "T-0026", "rc": 0, "tail": "-- 4/4 passed"}
+{"ts": "2026-10-21T18:22:49Z", "kind": "health_check", "escalation": "window not full (10/25)"}
