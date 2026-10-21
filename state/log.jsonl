@@ -329,3 +329,5 @@
 {"ts": "2026-10-21T23:21:58Z", "kind": "inbox_swept", "address": "demetrisvariable@maxxspace.com", "count": 0}
 {"ts": "2026-10-21T23:50:48Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-21T23:50:48Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-10-21T23:50:50Z", "kind": "blocker_added", "line": "T-0030 needs human: onboard telegram: create account, bio + pinned, creds to Actions Secrets"}
+{"ts": "2026-10-21T23:50:50Z", "kind": "health_check", "funnel": "draining", "unposted": 13, "oldest_h": 9.1}

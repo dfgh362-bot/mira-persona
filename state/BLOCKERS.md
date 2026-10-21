@@ -17,3 +17,4 @@
 - T-0015 needs human: onboard x: developer account + bearer token (ts 2026-10-21T22:17:22Z)
 - T-0016 needs human: onboard pinterest: account + board + token (ts 2026-10-21T22:52:35Z)
 - T-0029 needs human: onboard bluesky: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-21T23:18:55Z)
+- T-0030 needs human: onboard telegram: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-21T23:50:50Z)
