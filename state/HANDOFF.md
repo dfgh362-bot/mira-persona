@@ -1,7 +1,7 @@
 ## CURRENT
-T-0027 freeze specs: docs/SPEC-v2.md, v3.md, v3.1.md (D44) — -- 5/5 passed
+T-0028 import provided mail.tm account (demetrisvariable@maxxspace.com) — imported demetrisvariable@maxxspace.com on https://api.mail.tm (password NOT sto
 ## NEXT ACTION
-python scripts/mailtm.py import demetrisvariable@maxxspace.com
+python scripts/mailtm.py verify --all
 ## BLOCKERS
 - bluesky onboarding needs human: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-21T17:46:00Z)
 - telegram onboarding needs human: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-21T17:46:00Z)
@@ -10,6 +10,6 @@ python scripts/mailtm.py import demetrisvariable@maxxspace.com
 - x onboarding needs human: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-21T17:46:00Z)
 - pinterest onboarding needs human: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-21T17:46:00Z)
 ## LAST COMMIT
-574c886
+751a3da
 ## CYCLE
-17
+18

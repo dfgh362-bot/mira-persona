@@ -5,7 +5,18 @@
     "branch": "main",
     "note": "set gh.user here or export GH_USER; workflows auto-inject github.repository_owner"
   },
-  "mailtm": [],
+  "mailtm": [
+    {
+      "address": "demetrisvariable@maxxspace.com",
+      "password": null,
+      "secret": "env MAIL_PASS / mail_secret.json (D43)",
+      "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3OTI2MDc0NjEsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJhZGRyZXNzIjoiZGVtZXRyaXN2YXJpYWJsZUBtYXh4c3BhY2UuY29tIiwiaWQiOiI2YWQ4ZjFjNTQ0Yzg4MzBiMjkwMmZkNmEiLCJtZXJjdXJlIjp7InN1YnNjcmliZSI6WyIvYWNjb3VudHMvNmFkOGYxYzU0NGM4ODMwYjI5MDJmZDZhIl19fQ.TjJqt5nvcGDCY45QlUe_6RerccTrDnH724Mhe6rTpmztTi_PlqR9VdIYrftUEz1dx-80hai2_xNMZC2DdL8S_w",
+      "id": "6ad8f1c544c8830b2902fd6a",
+      "host": "https://api.mail.tm",
+      "created": "2026-10-21T18:31:01Z",
+      "source": "user-provided (v3.1)"
+    }
+  ],
   "platforms": {
     "bluesky": {
       "status": "pending",
