@@ -101,3 +101,4 @@
 {"ts": "2026-10-21T15:26:14Z", "kind": "post_skipped", "platform": "x", "reason": "missing credentials"}
 {"ts": "2026-10-21T15:26:14Z", "kind": "post_skipped", "platform": "pinterest", "reason": "missing credentials"}
 {"ts": "2026-10-21T15:26:14Z", "kind": "post_skipped", "platform": "fanvue", "reason": "missing credentials"}
+{"ts": "2026-10-21T15:26:45Z", "kind": "error", "where": "main", "error": "KeyError('margin')"}
