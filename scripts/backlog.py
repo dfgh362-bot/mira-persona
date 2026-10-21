@@ -83,7 +83,7 @@ def write_items(items):
     lines = ["# BACKLOG — infinite queue (never empty)", ""]
     for it in items:
         line = "- [%s] %s | %s | %s" % (it["marker"], it["id"], it["action"], it["note"])
-        if it["marker"] == " " and it.get("cmd"):
+        if it.get("cmd"):
             line += " | cmd: %s" % it["cmd"]
         lines.append(line)
     BACKLOG.write_text("\n".join(lines) + "\n", encoding="utf-8")
@@ -458,9 +458,9 @@ def main(argv):
     if "--expand-prompts" in argv:
         expand_prompts()
         return
-    if "--mark" in argv and len(argv) >= 4:
-        mark(argv[2], argv[3], " ".join(argv[4:]) or "manual")
-        commit_and_push("backlog: mark %s" % argv[2])
+    if "--mark" in argv and len(argv) >= 3:
+        mark(argv[1], argv[2], " ".join(argv[3:]) or "manual")
+        commit_and_push("backlog: mark %s" % argv[1])
         return
     one()
 

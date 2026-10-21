@@ -1,6 +1,6 @@
 # BACKLOG — infinite queue (never empty)
 
-- [~] T-0001 | finish v2: remote bring-up (repo, push, Pages, topics, dispatch all) | attempted: BLOCKER: GH_TOKEN env missing — set it and re-run scripts/br (rc=1)
+- [ ] T-0001 | finish v2: remote bring-up (repo, push, Pages, topics, dispatch all) | retry with token in same shell | cmd: python scripts/bringup_remote.py
 - [ ] T-0003 | caption queued items | pipeline | cmd: python scripts/gen_caption.py
 - [ ] T-0004 | generate 3 free images | daily quota (5/8 today) | cmd: python scripts/gen_image.py --tier free --count 3
 - [ ] T-0005 | generate 2 paid images | daily quota (0/4 today) | cmd: python scripts/gen_image.py --tier paid --count 2
