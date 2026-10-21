@@ -151,3 +151,7 @@
 {"ts": "2026-10-21T16:36:42Z", "kind": "video_built", "file": "content/video/mira_clip_20261021_03.mp4", "stills": 4}
 {"ts": "2026-10-21T16:36:45Z", "kind": "voice_batch", "generated": 0, "total": 20}
 {"ts": "2026-10-21T16:36:45Z", "kind": "site_built", "cards": 9, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html"}
+{"ts": "2026-10-21T16:40:15Z", "kind": "backlog_exec", "id": "T-0004", "rc": 0, "tail": "quota met (9/8 free images today), skipping"}
+{"ts": "2026-10-21T16:40:15Z", "kind": "commit_failed", "error": "--global user.email \"you@example.com\"\n  git config --global user.name \"Your Name\"\n\nto set your account's default identity.\nOmit --global to set the identity only in this repository.\n\nfatal: empty ident name (for <runner@runnervmxehtw.ms0n4hszucse5ffmx3vy1a5a2c.gx.internal.cloudapp.net>) not allowed\n"}
+{"ts": "2026-10-21T16:40:32Z", "kind": "brain", "source": "pollinations", "action": "python scripts/gen_image.py --tier paid --count 2"}
+{"ts": "2026-10-21T16:40:32Z", "kind": "site_built", "cards": 9, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html"}
