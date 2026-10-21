@@ -321,3 +321,5 @@
 {"ts": "2026-10-21T22:56:26Z", "kind": "inbox_swept", "address": "demetrisvariable@maxxspace.com", "count": 0}
 {"ts": "2026-10-21T23:18:53Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-21T23:18:53Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-10-21T23:18:55Z", "kind": "blocker_added", "line": "T-0029 needs human: onboard bluesky: create account, bio + pinned, creds to Actions Secrets"}
+{"ts": "2026-10-21T23:18:55Z", "kind": "health_check", "funnel": "draining", "unposted": 13, "oldest_h": 8.6}
