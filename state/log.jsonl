@@ -139,3 +139,4 @@
 {"ts": "2026-10-21T16:26:38Z", "kind": "video_skipped", "reason": "ffmpeg not installed"}
 {"ts": "2026-10-21T16:26:41Z", "kind": "voice_batch", "generated": 0, "total": 20}
 {"ts": "2026-10-21T16:26:41Z", "kind": "error", "where": "main", "error": "KeyError('margin')"}
+{"ts": "2026-10-21T16:29:27Z", "kind": "site_built", "cards": 9, "out": "/home/z/my-project/mira/site/index.html"}

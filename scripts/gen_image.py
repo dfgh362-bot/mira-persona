@@ -60,6 +60,16 @@ def main(argv):
     if tier not in ("free", "paid"):
         tier = "free"
 
+    # daily quota guard (schedule.json): skip or trim if today's cap is met
+    quotas = util.load_config("schedule.json").get("quotas", {})
+    cap = quotas.get("img_free_day" if tier == "free" else "img_paid_day", 8 if tier == "free" else 4)
+    day_dir = util.CONTENT / tier / date
+    have = len(list(day_dir.glob("*.jpg"))) if day_dir.exists() else 0
+    if have >= cap:
+        print("quota met (%d/%d %s images today), skipping" % (have, cap, tier))
+        return
+    count = min(count, cap - have)
+
     persona = util.load_config("persona.json")
     base = persona.get("base_prompt", "")
     scenes = util.load_json(util.PROMPTS / "scenes.json", []) or [FALLBACK_SCENE]
@@ -107,7 +117,7 @@ def main(argv):
             if used_model is None:
                 raise RuntimeError("all models failed")
             item = {
-                "id": "%s-%s-%03d" % (date, tier, seq),
+                "id": "%s-%s-s%06d" % (date, tier, seed),
                 "tier": tier,
                 "file": rel,
                 "cdn": util.jsdelivr(rel),

@@ -31,7 +31,9 @@ jobs:
         run: python scripts/gen_caption.py
 
       - name: video (1 per run = 2 per day)
-        run: python scripts/make_video.py --auto
+        run: |
+          sudo apt-get install -y -q --no-install-recommends ffmpeg
+          python scripts/make_video.py --auto
 
       - name: voice notes
         run: |

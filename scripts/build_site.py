@@ -20,7 +20,7 @@ TPL = """<!doctype html>
 <title>Mira Solis · ai-generated</title>
 <meta name="description" content="Mira Solis — an ai-generated persona. Not a real person. Film-grain photo diary from Lisbon.">
 <style>
-body{margin:0;background:#f4efe7;color:#2b241c;font:16px/1.6 Georgia,serif}
+body{{margin:0;background:#f4efe7;color:#2b241c;font:16px/1.6 Georgia,serif}}
 header{{max-width:880px;margin:0 auto;padding:56px 20px 8px;text-align:center}}
 h1{{font-weight:400;letter-spacing:.14em;font-size:28px;margin:0}}
 .badge{{display:inline-block;margin-top:10px;padding:3px 12px;border:1px solid #2b241c;border-radius:999px;font:11px/1.6 system-ui;letter-spacing:.16em}}
