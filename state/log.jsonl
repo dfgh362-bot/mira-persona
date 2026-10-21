@@ -49,3 +49,5 @@
 {"ts": "2026-10-21T15:14:43Z", "kind": "state_advanced", "id": "2026-10-21-free-001", "frm": "captioned", "to": "posted"}
 {"ts": "2026-10-21T15:14:43Z", "kind": "state_advanced", "id": "2026-10-21-free-001", "frm": "posted", "to": "captioned"}
 {"ts": "2026-10-21T15:14:43Z", "kind": "error", "where": "main", "error": "KeyError('margin')"}
+{"ts": "2026-10-21T15:16:21Z", "kind": "video_built", "file": "content/video/mira_clip_20261021_01.mp4", "stills": 5}
+{"ts": "2026-10-21T15:20:43Z", "kind": "video_built", "file": "content/video/mira_clip_20261021_01.mp4", "stills": 3}
