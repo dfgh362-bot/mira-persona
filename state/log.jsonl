@@ -152,3 +152,10 @@
 {"ts": "2026-10-21T16:36:45Z", "kind": "voice_batch", "generated": 0, "total": 20}
 {"ts": "2026-10-21T16:36:45Z", "kind": "site_built", "cards": 9, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html"}
 {"ts": "2026-10-21T16:40:40Z", "kind": "site_built", "cards": 9, "out": "/home/z/my-project/mira/site/index.html"}
+{"ts": "2026-10-21T16:40:56Z", "kind": "image_generated", "id": "2026-10-21-paid-s296685", "file": "content/paid/2026-10-21/mira_paid_20261021_003_296685.jpg", "seed": 296685, "model": "flux"}
+{"ts": "2026-10-21T16:44:00Z", "kind": "image_attempt_failed", "scene": "rooftop at dusk, city behind her, wind in hair", "seed": 218712, "model": "flux", "error": "RuntimeError(\"download https://image.pollinations.ai/prompt/photo%20of%20mira_solis%2C%2024%20year%20old%20woman%2C%20long%20dark%20wavy%20hair%2C%20hazel%20eyes%2C%20faint%20freckles%2C%20small%20mole%20on%20left%20cheek%2C%20natural%20skin%20texture%2C%2035mm%20film%20photo%2C%20warm%20neutral%20tones%2C%20shallow%20depth%20of%20field%2C%20soft%20natural%20light%2C%20rooftop%20at%20dusk%2C%20city%20behind%20her%2C%20wind%20in%20hair%2C%20candid%20expression?width=1024&height=1536&model=flux&seed=218712&nologo=true failed: TimeoutError('The read operation timed out')\")"}
+{"ts": "2026-10-21T16:44:30Z", "kind": "image_generated", "id": "2026-10-21-paid-s218712", "file": "content/paid/2026-10-21/mira_paid_20261021_004_218712.jpg", "seed": 218712, "model": "turbo"}
+{"ts": "2026-10-21T16:44:33Z", "kind": "captioned", "id": "2026-10-21-paid-s296685", "source": "generated", "caption": "cream sweater, window light, morning bed hair, plain coziness."}
+{"ts": "2026-10-21T16:45:04Z", "kind": "captioned", "id": "2026-10-21-paid-s218712", "source": "generated", "caption": "dusk on her rooftop. city lights blink. wind lifts her hair."}
+{"ts": "2026-10-21T16:45:50Z", "kind": "voice_batch", "generated": 0, "total": 20}
+{"ts": "2026-10-21T16:45:50Z", "kind": "site_built", "cards": 9, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html"}
