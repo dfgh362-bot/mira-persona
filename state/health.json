@@ -279,6 +279,11 @@
       "c": 62,
       "cls": "productive",
       "why": "T-0062 quota met (8/8 free images today), skipp"
+    },
+    {
+      "c": 63,
+      "cls": "productive",
+      "why": "T-0063 captioned 1 item(s)"
     }
   ]
 }

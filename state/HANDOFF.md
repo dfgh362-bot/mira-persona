@@ -1,7 +1,7 @@
 ## CURRENT
-T-0062 retry image generation (recent failure) — quota met (8/8 free images today), skipping
+T-0063 caption queued items — captioned 1 item(s)
 ## NEXT ACTION
-python scripts/gen_caption.py
+python scripts/make_video.py --auto
 ## WALLS
 7 platforms blocked | cheapest human unblock: telegram (1 min) -> https://t.me/BotFather
 ## BLOCKERS
@@ -11,6 +11,6 @@ python scripts/gen_caption.py
 - T-0012 needs human: onboard telegram: bot via BotFather, token + chat id (ts 2026-10-21T20:36:54Z)
 - T-0013 needs human: onboard reddit: script app OAuth, sub + creds (ts 2026-10-21T21:10:55Z)
 ## LAST COMMIT
-e9d4adf
+88e65bb
 ## CYCLE
-62
+63
