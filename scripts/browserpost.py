@@ -204,10 +204,14 @@ def stealth_context(browser, state_path=None):
         "sec-ch-ua-platform": '"Windows"',
     })
     try:
-        from playwright_stealth import stealth_sync     # optional layer
-        stealth_sync(ctx)
-    except Exception:
-        pass
+        from playwright_stealth import Stealth          # v2 API
+        Stealth().apply_stealth_sync(ctx)
+    except ImportError:
+        try:
+            from playwright_stealth import stealth_sync  # v1 API
+            stealth_sync(ctx)
+        except ImportError:
+            pass                                       # manual script only
     ctx.add_init_script(STEALTH_JS)
     return ctx
 
