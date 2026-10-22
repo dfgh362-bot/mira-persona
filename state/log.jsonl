@@ -780,3 +780,5 @@
 {"ts": "2026-10-22T22:29:13Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T22:29:15Z", "kind": "backlog_exec", "id": "T-0074", "rc": 0, "tail": "telegram: dupe blocked"}
 {"ts": "2026-10-22T22:29:15Z", "kind": "escalated_posting", "items": 1, "platforms": "telegram"}
+{"ts": "2026-10-22T22:31:31Z", "kind": "brain", "source": "pollinations", "action": "python scripts/tg_repoint.py"}
+{"ts": "2026-10-22T22:31:31Z", "kind": "site_built", "cards": 17, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
