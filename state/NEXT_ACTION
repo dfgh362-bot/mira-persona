@@ -1,1 +1,1 @@
-python scripts/backlog.py --run T-0043
+python scripts/selfheal.py --scan

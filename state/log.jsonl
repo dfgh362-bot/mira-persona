@@ -413,3 +413,5 @@
 {"ts": "2026-10-22T05:53:36Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T05:53:39Z", "kind": "backlog_exec", "id": "T-0041", "rc": 0, "tail": "workflow commit pushed: repair: retry after commit_failed (da4bb67)"}
 {"ts": "2026-10-22T05:53:39Z", "kind": "health_check", "funnel": "draining", "unposted": 13, "oldest_h": 15.2}
+{"ts": "2026-10-22T05:55:52Z", "kind": "brain", "source": "pollinations", "action": "python scripts/selfheal.py --scan"}
+{"ts": "2026-10-22T05:55:52Z", "kind": "site_built", "cards": 9, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
