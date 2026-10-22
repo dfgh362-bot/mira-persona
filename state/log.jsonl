@@ -407,3 +407,5 @@
 {"ts": "2026-10-22T05:16:46Z", "kind": "prompts_expanded", "scenes_added": 5, "captions_added": 5}
 {"ts": "2026-10-22T05:16:46Z", "kind": "backlog_exec", "id": "T-0040", "rc": 0, "tail": "expanded: +5 scenes, +5 captions (27 / 19 spares left)"}
 {"ts": "2026-10-22T05:16:46Z", "kind": "health_check", "funnel": "draining", "unposted": 13, "oldest_h": 14.6}
+{"ts": "2026-10-22T05:18:54Z", "kind": "brain", "source": "pollinations", "action": "python scripts/backlog.py --run T-0043"}
+{"ts": "2026-10-22T05:18:54Z", "kind": "site_built", "cards": 9, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
