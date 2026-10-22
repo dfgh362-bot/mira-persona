@@ -23,6 +23,7 @@
 - [ ] T-0058 | sweep mail.tm inboxes | verification | cmd: python scripts/mailtm.py verify --all
 - [ ] T-0059 | archive old items | hygiene | cmd: python scripts/state.py archive --older-than 48h
 - [ ] T-0060 | cycle audit: stats + guard checks | self-improve | cmd: python scripts/state.py stats
+- [ ] T-0061 | expand prompt library (+5 scenes, +5 captions) | library growth | cmd: python scripts/backlog.py --expand-prompts
 - [x] T-0040 | expand prompt library (+5 scenes, +5 captions) | ok: expanded: +5 scenes, +5 captions (27 / 19 spares left) | cmd: python scripts/backlog.py --expand-prompts
 - [x] T-0039 | cycle audit: stats + guard checks | ok: ledger: {'free': 8, 'paid': 5, 'video': 4, 'voice': 20} upda | cmd: python scripts/state.py stats
 - [x] T-0038 | archive old items | ok: archived 0 item(s) | cmd: python scripts/state.py archive --older-than 48h
