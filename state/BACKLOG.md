@@ -13,7 +13,6 @@
 - [~] T-0032 | onboard mastodon: create account, bio + pinned, creds to Actions Secrets | attempted, needs human (BLOCKERS.md)
 - [~] T-0033 | onboard x: create account, bio + pinned, creds to Actions Secrets | attempted, needs human (BLOCKERS.md)
 - [~] T-0035 | onboard pinterest: create account, bio + pinned, creds to Actions Secrets | attempted, needs human (BLOCKERS.md)
-- [ ] T-0051 | retry commit via shared path | self-repair (R-01) | cmd: python scripts/backlog.py --commit repair: retry after commit_failed
 - [ ] T-0052 | retry image generation (recent failure) | self-repair | cmd: python scripts/gen_image.py --tier free --count 1
 - [ ] T-0053 | generate 1 free images | daily quota (7/8 today) | cmd: python scripts/gen_image.py --tier free --count 1
 - [ ] T-0054 | caption queued items | pipeline | cmd: python scripts/gen_caption.py
