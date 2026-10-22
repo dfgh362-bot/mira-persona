@@ -1,1 +1,1 @@
-python scripts/make_video.py --auto
+python scripts/rebuild_site.py
