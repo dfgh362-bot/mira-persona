@@ -1,1 +1,1 @@
-python scripts/gen_caption.py
+python scripts/make_video.py --auto
