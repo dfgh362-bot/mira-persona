@@ -38,7 +38,16 @@ def main(argv):
     try:
         if not util.has_pinned(posted, PLAT):
             resp = api("sendMessage", {"chat_id": chat_id, "text": disclosure["pinned_post"]})
+            msg_id = resp.get("result", {}).get("message_id")
             url = "https://t.me/%s" % resp.get("result", {}).get("chat", {}).get("username", "")
+            # v3.3 wiring: pin it for real (channel bots need the
+            # can_edit_messages right; failure is non-fatal — the disclosure
+            # stays posted either way)
+            try:
+                api("pinChatMessage", {"chat_id": chat_id, "message_id": msg_id,
+                                       "disable_notification": True})
+            except Exception as e:
+                util.log_event("pin_skipped", platform=PLAT, error=repr(e)[:120])
             util.record_post(None, PLAT, url, pinned=True, item_id="pinned")
             print("telegram: pinned disclosure posted")
             return
