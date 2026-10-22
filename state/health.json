@@ -164,6 +164,11 @@
       "c": 39,
       "cls": "productive",
       "why": "T-0039 ledger: {'free': 8, 'paid': 5, 'video': "
+    },
+    {
+      "c": 40,
+      "cls": "productive",
+      "why": "T-0040 expanded: +5 scenes, +5 captions (27 / 1"
     }
   ]
 }

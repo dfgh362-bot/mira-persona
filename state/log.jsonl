@@ -404,3 +404,6 @@
 {"ts": "2026-10-22T05:03:25Z", "kind": "inbox_swept", "address": "demetrisvariable@maxxspace.com", "count": 0}
 {"ts": "2026-10-22T05:16:44Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T05:16:44Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-10-22T05:16:46Z", "kind": "prompts_expanded", "scenes_added": 5, "captions_added": 5}
+{"ts": "2026-10-22T05:16:46Z", "kind": "backlog_exec", "id": "T-0040", "rc": 0, "tail": "expanded: +5 scenes, +5 captions (27 / 19 spares left)"}
+{"ts": "2026-10-22T05:16:46Z", "kind": "health_check", "funnel": "draining", "unposted": 13, "oldest_h": 14.6}
