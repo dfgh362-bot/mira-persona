@@ -552,3 +552,6 @@
 {"ts": "2026-10-22T12:24:03Z", "kind": "archived", "moved": 0, "older_than_hours": 48.0}
 {"ts": "2026-10-22T12:36:53Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T12:36:53Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-10-22T12:37:01Z", "kind": "image_generated", "id": "2026-10-22-free-s689830", "file": "content/free/2026-10-22/mira_free_20261022_015_689830.jpg", "seed": 689830, "model": "flux"}
+{"ts": "2026-10-22T12:37:05Z", "kind": "backlog_exec", "id": "T-0052", "rc": 0, "tail": "generated 1/1 free image(s)"}
+{"ts": "2026-10-22T12:37:05Z", "kind": "health_check", "funnel": "draining", "unposted": 19, "oldest_h": 21.9}
