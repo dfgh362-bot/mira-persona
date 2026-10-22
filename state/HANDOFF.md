@@ -1,7 +1,7 @@
 ## CURRENT
-T-9999 v35 selftest — synthetic
+T-0065 rebuild site — site/index.html rebuilt with 17 card(s); synced content/free -> site/content/fre
 ## NEXT ACTION
-python scripts/state.py stats
+python scripts/mailtm.py verify --all
 ## WALLS
 7 platforms blocked | cheapest human unblock: telegram (1 min) -> https://t.me/BotFather
 ## BLOCKERS
@@ -11,9 +11,9 @@ python scripts/state.py stats
 - T-0012 needs human: onboard telegram: bot via BotFather, token + chat id (ts 2026-10-21T20:36:54Z)
 - T-0013 needs human: onboard reddit: script app OAuth, sub + creds (ts 2026-10-21T21:10:55Z)
 ## LAST COMMIT
-dead
+de84d70
 ## CYCLE
-99
+65
 ## LANES (v3.5)
 | platform | lane | state | blocker | human cost |
 |---|---|---|---|---|

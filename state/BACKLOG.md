@@ -13,12 +13,12 @@
 - [~] T-0032 | onboard mastodon: create account, bio + pinned, creds to Actions Secrets | attempted, needs human (BLOCKERS.md)
 - [~] T-0033 | onboard x: create account, bio + pinned, creds to Actions Secrets | attempted, needs human (BLOCKERS.md)
 - [~] T-0035 | onboard pinterest: create account, bio + pinned, creds to Actions Secrets | attempted, needs human (BLOCKERS.md)
-- [ ] T-0065 | rebuild site | pipeline | cmd: python scripts/build_site.py
 - [ ] T-0066 | sweep mail.tm inboxes | verification | cmd: python scripts/mailtm.py verify --all
 - [ ] T-0067 | archive old items | hygiene | cmd: python scripts/state.py archive --older-than 48h
 - [ ] T-0068 | cycle audit: stats + guard checks | self-improve | cmd: python scripts/state.py stats
 - [ ] T-0069 | expand prompt library (+5 scenes, +5 captions) | library growth | cmd: python scripts/backlog.py --expand-prompts
 - [ ] T-0070 | retry image generation (recent failure) | self-repair | cmd: python scripts/gen_image.py --tier free --count 1
+- [ ] T-0071 | self-heal recent errors (scan, map, re-run) | self-repair (R-01) | cmd: python scripts/selfheal.py --scan
 - [x] T-0040 | expand prompt library (+5 scenes, +5 captions) | ok: expanded: +5 scenes, +5 captions (27 / 19 spares left) | cmd: python scripts/backlog.py --expand-prompts
 - [x] T-0039 | cycle audit: stats + guard checks | ok: ledger: {'free': 8, 'paid': 5, 'video': 4, 'voice': 20} upda | cmd: python scripts/state.py stats
 - [x] T-0038 | archive old items | ok: archived 0 item(s) | cmd: python scripts/state.py archive --older-than 48h
