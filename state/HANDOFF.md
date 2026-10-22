@@ -1,5 +1,5 @@
 ## CURRENT
-T-9999 v35 selftest — synthetic
+T-0074 post now: telegram — telegram: dupe blocked
 ## NEXT ACTION
 python scripts/post_telegram.py
 ## WALLS
@@ -11,18 +11,18 @@ python scripts/post_telegram.py
 - T-0012 needs human: onboard telegram: bot via BotFather, token + chat id (ts 2026-10-21T20:36:54Z)
 - T-0013 needs human: onboard reddit: script app OAuth, sub + creds (ts 2026-10-21T21:10:55Z)
 ## LAST COMMIT
-92662d2
+e2a3df7
 ## CYCLE
-69
+70
 ## LANES (v3.5)
 | platform | lane | state | blocker | human cost |
 |---|---|---|---|---|
-| telegram | api | ready | - | 60s: public channel + add @MiraSolisbot admin |
+| telegram | api | ready | - | 60s: public channel + add @MiraSolisbot admin, then tg_repoint.py |
 | mastodon | api | pending | blocked | 1 min: click the confirmation mail (WIRE EMAIL= first) |
 | bluesky | api | pending | blocked | phone-required signup (mobile app), then app password |
-| x | browser | pending | blocked | none — signup runs in the loop (mail.tm ladder) |
+| x | browser | pending | blocked | 2 min: real-browser signup (headless walls), then WIRE x COOKIE=<base64> |
 | reddit | browser | pending | blocked | none — cookies land via the loop |
 | pinterest | browser | pending | blocked | none — cookies land via the loop |
 | instagram | browser | manual | - | manual tier-2 (business verification) |
 | tiktok | browser | manual | - | manual tier-2 (API approval) |
-| fanvue | browser | manual | blocked | none — signup runs in the loop (mail.tm ladder) |
+| fanvue | browser | manual | blocked | ~5 min: real-browser signup + AI-creator flag (CF wall on headless), then WIRE fanvue COOKIE=<base64> |
