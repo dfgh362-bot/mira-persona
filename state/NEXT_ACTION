@@ -1,1 +1,1 @@
-python scripts/backlog.py --one
+python scripts/build_site.py
