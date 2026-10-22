@@ -1,1 +1,1 @@
-python scripts/gen_image.py --tier free --count 1
+python scripts/gen_caption.py

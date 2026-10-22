@@ -563,3 +563,5 @@
 {"ts": "2026-10-22T13:26:32Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T13:26:35Z", "kind": "backlog_exec", "id": "T-0053", "rc": 0, "tail": "quota met (8/8 free images today), skipping"}
 {"ts": "2026-10-22T13:26:35Z", "kind": "health_check", "funnel": "draining", "unposted": 19, "oldest_h": 22.7}
+{"ts": "2026-10-22T13:28:42Z", "kind": "brain", "source": "pollinations", "action": "python scripts/gen_caption.py"}
+{"ts": "2026-10-22T13:28:42Z", "kind": "site_built", "cards": 13, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
