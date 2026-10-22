@@ -759,5 +759,10 @@
 {"ts": "2026-10-22T21:20:22Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T21:20:24Z", "kind": "backlog_exec", "id": "T-0074", "rc": 0, "tail": "telegram: dupe blocked"}
 {"ts": "2026-10-22T21:20:24Z", "kind": "escalated_posting", "items": 1, "platforms": "telegram"}
-{"ts": "2026-10-22T21:22:37Z", "kind": "brain", "source": "pollinations", "action": "python scripts/cycle_audit.py"}
-{"ts": "2026-10-22T21:22:38Z", "kind": "site_built", "cards": 17, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
+{"ts": "2026-10-22T21:22:42Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-10-22T21:22:59Z", "kind": "post_skipped", "platform": "bluesky", "reason": "missing credentials"}
+{"ts": "2026-10-22T21:22:59Z", "kind": "post_skipped", "platform": "mastodon", "reason": "missing credentials"}
+{"ts": "2026-10-22T21:22:59Z", "kind": "browser_skip", "platform": "x", "reason": "no cookies"}
+{"ts": "2026-10-22T21:22:59Z", "kind": "browser_skip", "platform": "reddit", "reason": "no cookies"}
+{"ts": "2026-10-22T21:22:59Z", "kind": "browser_skip", "platform": "pinterest", "reason": "no cookies"}
+{"ts": "2026-10-22T21:22:59Z", "kind": "browser_skip", "platform": "fanvue", "reason": "no cookies"}
