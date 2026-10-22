@@ -427,3 +427,5 @@
 {"ts": "2026-10-22T06:30:49Z", "kind": "selfheal_run", "repairs": ["commit-retry rc=0", "blocker noted"]}
 {"ts": "2026-10-22T06:30:49Z", "kind": "backlog_exec", "id": "T-0042", "rc": 0, "tail": " - blocker noted"}
 {"ts": "2026-10-22T06:30:49Z", "kind": "health_check", "funnel": "draining", "unposted": 13, "oldest_h": 15.8}
+{"ts": "2026-10-22T06:32:56Z", "kind": "brain", "source": "pollinations", "action": "python scripts/gen_image.py --tier free --count 4"}
+{"ts": "2026-10-22T06:32:56Z", "kind": "site_built", "cards": 9, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
