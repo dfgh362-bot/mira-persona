@@ -13,7 +13,6 @@
 - [~] T-0032 | onboard mastodon: create account, bio + pinned, creds to Actions Secrets | attempted, needs human (BLOCKERS.md)
 - [~] T-0033 | onboard x: create account, bio + pinned, creds to Actions Secrets | attempted, needs human (BLOCKERS.md)
 - [~] T-0035 | onboard pinterest: create account, bio + pinned, creds to Actions Secrets | attempted, needs human (BLOCKERS.md)
-- [ ] T-0036 | rebuild site | pipeline | cmd: python scripts/build_site.py
 - [ ] T-0037 | sweep mail.tm inboxes | verification | cmd: python scripts/mailtm.py verify --all
 - [ ] T-0038 | archive old items | hygiene | cmd: python scripts/state.py archive --older-than 48h
 - [ ] T-0039 | cycle audit: stats + guard checks | self-improve | cmd: python scripts/state.py stats
@@ -23,6 +22,7 @@
 - [ ] T-0043 | generate 4 free images | daily quota (0/8 today) | cmd: python scripts/gen_image.py --tier free --count 4
 - [ ] T-0044 | generate 2 paid images | daily quota (0/4 today) | cmd: python scripts/gen_image.py --tier paid --count 2
 - [ ] T-0045 | build 1 video clip | daily quota (0/2 today) | cmd: python scripts/make_video.py --auto
+- [x] T-0036 | rebuild site | ok: site/index.html rebuilt with 9 card(s); synced content/free  | cmd: python scripts/build_site.py
 - [x] T-0034 | selftest v32: wire channel, lint, funnel-first, name contract | ok: -- 20/20 passed | cmd: python scripts/selftest.py v32
 - [x] T-0008 | archive old items | ok: archived 0 item(s); heartbeat written | cmd: python scripts/state.py archive --older-than 48h
 - [x] T-0007 | rebuild site | ok: site/index.html rebuilt with 9 card(s); synced content/free | cmd: python scripts/build_site.py
