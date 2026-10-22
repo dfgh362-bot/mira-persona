@@ -359,3 +359,5 @@
 {"ts": "2026-10-22T01:41:00Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T01:41:02Z", "kind": "blocker_added", "line": "T-0033 needs human: onboard x: create account, bio + pinned, creds to Actions Secrets"}
 {"ts": "2026-10-22T01:41:02Z", "kind": "health_check", "funnel": "draining", "unposted": 13, "oldest_h": 11.0}
+{"ts": "2026-10-22T01:43:07Z", "kind": "brain", "source": "pollinations", "action": "python scripts/backlog.py --one"}
+{"ts": "2026-10-22T01:43:08Z", "kind": "site_built", "cards": 9, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
