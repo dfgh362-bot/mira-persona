@@ -557,3 +557,5 @@
 {"ts": "2026-10-22T12:37:05Z", "kind": "health_check", "funnel": "draining", "unposted": 19, "oldest_h": 21.9}
 {"ts": "2026-10-22T12:39:07Z", "kind": "brain", "source": "pollinations", "action": "python scripts/gen_image.py --tier free --count 1"}
 {"ts": "2026-10-22T12:39:07Z", "kind": "site_built", "cards": 13, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
+{"ts": "2026-10-22T12:40:33Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-10-22T12:40:34Z", "kind": "inbox_swept", "address": "demetrisvariable@maxxspace.com", "count": 0}
