@@ -1,1 +1,1 @@
-python scripts/gen_image.py --tier paid --count 1
+python scripts/make_video.py --auto
