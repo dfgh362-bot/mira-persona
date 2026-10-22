@@ -521,3 +521,5 @@
 {"ts": "2026-10-22T10:09:28Z", "kind": "health_check", "funnel": "draining", "unposted": 19, "oldest_h": 19.4}
 {"ts": "2026-10-22T10:11:43Z", "kind": "brain", "source": "pollinations", "action": "python scripts/state.py stats"}
 {"ts": "2026-10-22T10:11:43Z", "kind": "site_built", "cards": 13, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
+{"ts": "2026-10-22T10:45:54Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-10-22T10:45:54Z", "kind": "lint_ok", "files": 5}
