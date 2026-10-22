@@ -82,3 +82,7 @@ def main(argv):
             pw.stop()
         except Exception:
             pass
+
+
+if __name__ == "__main__":
+    main(sys.argv[1:])
