@@ -572,10 +572,18 @@ def rewrite_handoff(cycle, target, summary, sha):
         wall_line = walls.summary_line()
     except Exception:
         wall_line = "(walls summary unavailable)"
+    # v3.5 sec.10: closing block — | platform | lane | state | blocker | human cost |
+    lanes_block = "(lane table unavailable)"
+    try:
+        import browserpost
+        lanes_block = browserpost.lane_table()
+    except Exception:
+        pass
     text = ("## CURRENT\n%s %s — %s\n## NEXT ACTION\n%s\n## WALLS\n%s\n"
             "## BLOCKERS\n%s\n## LAST COMMIT\n%s\n## CYCLE\n%d\n"
+            "## LANES (v3.5)\n%s\n"
             % (target["id"], target["action"], summary, next_action,
-               wall_line, blockers, sha or "none", cycle))
+               wall_line, blockers, sha or "none", cycle, lanes_block))
     HANDOFF.write_text(text, encoding="utf-8")
     return next_action
 

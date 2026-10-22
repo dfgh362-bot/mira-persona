@@ -91,20 +91,25 @@ def r03():
     site_src = read(ROOT / "scripts" / "build_site.py")
     check("site-cascade", "data-fb" in site_src and "mfb(" in site_src and "site/content" in site_src,
           "site sync + browser onerror cascade")
-    remote_ok = all("remote_media_candidates" in read(ROOT / "scripts" / f)
-                    for f in ("post_telegram.py", "post_pinterest.py", "post_reddit.py"))
-    check("posters-fallback", remote_ok, "tg/pinterest/reddit use send-time fallback")
+    # v3.5: telegram is the remaining URL-protocol api-lane poster (mastodon/
+    # bluesky upload via their APIs); browser lane uploads local files
+    # through the compose UI
+    remote_ok = "remote_media_candidates" in read(ROOT / "scripts" / "post_telegram.py")
+    browser_wrapped = all("browserpost.run_platform" in read(ROOT / "scripts" / f)
+                          for f in ("post_pinterest.py", "post_reddit.py", "post_x.py"))
+    check("posters-fallback", remote_ok and browser_wrapped,
+          "telegram send-time fallback; browser lane wrappers")
 
 
 # ---------------------------------------------------------------- R-04
 def r04():
     import onboard_check
     env_on = {"TELEGRAM_BOT_TOKEN": "x", "TELEGRAM_CHAT_ID": "y",
-              "PINTEREST_TOKEN": "t", "PINTEREST_BOARD_ID": "b"}
+              "COOKIES_PINTEREST": "b64state"}
     check("ready-on-creds",
           onboard_check.eval_platform("telegram", {"bot_token": None}, env_on)
           and onboard_check.eval_platform("pinterest", {"token": None, "board_id": None}, env_on),
-          "pending -> ready when creds present")
+          "pending -> ready when creds present (v3.5 lane-aware)")
     check("pending-without-creds",
           not onboard_check.eval_platform("telegram", {"bot_token": None}, {}),
           "stays pending without creds")
@@ -258,25 +263,26 @@ def v32():
           issues._resolve_command("please wire this", ["WIRE telegram A=1", "x"]))
 
     # sec.5 — the name contract is complete: post.yml env == ENV_NAMES union
-    # (GITHUB_TOKEN is the runner token for the lint/issues channel, not a
-    # platform secret — excluded)
+    # (GITHUB_TOKEN is the runner token and GH_PAT powers the v3.5 sealed-box
+    # cookie writeback + blocked-issue channel — neither is a platform secret)
     posty = read(ROOT / ".github" / "workflows" / "post.yml")
-    in_yml = set(re.findall(r"secrets\.([A-Z0-9_]+)", posty)) - {"GITHUB_TOKEN"}
+    in_yml = set(re.findall(r"secrets\.([A-Z0-9_]+)", posty)) - {"GITHUB_TOKEN", "GH_PAT"}
     expected = set()
     for names in onboard_check.ENV_NAMES.values():
         expected |= set(names)
     check("name-contract-vs-post-yml", in_yml == expected,
           "yml-only: %s contract-only: %s" % (sorted(in_yml - expected), sorted(expected - in_yml)))
 
-    # sec.5 — full-contract readiness (all names, env OR accounts.json block)
+    # sec.5 — full-contract readiness (all names, env OR accounts.json block;
+    # v3.5: reddit/fanvue are browser lane — their contract is the cookie vault)
     full_env = {k: "x" for k in onboard_check.ENV_NAMES["reddit"]}
     part_env = dict(full_env)
-    part_env.pop("REDDIT_PASSWORD")
+    part_env.pop("COOKIES_REDDIT")
     check("reddit-full", onboard_check.eval_platform("reddit", {}, full_env)
           and not onboard_check.eval_platform("reddit", {}, part_env),
-          "all 5 names required")
-    check("fanvue-contract", onboard_check.eval_platform("fanvue", {}, {"FANVUE_EMAIL": "e", "FANVUE_PASSWORD": "p"})
-          and not onboard_check.eval_platform("fanvue", {}, {}), "FANVUE_EMAIL + FANVUE_PASSWORD")
+          "vault secret required")
+    check("fanvue-contract", onboard_check.eval_platform("fanvue", {}, {"COOKIES_FANVUE": "b64"})
+          and not onboard_check.eval_platform("fanvue", {}, {}), "COOKIES_FANVUE vault secret")
     check("acc-block-fires-it", onboard_check.eval_platform(
         "telegram", {"bot_token": "t", "chat_id": "c"}, {})
         and onboard_check.eval_platform("telegram", {}, {"TELEGRAM_BOT_TOKEN": "t", "TELEGRAM_CHAT_ID": "c"}),
@@ -349,8 +355,106 @@ def v32():
 
 
 # ---------------------------------------------------------------- specs
+def v35():
+    import base64
+    import tempfile
+    import browserpost
+    import issues
+    import onboard_check
+    import cookie_health
+
+    # sec.1 — lanes in config match the code, api posters disabled
+    cfg = util.load_config("platforms.json").get("tiers", {})
+    for p, lane in browserpost.LANE.items():
+        check("lane-%s" % p, (cfg.get(p) or {}).get("lane") == lane,
+              "config: %s code: %s" % ((cfg.get(p) or {}).get("lane"), lane))
+    posty = read(ROOT / ".github/workflows/post.yml")
+    check("post-api-lane-split", "for p in bluesky telegram mastodon" in posty
+          and "for p in x reddit pinterest" in posty
+          and "browserpost.py --platform" in posty, "lane-split posting steps")
+    check("post-no-cookiees-typo", "COOKIEES" not in posty, "no COOKIEES typo")
+    check("post-cookies-env", "secrets.COOKIES_X" in posty, "COOKIES_X secret wired")
+    loopy = read(ROOT / ".github/workflows/loop.yml")
+    check("loop-cookies-env", "secrets.COOKIES_X" in loopy
+          and "COOKIEES" not in loopy, "loop COOKIES_* env contract")
+    check("loop-chromium-cache", "ms-playwright" in loopy
+          and "playwright install chromium" in loopy, "chromium cache + install")
+    for p in ("x", "reddit", "pinterest", "fanvue"):
+        check("wrapper-%s" % p, "browserpost.run_platform" in
+              read(ROOT / ("scripts/post_%s.py" % p)), "api poster replaced")
+
+    # sec.2 — WIRE COOKIE= validation paths (all return BEFORE upload)
+    res, ok = issues._wire("telegram", ["COOKIE=abc"], None, "WIRE telegram", "")
+    check("wire-cookie-api-lane", ok and "browser-lane only" in res, res[:80])
+    res, ok = issues._wire("x", ["X_BEARER_TOKEN=abc"], None, "WIRE x", "")
+    check("wire-legacy-rejected", ok and "browser lane (v3.5 sec.1)" in res, res[:80])
+    res, ok = issues._wire("x", ["COOKIE=!!!notb64!!!"], None, "WIRE x", "")
+    check("wire-cookie-invalid", ok and "not a valid base64 Playwright storageState" in res,
+          res[:80])
+    res, ok = issues._wire("x", [b64_json('{"nope": 1}')], None, "WIRE x", "")
+    check("wire-cookie-shape", ok and "not a valid base64 Playwright storageState" in res,
+          res[:80])
+    # sec.2 — vault roundtrip (mirror only, no writeback)
+    raw = base64.b64encode(
+        '{"cookies": [{"name": "auth", "value": "x"}], "origins": []}'.encode()).decode()
+    browserpost.VAULT.parent.mkdir(parents=True, exist_ok=True)
+    had = browserpost.VAULT.read_text(encoding="utf-8") if browserpost.VAULT.exists() else None
+    try:
+        browserpost.vault_write("x", raw, writeback=False)
+        check("vault-roundtrip", browserpost.vault_read("x") == raw, "mirror read-back")
+        p = browserpost.state_to_tempfile("x", raw)
+        dec = json.loads(Path(p).read_text(encoding="utf-8"))
+        check("vault-state-file", isinstance(dec.get("cookies"), list), "storageState file")
+    finally:
+        if had is None:
+            browserpost.VAULT.unlink(missing_ok=True)
+        else:
+            browserpost.VAULT.write_text(had, encoding="utf-8")
+    check("vault-gitignored", ".secrets/" in read(ROOT / ".gitignore"), "mirror ignored")
+
+    # sec.3 — health ledger + fanvue quiet skip without cookies
+    check("ledger-age-inf", cookie_health._age_s("__none__") == float("inf"),
+          "missing entry -> inf age")
+    ok = browserpost.run_platform("fanvue")
+    check("browser-no-cookies-skip", ok is False, "quiet skip, no browser launched")
+
+    # sec.5/x — onboard contract is cookies-based for browser lane (pure)
+    acc = util.load_config("accounts.json").get("platforms", {}).get("x", {})
+    check("onboard-env-names", onboard_check.ENV_NAMES.get("x") == ("COOKIES_X",),
+          str(onboard_check.ENV_NAMES.get("x")))
+    check("onboard-eval-cookies", onboard_check.eval_platform(
+        "x", {"cookies": {"ts": "x"}}, {}) is True
+        and onboard_check.eval_platform("x", {}, {}) is False, "cookies flag gates ready")
+
+    # sec.9/10 — runbook, spec, closing block
+    check("runbook", (ROOT / "docs/RUNBOOK.md").exists()
+          and "touch state/STOP" in read(ROOT / "docs/RUNBOOK.md")
+          and "COOKIE=<base64>" in read(ROOT / "docs/RUNBOOK.md"), "stranger runbook")
+    spec = read(ROOT / "docs/SPEC-v3.5.md")
+    check("spec35-frozen", "CLOSING ORDER v3.5" in spec
+          and "COOKIE VAULT" in spec and "FIRST TARGET: X" in spec, "verbatim freeze")
+    tbl = browserpost.lane_table()
+    check("lane-table-fmt",
+          tbl.splitlines()[0] == "| platform | lane | state | blocker | human cost |"
+          and len([l for l in tbl.splitlines() if l.startswith("|")]) >= 10,
+          "%d row(s)" % len(tbl.splitlines()))
+    import backlog
+    backlog.rewrite_handoff(99, {"id": "T-9999", "action": "v35 selftest"},
+                            "synthetic", "dead")
+    h = read(util.STATE / "HANDOFF.md")
+    check("handoff-lanes-block", "## LANES (v3.5)" in h
+          and "| platform | lane | state | blocker | human cost |" in h,
+          "closing block in HANDOFF")
+
+
+def b64_json(s):
+    import base64
+    return "COOKIE=" + base64.b64encode(s.encode()).decode()
+
+
 def specs():
-    for n in ("SPEC-v2.md", "SPEC-v3.md", "SPEC-v3.1.md", "SPEC-v3.2.md", "SPEC-v3.3.md"):
+    for n in ("SPEC-v2.md", "SPEC-v3.md", "SPEC-v3.1.md", "SPEC-v3.2.md", "SPEC-v3.3.md",
+              "SPEC-v3.5.md"):
         t = read(ROOT / "docs" / n)
         check(n, len(t) > 200, "%d bytes" % len(t))
     v31 = read(ROOT / "docs" / "SPEC-v3.1.md")
@@ -517,7 +621,7 @@ def remote():
 
 CHECKS = {"r01": r01, "r02": r02, "r03": r03, "r04": r04, "r05": r05, "r06": r06,
           "r07": r07, "r08": r08, "r09": r09, "v4": v4, "v32": v32, "v33": v33,
-          "specs": specs, "remote": remote}
+          "v35": v35, "specs": specs, "remote": remote}
 
 
 @util.cli_guard
@@ -525,7 +629,7 @@ def main(argv):
     which = argv[0] if argv else "all"
     if which == "all":
         order = ["r01", "r02", "r03", "r04", "r05", "r06", "r07", "r08", "r09",
-                 "v4", "v32", "v33", "specs", "remote"]
+                 "v4", "v32", "v33", "v35", "specs", "remote"]
         for k in order:
             print("== %s" % k)
             CHECKS[k]()
@@ -533,7 +637,7 @@ def main(argv):
         print("== %s" % which)
         CHECKS[which]()
     else:
-        print("unknown check: %s (r01..r09, v4, v32, specs, remote, all)" % which)
+        print("unknown check: %s (r01..r09, v4, v32, v33, v35, specs, remote, all)" % which)
         raise SystemExit(2)
     failed = [n for n, ok, _ in RESULTS if not ok]
     print("-- %d/%d passed" % (len(RESULTS) - len(failed), len(RESULTS)))

@@ -1,7 +1,7 @@
 ## CURRENT
-T-0064 build 1 video clip — ffmpeg not installed — skipping
+T-9999 v35 selftest — synthetic
 ## NEXT ACTION
-python scripts/build_site.py
+python scripts/state.py stats
 ## WALLS
 7 platforms blocked | cheapest human unblock: telegram (1 min) -> https://t.me/BotFather
 ## BLOCKERS
@@ -11,6 +11,18 @@ python scripts/build_site.py
 - T-0012 needs human: onboard telegram: bot via BotFather, token + chat id (ts 2026-10-21T20:36:54Z)
 - T-0013 needs human: onboard reddit: script app OAuth, sub + creds (ts 2026-10-21T21:10:55Z)
 ## LAST COMMIT
-1ec924e
+dead
 ## CYCLE
-64
+99
+## LANES (v3.5)
+| platform | lane | state | blocker | human cost |
+|---|---|---|---|---|
+| telegram | api | pending | blocked | 60s: public channel + add @MiraSolisbot admin |
+| mastodon | api | pending | blocked | 1 min: click the confirmation mail (WIRE EMAIL= first) |
+| bluesky | api | pending | blocked | phone-required signup (mobile app), then app password |
+| x | browser | pending | blocked | none — signup runs in the loop (mail.tm ladder) |
+| reddit | browser | pending | blocked | none — cookies land via the loop |
+| pinterest | browser | pending | blocked | none — cookies land via the loop |
+| instagram | browser | manual | - | manual tier-2 (business verification) |
+| tiktok | browser | manual | - | manual tier-2 (API approval) |
+| fanvue | browser | manual | blocked | none — signup runs in the loop (mail.tm ladder) |

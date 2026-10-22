@@ -1,6 +1,6 @@
 {
-  "ts": "2026-10-21T19:39:15Z",
+  "ts": "2026-10-22T19:24:48Z",
   "script": "scripts/selftest.py",
   "fn": "main",
-  "tb_tail": "TypeError: can only concatenate str (not \"list\") to str"
+  "tb_tail": "NameError: name 'base64' is not defined. Did you forget to import 'base64'"
 }

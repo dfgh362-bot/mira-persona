@@ -15,15 +15,15 @@ Runs every cycle, BEFORE refill:
 - still-pending platforms are surfaced in BLOCKERS.md with the EXACT
   expected env names, so the human cannot guess wrong.
 
-Name contract (canonical env names, exact — v3.2 sec.5):
+Name contract (canonical env names, exact — v3.2 sec.5; v3.5 sec.1/2
+lane-aware: browser platforms take the COOKIES_<PLATFORM> vault secret):
   telegram  TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID
   bluesky   BSKY_HANDLE, BSKY_APP_PASSWORD
   mastodon  MASTODON_INSTANCE, MASTODON_TOKEN
-  reddit    REDDIT_CLIENT_ID, REDDIT_SECRET, REDDIT_USERNAME,
-            REDDIT_PASSWORD, REDDIT_SUBREDDIT
-  x         X_BEARER_TOKEN
-  pinterest PINTEREST_TOKEN, PINTEREST_BOARD_ID
-  fanvue    FANVUE_EMAIL, FANVUE_PASSWORD   (tier 3: no ceremony item)
+  reddit    COOKIES_REDDIT                  (browser lane)
+  x         COOKIES_X                        (browser lane)
+  pinterest COOKIES_PINTEREST                (browser lane)
+  fanvue    COOKIES_FANVUE                   (browser lane, tier 3)
 """
 import os
 import sys
@@ -43,28 +43,28 @@ POST_CMD = {
     "pinterest": "python scripts/post_pinterest.py",
 }
 
-# v3.2 sec.5 — canonical env names, exact
+# v3.2 sec.5 — canonical env names, exact (v3.5: lane-aware)
 ENV_NAMES = {
     "telegram": ("TELEGRAM_BOT_TOKEN", "TELEGRAM_CHAT_ID"),
     "bluesky": ("BSKY_HANDLE", "BSKY_APP_PASSWORD"),
     "mastodon": ("MASTODON_INSTANCE", "MASTODON_TOKEN"),
-    "reddit": ("REDDIT_CLIENT_ID", "REDDIT_SECRET", "REDDIT_USERNAME",
-               "REDDIT_PASSWORD", "REDDIT_SUBREDDIT"),
-    "x": ("X_BEARER_TOKEN",),
-    "pinterest": ("PINTEREST_TOKEN", "PINTEREST_BOARD_ID"),
-    "fanvue": ("FANVUE_EMAIL", "FANVUE_PASSWORD"),
+    "reddit": ("COOKIES_REDDIT",),
+    "x": ("COOKIES_X",),
+    "pinterest": ("COOKIES_PINTEREST",),
+    "fanvue": ("COOKIES_FANVUE",),
 }
 
 ENV_TO_ACC = {
     "BSKY_HANDLE": "handle", "BSKY_APP_PASSWORD": "app_password",
     "TELEGRAM_BOT_TOKEN": "bot_token", "TELEGRAM_CHAT_ID": "chat_id",
     "MASTODON_INSTANCE": "instance", "MASTODON_TOKEN": "token",
-    "REDDIT_CLIENT_ID": "client_id", "REDDIT_SECRET": "secret",
-    "REDDIT_USERNAME": "username", "REDDIT_PASSWORD": "password",
-    "REDDIT_SUBREDDIT": "subreddit",
     "X_BEARER_TOKEN": "bearer_token",
     "PINTEREST_TOKEN": "token", "PINTEREST_BOARD_ID": "board_id",
     "FANVUE_EMAIL": "email", "FANVUE_PASSWORD": "password",
+    # v3.5 sec.2: cookie vault marker (set by WIRE COOKIE=)
+    "COOKIES_X": "cookies", "COOKIES_REDDIT": "cookies",
+    "COOKIES_PINTEREST": "cookies", "COOKIES_FANVUE": "cookies",
+    "COOKIES_INSTAGRAM": "cookies", "COOKIES_TIKTOK": "cookies",
 }
 
 

@@ -26,47 +26,56 @@
     "bluesky": {
       "tier": 1,
       "enabled": true,
-      "status": "manual"
+      "status": "manual",
+      "lane": "api"
     },
     "telegram": {
       "tier": 1,
       "enabled": true,
-      "status": "manual"
+      "status": "manual",
+      "lane": "api"
     },
     "mastodon": {
       "tier": 1,
       "enabled": true,
-      "status": "manual"
+      "status": "manual",
+      "lane": "api"
     },
     "reddit": {
       "tier": 1,
       "enabled": true,
-      "status": "manual"
+      "status": "manual",
+      "lane": "browser"
     },
     "x": {
       "tier": 1,
       "enabled": true,
-      "status": "manual"
+      "status": "manual",
+      "lane": "browser"
     },
     "pinterest": {
       "tier": 1,
       "enabled": true,
-      "status": "manual"
+      "status": "manual",
+      "lane": "browser"
     },
     "tiktok": {
       "tier": 2,
       "enabled": false,
-      "status": "manual"
+      "status": "manual",
+      "lane": "browser"
     },
     "instagram": {
       "tier": 2,
       "enabled": false,
-      "status": "manual"
+      "status": "manual",
+      "lane": "browser"
     },
     "fanvue": {
       "tier": 3,
       "enabled": false,
-      "status": "manual"
+      "status": "manual",
+      "lane": "browser"
     }
   }
 }

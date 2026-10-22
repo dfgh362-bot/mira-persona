@@ -5,3 +5,5 @@ __pycache__/
 site/content/
 config/mail_secret.json
 config/email.json
+.secrets/
+state/cookies_*.json

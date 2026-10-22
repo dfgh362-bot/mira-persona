@@ -34,6 +34,7 @@ Auth (R-08, PAT optional elsewhere): GITHUB_TOKEN in Actions, or the token
 parsed from the origin remote URL on local runs.
 """
 import base64
+import json
 import os
 import re
 import subprocess
@@ -50,16 +51,32 @@ COMMANDS = {"WIRE", "PAUSE", "RESUME", "STOP", "STATUS", "REPAIR", "REFILL", "DR
             "HEALTH", "PRIORITY", "RUN"}
 ATTEMPTS = util.STATE / "command_attempts.json"
 
-# v3.2 sec.5 — the onboarding name contract, canonical env names, exact:
+# v3.2 sec.5 — the onboarding name contract, canonical env names, exact.
+# v3.5 sec.1/2 — lane-aware: browser-lane platforms take a storageState
+# cookie vault secret COOKIES_<PLATFORM> instead of API tokens (their API
+# posters are disabled — no double posting).
+BROWSER_LANE = ("x", "reddit", "pinterest", "instagram", "tiktok", "fanvue")
+
 PLATFORM_ENVS = {
     "telegram": ("TELEGRAM_BOT_TOKEN", "TELEGRAM_CHAT_ID"),
     "bluesky": ("BSKY_HANDLE", "BSKY_APP_PASSWORD"),
     "mastodon": ("MASTODON_INSTANCE", "MASTODON_TOKEN"),
-    "reddit": ("REDDIT_CLIENT_ID", "REDDIT_SECRET", "REDDIT_USERNAME",
-               "REDDIT_PASSWORD", "REDDIT_SUBREDDIT"),
-    "x": ("X_BEARER_TOKEN",),
-    "pinterest": ("PINTEREST_TOKEN", "PINTEREST_BOARD_ID"),
-    "fanvue": ("FANVUE_EMAIL", "FANVUE_PASSWORD"),
+    "reddit": ("COOKIES_REDDIT",),
+    "x": ("COOKIES_X",),
+    "pinterest": ("COOKIES_PINTEREST",),
+    "instagram": ("COOKIES_INSTAGRAM",),
+    "tiktok": ("COOKIES_TIKTOK",),
+    "fanvue": ("COOKIES_FANVUE",),
+}
+
+# legacy API keys a browser-lane platform used to accept (now rejected with
+# a pointer to the COOKIE= path — the order disables the api posters)
+LEGACY_API = {
+    "x": {"X_BEARER_TOKEN"},
+    "reddit": {"REDDIT_CLIENT_ID", "REDDIT_SECRET", "REDDIT_USERNAME",
+               "REDDIT_PASSWORD", "REDDIT_SUBREDDIT"},
+    "pinterest": {"PINTEREST_TOKEN", "PINTEREST_BOARD_ID"},
+    "fanvue": {"FANVUE_EMAIL", "FANVUE_PASSWORD"},
 }
 PAIR_LINE_RE = re.compile(r"^\s*([A-Z][A-Z0-9_]{2,})=(.*)$")     # body: KEY=value rest-of-line
 PAIR_TOKEN_RE = re.compile(r"\b([A-Z][A-Z0-9_]{2,})=([^\s]+)")  # title: space-separated
@@ -172,15 +189,24 @@ def _run_backlog_cli(args):
 def _wire_help(msg):
     lines = [msg, "", "usage: open an issue titled 'WIRE <platform>' (label: command) "
              "with one KEY=value pair per line in the body.", "",
-             "canonical env names, exact (v3.2 sec.5):"]
-    for plat in ("telegram", "bluesky", "mastodon", "reddit", "x", "pinterest", "fanvue"):
-        lines.append("  %-10s %s" % (plat, ", ".join(PLATFORM_ENVS[plat])))
+             "lanes (v3.5 sec.1); canonical env names, exact —\n"
+             "api lane: token pairs; browser lane: cookie vault:"]
+    for plat in ("telegram", "bluesky", "mastodon"):
+        lines.append("  %-10s api     %s" % (plat, ", ".join(PLATFORM_ENVS[plat])))
+    for plat in ("x", "reddit", "pinterest", "instagram", "tiktok", "fanvue"):
+        lines.append("  %-10s browser %s  (via 'COOKIE=<base64 storageState>')"
+                     % (plat, ", ".join(PLATFORM_ENVS[plat])))
     lines += ["",
+              "v3.5 sec.2: COOKIE=<base64 Playwright storageState> — cookies +",
+              "localStorage, base64'd, uploaded sealed as COOKIES_<PLATFORM>",
+              "and the platform flips ready (its API poster is disabled).",
               "v3.3 sec.5: EMAIL=<addr> is always accepted — it sets the account",
               "email field and resumes the confirmation flow (poll for the link,",
               "follow it, then the first-post ceremony once creds land).",
-              "", "example body:", "  TELEGRAM_BOT_TOKEN=123456:ABC...",
+              "", "example body (api lane):", "  TELEGRAM_BOT_TOKEN=123456:ABC...",
               "  TELEGRAM_CHAT_ID=-1001234567890",
+              "", "example body (browser lane):",
+              "  COOKIE=<base64 storageState>",
               "", "confirmation-only example:", "  EMAIL=you+mirasolis-mastodon@gmail.com"]
     return "\n".join(lines)
 
@@ -291,6 +317,20 @@ def _wire(cmdline_rest, body_lines, num, title, body):
     if email is not None and not EMAIL_ADDR_RE.match(email.strip()):
         return _wire_help("EMAIL= value is not a valid address — re-issue "
                           "with EMAIL=<addr>."), True
+    # v3.5 sec.2: COOKIE=<base64 storageState> aliases COOKIES_<PLATFORM>
+    cookie = all_pairs.pop("COOKIE", None)
+    if cookie is not None:
+        if plat not in BROWSER_LANE:
+            return _wire_help("COOKIE= is browser-lane only — %s is api lane "
+                              "(send %s)" % (plat, ", ".join(canonical))), True
+        all_pairs["COOKIES_" + plat.upper()] = cookie
+    # v3.5 sec.1: legacy API keys on a browser platform are rejected — the
+    # api poster is disabled, wiring tokens would be a silent no-op
+    legacy_hit = sorted(k for k in all_pairs if k in LEGACY_API.get(plat, ()))
+    if legacy_hit:
+        return _wire_help("%s is browser lane (v3.5 sec.1) — its API poster "
+                          "is disabled; send COOKIE=<base64 storageState> "
+                          "instead (got %s)" % (plat, ", ".join(legacy_hit))), True
     bad = sorted(k for k in all_pairs if k not in canonical)
     if bad:
         return _wire_help("non-canonical key(s) for %s: %s — expected exactly: %s"
@@ -303,6 +343,20 @@ def _wire(cmdline_rest, body_lines, num, title, body):
     if empty:
         return _wire_help("empty value(s): %s — re-issue with values filled in."
                           % ", ".join(sorted(empty))), True
+    # v3.5 sec.2: validate the storageState payload BEFORE upload (fail
+    # with a helpful message, never a cryptic runtime error downstream)
+    for k, v in sorted(all_pairs.items()):
+        if k.startswith("COOKIES_"):
+            try:
+                dec = json.loads(base64.b64decode(v.strip(), validate=True))
+                if not (isinstance(dec, dict) and isinstance(dec.get("cookies"), list)):
+                    raise ValueError("not a storageState shape")
+            except Exception:
+                return _wire_help("COOKIE= value is not a valid base64 Playwright "
+                                  "storageState (expected {cookies: [...], "
+                                  "origins: [...]}). export with "
+                                  "context.storage_state(), base64 it, "
+                                  "re-issue."), True
     # close the exposure window FIRST, whatever happens next (EMAIL included —
     # a public issue is a spam magnet)
     redact_pairs = dict(all_pairs)
@@ -346,6 +400,11 @@ def _wire(cmdline_rest, body_lines, num, title, body):
     acc["status"] = "ready"
     acc["wired"] = sorted(all_pairs.keys())
     acc["wired_at"] = util.ts()
+    # v3.5 sec.2: cookie-vault marker so onboard_check/browserpost see the
+    # browser-lane platform as credentialed (env OR accounts.json — both
+    # channels of the v3.2 sec.5 dual contract, cookies edition)
+    if any(k.startswith("COOKIES_") for k in all_pairs):
+        acc["cookies"] = {"env": "COOKIES_" + plat.upper(), "ts": util.ts()}
     if email is not None:
         acc["email"] = email.strip()
         acc["email_wired_at"] = util.ts()

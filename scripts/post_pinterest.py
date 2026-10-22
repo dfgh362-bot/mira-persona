@@ -1,83 +1,24 @@
-"""Post to Pinterest (tier 1, API v5).
+"""Post to Pinterest via the BROWSER LANE (v3.5 sec.1) — Playwright + storageState.
 
-Creds: env PINTEREST_TOKEN / PINTEREST_BOARD_ID or config/accounts.json.
-Pin creation uses the jsDelivr CDN URL as image source (repo must be pushed).
-First post is the pinned disclosure pin (section 9). Dupe check via posted.json.
+The old API poster (PINTEREST_TOKEN / PINTEREST_BOARD_ID) is DISABLED by
+v3.5: no double posting. Cookies come from the COOKIES_PINTEREST vault
+secret; the flow activates the moment they land.
 
-CLI: python scripts/post_pinterest.py
+CLI: python scripts/post_pinterest.py (thin wrapper -> scripts/browserpost.py)
 """
-import os
 import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import util
 
-PLAT = "pinterest"
-API = "https://api.pinterest.com/v5"
-
 
 @util.cli_guard
 def main(argv):
-    acc = util.load_config("accounts.json").get("platforms", {}).get(PLAT, {})
-    token = os.environ.get("PINTEREST_TOKEN") or acc.get("token")
-    board_id = os.environ.get("PINTEREST_BOARD_ID") or acc.get("board_id")
-    if not (token and board_id):
-        util.set_platform_status(PLAT, "manual")
-        util.log_event("post_skipped", platform=PLAT, reason="missing credentials")
-        print("pinterest: missing credentials -> status manual")
-        return
-
-    queue = util.load_queue()
-    posted = util.load_posted()
-    disclosure = util.load_config("platforms.json").get("disclosure", {})
-    auth = {"Authorization": "Bearer " + token}
-
-    def pin(title, desc, image_urls):
-        """v3.1 R-03: try each media URL (jsDelivr -> raw.gh) at send time."""
-        last_err = None
-        for u in image_urls:
-            try:
-                return util.http_json("POST", API + "/pins", {
-                    "board_id": board_id,
-                    "title": title[:100],
-                    "description": desc[:500],
-                    "media_source": {"source_type": "image_url", "url": u},
-                }, headers=auth)
-            except Exception as e:
-                last_err = e
-                util.log_event("media_fallback", platform=PLAT,
-                               failed_url=u[:120], error=repr(e)[:120])
-        raise last_err
-
-    try:
-        if not util.has_pinned(posted, PLAT):
-            resp = pin("about this account", disclosure["pinned_post"],
-                       [util.jsdelivr("content/free/2026-10-21/mira_free_20261021_001_582427.jpg"),
-                        util.raw_github("content/free/2026-10-21/mira_free_20261021_001_582427.jpg")])
-            util.record_post(None, PLAT, resp.get("id"), pinned=True, item_id="pinned")
-            print("pinterest: pinned disclosure pin created")
-            return
-
-        item = util.pick_due_item(queue, "free")
-        if not item:
-            util.log_event("post_skipped", platform=PLAT, reason="no due item")
-            print("pinterest: no due item")
-            return
-        if util.already_posted(posted, item["id"], PLAT):
-            print("pinterest: dupe blocked")
-            return
-
-        resp = pin("mira solis", "%s (ai-generated)" % item["caption"],
-                   util.remote_media_candidates(item))
-        util.record_post(item, PLAT, resp.get("id"))
-        util.mark_posted(item)
-        print("pinterest: posted %s -> pin %s" % (item["id"], resp.get("id")))
-    except Exception as e:
-        util.log_event("post_failed", platform=PLAT, error=repr(e))
-        if "HTTP 40" in str(e):
-            util.set_platform_status(PLAT, "manual")
-        print("pinterest: failed %r" % e)
+    import browserpost
+    ok = browserpost.run_platform("pinterest")
+    if not ok:
+        print("pinterest: browser-lane run did not post (see log)")
 
 
 if __name__ == "__main__":

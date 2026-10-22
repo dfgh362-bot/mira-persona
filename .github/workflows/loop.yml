@@ -66,6 +66,22 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python scripts/lint_workflows.py
 
+      # v3.5 sec.4: browser-lane ceremony items (wire <p> + first post) run
+      # post_*.py browser wrappers inside one() — chromium cached, not
+      # redownloaded every 5-min cycle
+      - name: cache chromium (v3.5 sec.4)
+        if: steps.stop.outputs.halt == 'false' && steps.cool.outputs.proceed == 'true'
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: chromium-${{ runner.os }}-playwright-1.57
+
+      - name: install playwright + stealth (v3.5 sec.4)
+        if: steps.stop.outputs.halt == 'false' && steps.cool.outputs.proceed == 'true'
+        run: |
+          python -m pip install --quiet playwright playwright-stealth pynacl
+          python -m playwright install chromium --with-deps || python -m playwright install chromium
+
       - name: "one backlog item (v4+v3.2 immune wired in)"
         if: steps.stop.outputs.halt == 'false' && steps.cool.outputs.proceed == 'true'
         env:
@@ -79,16 +95,12 @@ jobs:
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           MASTODON_INSTANCE: ${{ secrets.MASTODON_INSTANCE }}
           MASTODON_TOKEN: ${{ secrets.MASTODON_TOKEN }}
-          REDDIT_CLIENT_ID: ${{ secrets.REDDIT_CLIENT_ID }}
-          REDDIT_SECRET: ${{ secrets.REDDIT_SECRET }}
-          REDDIT_USERNAME: ${{ secrets.REDDIT_USERNAME }}
-          REDDIT_PASSWORD: ${{ secrets.REDDIT_PASSWORD }}
-          REDDIT_SUBREDDIT: ${{ secrets.REDDIT_SUBREDDIT }}
-          X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
-          PINTEREST_TOKEN: ${{ secrets.PINTEREST_TOKEN }}
-          PINTEREST_BOARD_ID: ${{ secrets.PINTEREST_BOARD_ID }}
-          FANVUE_EMAIL: ${{ secrets.FANVUE_EMAIL }}
-          FANVUE_PASSWORD: ${{ secrets.FANVUE_PASSWORD }}
+          COOKIES_X: ${{ secrets.COOKIES_X }}
+          COOKIES_REDDIT: ${{ secrets.COOKIES_REDDIT }}
+          COOKIES_PINTEREST: ${{ secrets.COOKIES_PINTEREST }}
+          COOKIES_FANVUE: ${{ secrets.COOKIES_FANVUE }}
+          COOKIES_INSTAGRAM: ${{ secrets.COOKIES_INSTAGRAM }}
+          COOKIES_TIKTOK: ${{ secrets.COOKIES_TIKTOK }}
         run: python scripts/backlog.py --one
 
       - name: brain (skipped while PAUSEd)

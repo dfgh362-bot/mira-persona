@@ -609,13 +609,11 @@
 {"ts": "2026-10-22T16:13:54Z", "kind": "blocker_added", "line": "WALL mastodon: email at https://mastodon.social/auth/sign_up — human step: open human+mirasolis-mastodon@gmail.com, click the confirmation link from mastodon.social / cleverlibre.org / mstdn.social / "}
 {"ts": "2026-10-22T16:13:54Z", "kind": "wall", "platform": "mastodon", "wall_type": "email", "attempts": 0, "url": "https://mastodon.social/auth/sign_up"}
 {"ts": "2026-10-22T16:15:09Z", "kind": "lint_ok", "files": 5}
-{"ts": "2026-10-22T16:15:09Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T16:15:11Z", "kind": "archived", "moved": 0, "older_than_hours": 48.0}
 {"ts": "2026-10-22T16:15:11Z", "kind": "backlog_exec", "id": "T-0059", "rc": 0, "tail": "archived 0 item(s)"}
 {"ts": "2026-10-22T16:15:11Z", "kind": "escalated_posting", "items": 0, "platforms": ""}
 {"ts": "2026-10-22T16:17:28Z", "kind": "brain", "source": "pollinations", "action": "python scripts/state.py stats"}
 {"ts": "2026-10-22T16:17:28Z", "kind": "site_built", "cards": 17, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
-{"ts": "2026-10-22T16:38:44Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T16:38:44Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T16:38:47Z", "kind": "backlog_exec", "id": "T-0060", "rc": 0, "tail": "ledger: {'free': 16, 'paid': 9, 'video': 5, 'voice': 20} updated: 2026-10-22T14:13:59Z"}
 {"ts": "2026-10-22T16:38:47Z", "kind": "escalated_posting", "items": 0, "platforms": ""}
@@ -623,7 +621,6 @@
 {"ts": "2026-10-22T16:40:55Z", "kind": "site_built", "cards": 17, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
 {"ts": "2026-10-22T17:01:54Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T17:01:54Z", "kind": "inbox_swept", "address": "demetrisvariable@maxxspace.com", "count": 0}
-{"ts": "2026-10-22T17:13:23Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T17:13:23Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T17:13:27Z", "kind": "prompts_expanded", "scenes_added": 5, "captions_added": 5}
 {"ts": "2026-10-22T17:13:27Z", "kind": "backlog_exec", "id": "T-0061", "rc": 0, "tail": "expanded: +5 scenes, +5 captions (17 / 9 spares left)"}
@@ -638,7 +635,6 @@
 {"ts": "2026-10-22T17:22:12Z", "kind": "post_skipped", "platform": "x", "reason": "missing credentials"}
 {"ts": "2026-10-22T17:22:12Z", "kind": "post_skipped", "platform": "pinterest", "reason": "missing credentials"}
 {"ts": "2026-10-22T17:22:12Z", "kind": "post_skipped", "platform": "fanvue", "reason": "missing credentials"}
-{"ts": "2026-10-22T17:49:30Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T17:49:30Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T17:49:33Z", "kind": "backlog_exec", "id": "T-0062", "rc": 0, "tail": "quota met (8/8 free images today), skipping"}
 {"ts": "2026-10-22T17:49:33Z", "kind": "escalated_posting", "items": 0, "platforms": ""}
@@ -662,7 +658,6 @@
 {"ts": "2026-10-22T18:29:42Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T18:29:43Z", "kind": "inbox_swept", "address": "demetrisvariable@maxxspace.com", "count": 0}
 {"ts": "2026-10-22T19:04:29Z", "kind": "lint_ok", "files": 5}
-{"ts": "2026-10-22T19:04:29Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T19:04:33Z", "kind": "video_skipped", "reason": "ffmpeg not installed"}
 {"ts": "2026-10-22T19:04:33Z", "kind": "backlog_exec", "id": "T-0064", "rc": 0, "tail": "ffmpeg not installed — skipping"}
 {"ts": "2026-10-22T19:04:33Z", "kind": "escalated_posting", "items": 0, "platforms": ""}
@@ -670,3 +665,51 @@
 {"ts": "2026-10-22T19:06:40Z", "kind": "site_built", "cards": 17, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
 {"ts": "2026-10-22T19:13:00Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T19:13:01Z", "kind": "inbox_swept", "address": "demetrisvariable@maxxspace.com", "count": 0}
+{"ts": "2026-10-22T19:23:24Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-10-22T19:23:26Z", "kind": "blocker_added", "line": "selftest T-9999 needs human (probe)"}
+{"ts": "2026-10-22T19:23:27Z", "kind": "error", "script": "scripts/selftest.py", "where": "main", "error": "KeyError: 'REDDIT_PASSWORD'"}
+{"ts": "2026-10-22T19:24:08Z", "kind": "blocker_added", "line": "selftest T-9999 needs human (probe)"}
+{"ts": "2026-10-22T19:24:08Z", "kind": "escalation_refused", "reason": "unposted 25 > cap 20 (sec.4)"}
+{"ts": "2026-10-22T19:24:08Z", "kind": "escalated_posting", "items": 1, "platforms": "telegram"}
+{"ts": "2026-10-22T19:24:08Z", "kind": "health_reported", "status": "healthy", "p": 24, "n": 1, "unposted": 24}
+{"ts": "2026-10-22T19:24:08Z", "kind": "blocker_added", "line": "WALL reddit: captcha at https://x.example/signup — human step: solve it, human (cheapest-first: docs/SIGNUP.md)"}
+{"ts": "2026-10-22T19:24:08Z", "kind": "wall", "platform": "reddit", "wall_type": "captcha", "attempts": 2, "url": "https://x.example/signup"}
+{"ts": "2026-10-22T19:24:08Z", "kind": "blocker_added", "line": "WALL mastodon: email at https://mastodon.social/auth/sign_up — human step: open human+mirasolis-mastodon@gmail.com, click the confirmation link from mastodon.social / cleverlibre.org / mstdn.social / "}
+{"ts": "2026-10-22T19:24:08Z", "kind": "wall", "platform": "mastodon", "wall_type": "email", "attempts": 0, "url": "https://mastodon.social/auth/sign_up"}
+{"ts": "2026-10-22T19:24:08Z", "kind": "error", "script": "scripts/selftest.py", "where": "main", "error": "NameError: name 'base64' is not defined. Did you forget to import 'base64'"}
+{"ts": "2026-10-22T19:24:31Z", "kind": "blocker_added", "line": "selftest T-9999 needs human (probe)"}
+{"ts": "2026-10-22T19:24:31Z", "kind": "escalation_refused", "reason": "unposted 25 > cap 20 (sec.4)"}
+{"ts": "2026-10-22T19:24:31Z", "kind": "escalated_posting", "items": 1, "platforms": "telegram"}
+{"ts": "2026-10-22T19:24:31Z", "kind": "health_reported", "status": "healthy", "p": 24, "n": 1, "unposted": 24}
+{"ts": "2026-10-22T19:24:31Z", "kind": "blocker_added", "line": "WALL reddit: captcha at https://x.example/signup — human step: solve it, human (cheapest-first: docs/SIGNUP.md)"}
+{"ts": "2026-10-22T19:24:31Z", "kind": "wall", "platform": "reddit", "wall_type": "captcha", "attempts": 2, "url": "https://x.example/signup"}
+{"ts": "2026-10-22T19:24:31Z", "kind": "blocker_added", "line": "WALL mastodon: email at https://mastodon.social/auth/sign_up — human step: open human+mirasolis-mastodon@gmail.com, click the confirmation link from mastodon.social / cleverlibre.org / mstdn.social / "}
+{"ts": "2026-10-22T19:24:31Z", "kind": "wall", "platform": "mastodon", "wall_type": "email", "attempts": 0, "url": "https://mastodon.social/auth/sign_up"}
+{"ts": "2026-10-22T19:24:31Z", "kind": "error", "script": "scripts/selftest.py", "where": "main", "error": "NameError: name 'base64' is not defined. Did you forget to import 'base64'"}
+{"ts": "2026-10-22T19:24:44Z", "kind": "blocker_added", "line": "selftest T-9999 needs human (probe)"}
+{"ts": "2026-10-22T19:24:44Z", "kind": "escalation_refused", "reason": "unposted 25 > cap 20 (sec.4)"}
+{"ts": "2026-10-22T19:24:44Z", "kind": "escalated_posting", "items": 1, "platforms": "telegram"}
+{"ts": "2026-10-22T19:24:44Z", "kind": "health_reported", "status": "healthy", "p": 24, "n": 1, "unposted": 24}
+{"ts": "2026-10-22T19:24:44Z", "kind": "blocker_added", "line": "WALL reddit: captcha at https://x.example/signup — human step: solve it, human (cheapest-first: docs/SIGNUP.md)"}
+{"ts": "2026-10-22T19:24:44Z", "kind": "wall", "platform": "reddit", "wall_type": "captcha", "attempts": 2, "url": "https://x.example/signup"}
+{"ts": "2026-10-22T19:24:44Z", "kind": "blocker_added", "line": "WALL mastodon: email at https://mastodon.social/auth/sign_up — human step: open human+mirasolis-mastodon@gmail.com, click the confirmation link from mastodon.social / cleverlibre.org / mstdn.social / "}
+{"ts": "2026-10-22T19:24:44Z", "kind": "wall", "platform": "mastodon", "wall_type": "email", "attempts": 0, "url": "https://mastodon.social/auth/sign_up"}
+{"ts": "2026-10-22T19:24:44Z", "kind": "error", "script": "scripts/selftest.py", "where": "main", "error": "NameError: name 'base64' is not defined. Did you forget to import 'base64'"}
+{"ts": "2026-10-22T19:24:48Z", "kind": "blocker_added", "line": "selftest T-9999 needs human (probe)"}
+{"ts": "2026-10-22T19:24:48Z", "kind": "escalation_refused", "reason": "unposted 25 > cap 20 (sec.4)"}
+{"ts": "2026-10-22T19:24:48Z", "kind": "escalated_posting", "items": 1, "platforms": "telegram"}
+{"ts": "2026-10-22T19:24:48Z", "kind": "health_reported", "status": "healthy", "p": 24, "n": 1, "unposted": 24}
+{"ts": "2026-10-22T19:24:48Z", "kind": "blocker_added", "line": "WALL reddit: captcha at https://x.example/signup — human step: solve it, human (cheapest-first: docs/SIGNUP.md)"}
+{"ts": "2026-10-22T19:24:48Z", "kind": "wall", "platform": "reddit", "wall_type": "captcha", "attempts": 2, "url": "https://x.example/signup"}
+{"ts": "2026-10-22T19:24:48Z", "kind": "blocker_added", "line": "WALL mastodon: email at https://mastodon.social/auth/sign_up — human step: open human+mirasolis-mastodon@gmail.com, click the confirmation link from mastodon.social / cleverlibre.org / mstdn.social / "}
+{"ts": "2026-10-22T19:24:48Z", "kind": "wall", "platform": "mastodon", "wall_type": "email", "attempts": 0, "url": "https://mastodon.social/auth/sign_up"}
+{"ts": "2026-10-22T19:24:48Z", "kind": "error", "script": "scripts/selftest.py", "where": "main", "error": "NameError: name 'base64' is not defined. Did you forget to import 'base64'"}
+{"ts": "2026-10-22T19:24:55Z", "kind": "blocker_added", "line": "selftest T-9999 needs human (probe)"}
+{"ts": "2026-10-22T19:24:55Z", "kind": "escalation_refused", "reason": "unposted 25 > cap 20 (sec.4)"}
+{"ts": "2026-10-22T19:24:55Z", "kind": "escalated_posting", "items": 1, "platforms": "telegram"}
+{"ts": "2026-10-22T19:24:55Z", "kind": "health_reported", "status": "healthy", "p": 24, "n": 1, "unposted": 24}
+{"ts": "2026-10-22T19:24:55Z", "kind": "blocker_added", "line": "WALL reddit: captcha at https://x.example/signup — human step: solve it, human (cheapest-first: docs/SIGNUP.md)"}
+{"ts": "2026-10-22T19:24:55Z", "kind": "wall", "platform": "reddit", "wall_type": "captcha", "attempts": 2, "url": "https://x.example/signup"}
+{"ts": "2026-10-22T19:24:55Z", "kind": "blocker_added", "line": "WALL mastodon: email at https://mastodon.social/auth/sign_up — human step: open human+mirasolis-mastodon@gmail.com, click the confirmation link from mastodon.social / cleverlibre.org / mstdn.social / "}
+{"ts": "2026-10-22T19:24:55Z", "kind": "wall", "platform": "mastodon", "wall_type": "email", "attempts": 0, "url": "https://mastodon.social/auth/sign_up"}
+{"ts": "2026-10-22T19:24:55Z", "kind": "browser_skip", "platform": "fanvue", "reason": "no cookies"}
