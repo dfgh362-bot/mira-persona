@@ -1,1 +1,1 @@
-python scripts/state.py archive --older-than 48h
+python scripts/state.py stats
