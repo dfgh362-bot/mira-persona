@@ -465,3 +465,5 @@
 {"ts": "2026-10-22T07:28:05Z", "kind": "image_failed", "scene": "night out, small black dress, neon reflections", "seed": 97241, "error": "RuntimeError('all models failed')"}
 {"ts": "2026-10-22T07:28:07Z", "kind": "backlog_exec", "id": "T-0043", "rc": 0, "tail": "generated 3/4 free image(s)"}
 {"ts": "2026-10-22T07:28:07Z", "kind": "health_check", "funnel": "draining", "unposted": 19, "oldest_h": 16.7}
+{"ts": "2026-10-22T07:28:25Z", "kind": "brain", "source": "pollinations", "action": "python scripts/gen_image.py --tier paid --count 2"}
+{"ts": "2026-10-22T07:28:25Z", "kind": "site_built", "cards": 13, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
