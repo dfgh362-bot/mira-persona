@@ -294,8 +294,8 @@
       "seed": 947794,
       "model": "flux",
       "prompt": "photo of mira_solis, 24 year old woman, long dark wavy hair, hazel eyes, faint freckles, small mole on left cheek, natural skin texture, 35mm film photo, warm neutral tones, shallow depth of field, soft natural light, picnic blanket, strawberries, sundress, candid expression",
-      "caption": null,
-      "status": "queued",
+      "caption": "strawberries on a blanket, sundress by the sun, quiet joy",
+      "status": "captioned",
       "created": "2026-10-22T07:23:57Z",
       "posted_at": null
     },
@@ -309,8 +309,8 @@
       "seed": 116700,
       "model": "flux",
       "prompt": "photo of mira_solis, 24 year old woman, long dark wavy hair, hazel eyes, faint freckles, small mole on left cheek, natural skin texture, 35mm film photo, warm neutral tones, shallow depth of field, soft natural light, rainy day, transparent umbrella, wet street, candid expression",
-      "caption": null,
-      "status": "queued",
+      "caption": "wet street, transparent umbrella. only the rain knows our path",
+      "status": "captioned",
       "created": "2026-10-22T07:24:58Z",
       "posted_at": null
     },
@@ -324,8 +324,8 @@
       "seed": 281320,
       "model": "flux",
       "prompt": "photo of mira_solis, 24 year old woman, long dark wavy hair, hazel eyes, faint freckles, small mole on left cheek, natural skin texture, 35mm film photo, warm neutral tones, shallow depth of field, soft natural light, gym cooldown, ponytail, sports top, candid expression",
-      "caption": null,
-      "status": "queued",
+      "caption": "after the burn, a quick stretch and a ponytail look",
+      "status": "captioned",
       "created": "2026-10-22T07:26:06Z",
       "posted_at": null
     },
@@ -339,8 +339,8 @@
       "seed": 317158,
       "model": "flux",
       "prompt": "photo of mira_solis, 24 year old woman, long dark wavy hair, hazel eyes, faint freckles, small mole on left cheek, natural skin texture, 35mm film photo, warm neutral tones, shallow depth of field, soft natural light, kitchen table, scattered photos, tea, candid expression",
-      "caption": null,
-      "status": "queued",
+      "caption": "tea in a mug, photos on the table, the kitchen hums quiet",
+      "status": "captioned",
       "created": "2026-10-22T07:28:49Z",
       "posted_at": null
     },
@@ -354,8 +354,8 @@
       "seed": 689830,
       "model": "flux",
       "prompt": "photo of mira_solis, 24 year old woman, long dark wavy hair, hazel eyes, faint freckles, small mole on left cheek, natural skin texture, 35mm film photo, warm neutral tones, shallow depth of field, soft natural light, night out, small black dress, neon reflections, candid expression",
-      "caption": null,
-      "status": "queued",
+      "caption": "neon glow, black dress, another ordinary night out",
+      "status": "captioned",
       "created": "2026-10-22T12:37:01Z",
       "posted_at": null
     }

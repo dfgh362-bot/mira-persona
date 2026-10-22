@@ -13,7 +13,6 @@
 - [~] T-0032 | onboard mastodon: create account, bio + pinned, creds to Actions Secrets | attempted, needs human (BLOCKERS.md)
 - [~] T-0033 | onboard x: create account, bio + pinned, creds to Actions Secrets | attempted, needs human (BLOCKERS.md)
 - [~] T-0035 | onboard pinterest: create account, bio + pinned, creds to Actions Secrets | attempted, needs human (BLOCKERS.md)
-- [ ] T-0054 | caption queued items | pipeline | cmd: python scripts/gen_caption.py
 - [ ] T-0055 | generate 1 paid images | daily quota (3/4 today) | cmd: python scripts/gen_image.py --tier paid --count 1
 - [ ] T-0056 | build 1 video clip | daily quota (1/2 today) | cmd: python scripts/make_video.py --auto
 - [ ] T-0057 | rebuild site | pipeline | cmd: python scripts/build_site.py
