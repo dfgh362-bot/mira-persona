@@ -561,3 +561,5 @@
 {"ts": "2026-10-22T12:40:34Z", "kind": "inbox_swept", "address": "demetrisvariable@maxxspace.com", "count": 0}
 {"ts": "2026-10-22T13:26:32Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T13:26:32Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-10-22T13:26:35Z", "kind": "backlog_exec", "id": "T-0053", "rc": 0, "tail": "quota met (8/8 free images today), skipping"}
+{"ts": "2026-10-22T13:26:35Z", "kind": "health_check", "funnel": "draining", "unposted": 19, "oldest_h": 22.7}
