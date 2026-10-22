@@ -358,6 +358,21 @@
       "status": "captioned",
       "created": "2026-10-22T12:37:01Z",
       "posted_at": null
+    },
+    {
+      "id": "2026-10-22-paid-s933851",
+      "tier": "paid",
+      "file": "content/paid/2026-10-22/mira_paid_20261022_008_933851.jpg",
+      "cdn": "https://cdn.jsdelivr.net/gh/dfgh362-bot/mira-persona@main/content/paid/2026-10-22/mira_paid_20261022_008_933851.jpg",
+      "scene": "wrapped in a blanket, reading",
+      "modifier": "candid expression",
+      "seed": 933851,
+      "model": "flux",
+      "prompt": "photo of mira_solis, 24 year old woman, long dark wavy hair, hazel eyes, faint freckles, small mole on left cheek, natural skin texture, 35mm film photo, warm neutral tones, shallow depth of field, soft natural light, wrapped in a blanket, reading, candid expression",
+      "caption": null,
+      "status": "queued",
+      "created": "2026-10-22T14:13:55Z",
+      "posted_at": null
     }
   ]
 }

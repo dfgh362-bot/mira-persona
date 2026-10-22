@@ -588,3 +588,6 @@
 {"ts": "2026-10-22T14:13:35Z", "kind": "site_built", "cards": 17, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
 {"ts": "2026-10-22T14:13:47Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T14:13:47Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-10-22T14:13:55Z", "kind": "image_generated", "id": "2026-10-22-paid-s933851", "file": "content/paid/2026-10-22/mira_paid_20261022_008_933851.jpg", "seed": 933851, "model": "flux"}
+{"ts": "2026-10-22T14:13:59Z", "kind": "backlog_exec", "id": "T-0055", "rc": 0, "tail": "generated 1/1 paid image(s)"}
+{"ts": "2026-10-22T14:13:59Z", "kind": "health_check", "funnel": "draining", "unposted": 24, "oldest_h": 23.5}
