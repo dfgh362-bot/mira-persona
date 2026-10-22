@@ -13,7 +13,6 @@
 - [~] T-0032 | onboard mastodon: create account, bio + pinned, creds to Actions Secrets | attempted, needs human (BLOCKERS.md)
 - [~] T-0033 | onboard x: create account, bio + pinned, creds to Actions Secrets | attempted, needs human (BLOCKERS.md)
 - [~] T-0035 | onboard pinterest: create account, bio + pinned, creds to Actions Secrets | attempted, needs human (BLOCKERS.md)
-- [ ] T-0064 | build 1 video clip | daily quota (1/2 today) | cmd: python scripts/make_video.py --auto
 - [ ] T-0065 | rebuild site | pipeline | cmd: python scripts/build_site.py
 - [ ] T-0066 | sweep mail.tm inboxes | verification | cmd: python scripts/mailtm.py verify --all
 - [ ] T-0067 | archive old items | hygiene | cmd: python scripts/state.py archive --older-than 48h

@@ -1,7 +1,7 @@
 ## CURRENT
-T-0063 caption queued items — captioned 1 item(s)
+T-0064 build 1 video clip — ffmpeg not installed — skipping
 ## NEXT ACTION
-python scripts/make_video.py --auto
+python scripts/build_site.py
 ## WALLS
 7 platforms blocked | cheapest human unblock: telegram (1 min) -> https://t.me/BotFather
 ## BLOCKERS
@@ -11,6 +11,6 @@ python scripts/make_video.py --auto
 - T-0012 needs human: onboard telegram: bot via BotFather, token + chat id (ts 2026-10-21T20:36:54Z)
 - T-0013 needs human: onboard reddit: script app OAuth, sub + creds (ts 2026-10-21T21:10:55Z)
 ## LAST COMMIT
-88e65bb
+1ec924e
 ## CYCLE
-63
+64
