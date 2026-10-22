@@ -513,15 +513,15 @@ def lane_table():
     accs = util.load_config("accounts.json").get("platforms", {})
     cfg = util.load_config("platforms.json").get("tiers", {})
     human = {
-        "telegram": "60s: public channel + add @MiraSolisbot admin",
+        "telegram": "60s: public channel + add @MiraSolisbot admin, then tg_repoint.py",
         "mastodon": "1 min: click the confirmation mail (WIRE EMAIL= first)",
         "bluesky": "phone-required signup (mobile app), then app password",
-        "x": "none — signup runs in the loop (mail.tm ladder)",
+        "x": "2 min: real-browser signup (headless walls), then WIRE x COOKIE=<base64>",
         "reddit": "none — cookies land via the loop",
         "pinterest": "none — cookies land via the loop",
         "instagram": "manual tier-2 (business verification)",
         "tiktok": "manual tier-2 (API approval)",
-        "fanvue": "none — signup runs in the loop (mail.tm ladder)",
+        "fanvue": "~5 min: real-browser signup + AI-creator flag (CF wall on headless), then WIRE fanvue COOKIE=<base64>",
     }
     rows = ["| platform | lane | state | blocker | human cost |",
             "|---|---|---|---|---|"]
