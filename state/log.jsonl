@@ -584,3 +584,5 @@
 {"ts": "2026-10-22T14:12:49Z", "kind": "captioned", "id": "2026-10-22-free-s689830", "source": "generated", "caption": "neon glow, black dress, another ordinary night out"}
 {"ts": "2026-10-22T14:13:20Z", "kind": "backlog_exec", "id": "T-0054", "rc": 0, "tail": "captioned 5 item(s)"}
 {"ts": "2026-10-22T14:13:20Z", "kind": "health_check", "funnel": "draining", "unposted": 24, "oldest_h": 23.5}
+{"ts": "2026-10-22T14:13:35Z", "kind": "brain", "source": "pollinations", "action": "python scripts/gen_image.py --tier paid --count 1"}
+{"ts": "2026-10-22T14:13:35Z", "kind": "site_built", "cards": 17, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
