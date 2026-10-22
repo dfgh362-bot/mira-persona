@@ -536,3 +536,5 @@
 {"ts": "2026-10-22T11:17:57Z", "kind": "health_check", "funnel": "draining", "unposted": 19, "oldest_h": 20.6}
 {"ts": "2026-10-22T11:17:57Z", "kind": "health_reported", "status": "healthy", "p": 15, "n": 10, "unposted": 19}
 {"ts": "2026-10-22T11:17:57Z", "kind": "drift_checked", "cycle": 50, "drifts": 0}
+{"ts": "2026-10-22T11:20:16Z", "kind": "brain", "source": "pollinations", "action": "python scripts/backlog.py --commit T-0052"}
+{"ts": "2026-10-22T11:20:16Z", "kind": "site_built", "cards": 13, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
