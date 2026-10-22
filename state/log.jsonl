@@ -383,3 +383,5 @@
 {"ts": "2026-10-22T03:25:47Z", "kind": "inbox_swept", "address": "demetrisvariable@maxxspace.com", "count": 0}
 {"ts": "2026-10-22T03:25:47Z", "kind": "backlog_exec", "id": "T-0037", "rc": 0, "tail": "demetrisvariable@maxxspace.com: 0 message(s)"}
 {"ts": "2026-10-22T03:25:47Z", "kind": "health_check", "funnel": "draining", "unposted": 13, "oldest_h": 12.7}
+{"ts": "2026-10-22T03:27:54Z", "kind": "brain", "source": "pollinations", "action": "python scripts/state.py archive --older-than 48h"}
+{"ts": "2026-10-22T03:27:54Z", "kind": "site_built", "cards": 9, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
