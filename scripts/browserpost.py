@@ -154,24 +154,36 @@ def cookie_expired(platform, note):
 # --------------------------------------------------------------- stealth (sec.4)
 
 UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
-      "(KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36")
+      "(KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36")
 STEALTH_JS = """
 Object.defineProperty(navigator, 'webdriver', {get: () => undefined});
 window.chrome = window.chrome || {runtime: {}};
 Object.defineProperty(navigator, 'languages', {get: () => ['en-US', 'en']});
 Object.defineProperty(navigator, 'plugins', {get: () => [
   {name:'Chrome PDF Plugin'},{name:'Chrome PDF Viewer'},{name:'Native Client'}]});
+Object.defineProperty(navigator, 'platform', {get: () => 'Win32'});
+if (navigator.userAgentData) {
+  Object.defineProperty(navigator, 'userAgentData', {get: () => ({
+    brands: [{brand:'Chromium', version:'__MAJOR__'},
+             {brand:'Not_A Brand', version:'99'}],
+    mobile: false,
+    platform: 'Windows'
+  })});
+}
 const orig = window.navigator.permissions.query;
 window.navigator.permissions.query = (p) => (
   p && p.name === 'notifications'
     ? Promise.resolve({state: Notification.permission})
     : orig(p));
-"""
+""".replace("__MAJOR__", "142")
 
 
 def human_delay(lo=0.4, hi=1.2):
     """sec.4: 400-1200ms between actions, never 0."""
     time.sleep(random.uniform(lo, hi))
+
+
+CHROME_MAJOR = "142"
 
 
 def stealth_context(browser, state_path=None):
@@ -184,6 +196,13 @@ def stealth_context(browser, state_path=None):
         device_scale_factor=1.0,
         storage_state=state_path,
     )
+    # client hints must AGREE with the UA or x.com 403s at the HTTP layer
+    # (sec-ch-ua otherwise leaks the real headless chromium version/platform)
+    ctx.set_extra_http_headers({
+        "sec-ch-ua": '"Chromium";v="%s", "Not_A Brand";v="99"' % CHROME_MAJOR,
+        "sec-ch-ua-mobile": "?0",
+        "sec-ch-ua-platform": '"Windows"',
+    })
     try:
         from playwright_stealth import stealth_sync     # optional layer
         stealth_sync(ctx)
