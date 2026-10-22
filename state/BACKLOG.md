@@ -13,7 +13,6 @@
 - [~] T-0032 | onboard mastodon: create account, bio + pinned, creds to Actions Secrets | attempted, needs human (BLOCKERS.md)
 - [~] T-0033 | onboard x: create account, bio + pinned, creds to Actions Secrets | attempted, needs human (BLOCKERS.md)
 - [~] T-0035 | onboard pinterest: create account, bio + pinned, creds to Actions Secrets | attempted, needs human (BLOCKERS.md)
-- [ ] T-0044 | generate 2 paid images | daily quota (0/4 today) | cmd: python scripts/gen_image.py --tier paid --count 2
 - [ ] T-0045 | build 1 video clip | daily quota (0/2 today) | cmd: python scripts/make_video.py --auto
 - [ ] T-0046 | rebuild site | pipeline | cmd: python scripts/build_site.py
 - [ ] T-0047 | sweep mail.tm inboxes | verification | cmd: python scripts/mailtm.py verify --all
@@ -22,6 +21,8 @@
 - [ ] T-0050 | expand prompt library (+5 scenes, +5 captions) | library growth | cmd: python scripts/backlog.py --expand-prompts
 - [ ] T-0051 | retry commit via shared path | self-repair (R-01) | cmd: python scripts/backlog.py --commit repair: retry after commit_failed
 - [ ] T-0052 | retry image generation (recent failure) | self-repair | cmd: python scripts/gen_image.py --tier free --count 1
+- [ ] T-0053 | generate 1 free images | daily quota (7/8 today) | cmd: python scripts/gen_image.py --tier free --count 1
+- [ ] T-0054 | caption queued items | pipeline | cmd: python scripts/gen_caption.py
 - [x] T-0040 | expand prompt library (+5 scenes, +5 captions) | ok: expanded: +5 scenes, +5 captions (27 / 19 spares left) | cmd: python scripts/backlog.py --expand-prompts
 - [x] T-0039 | cycle audit: stats + guard checks | ok: ledger: {'free': 8, 'paid': 5, 'video': 4, 'voice': 20} upda | cmd: python scripts/state.py stats
 - [x] T-0038 | archive old items | ok: archived 0 item(s) | cmd: python scripts/state.py archive --older-than 48h
