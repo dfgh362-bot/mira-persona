@@ -10,7 +10,7 @@
 - [~] T-0029 | onboard bluesky: create account, bio + pinned, creds to Actions Secrets | attempted, needs human (BLOCKERS.md)
 - [~] T-0030 | onboard telegram: create account, bio + pinned, creds to Actions Secrets | attempted, needs human (BLOCKERS.md)
 - [~] T-0031 | onboard reddit: create account, bio + pinned, creds to Actions Secrets | attempted, needs human (BLOCKERS.md)
-- [ ] T-0032 | onboard mastodon: create account, bio + pinned, creds to Actions Secrets | onboarding (human)
+- [~] T-0032 | onboard mastodon: create account, bio + pinned, creds to Actions Secrets | attempted, needs human (BLOCKERS.md)
 - [ ] T-0033 | onboard x: create account, bio + pinned, creds to Actions Secrets | onboarding (human)
 - [ ] T-0035 | onboard pinterest: create account, bio + pinned, creds to Actions Secrets | onboarding (human)
 - [ ] T-0036 | rebuild site | pipeline | cmd: python scripts/build_site.py
@@ -21,6 +21,7 @@
 - [ ] T-0041 | retry commit via shared path | self-repair (R-01) | cmd: python scripts/backlog.py --commit repair: retry after commit_failed
 - [ ] T-0042 | self-heal recent errors (scan, map, re-run) | self-repair (R-01) | cmd: python scripts/selfheal.py --scan
 - [ ] T-0043 | generate 4 free images | daily quota (0/8 today) | cmd: python scripts/gen_image.py --tier free --count 4
+- [ ] T-0044 | generate 2 paid images | daily quota (0/4 today) | cmd: python scripts/gen_image.py --tier paid --count 2
 - [x] T-0034 | selftest v32: wire channel, lint, funnel-first, name contract | ok: -- 20/20 passed | cmd: python scripts/selftest.py v32
 - [x] T-0008 | archive old items | ok: archived 0 item(s); heartbeat written | cmd: python scripts/state.py archive --older-than 48h
 - [x] T-0007 | rebuild site | ok: site/index.html rebuilt with 9 card(s); synced content/free | cmd: python scripts/build_site.py

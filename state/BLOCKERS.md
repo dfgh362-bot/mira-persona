@@ -19,3 +19,4 @@
 - T-0029 needs human: onboard bluesky: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-21T23:18:55Z)
 - T-0030 needs human: onboard telegram: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-21T23:50:50Z)
 - T-0031 needs human: onboard reddit: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-22T00:16:30Z)
+- T-0032 needs human: onboard mastodon: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-22T01:05:07Z)

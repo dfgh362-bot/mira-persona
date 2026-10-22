@@ -129,6 +129,11 @@
       "c": 32,
       "cls": "noop",
       "why": "T-0031 needs human"
+    },
+    {
+      "c": 33,
+      "cls": "noop",
+      "why": "T-0032 needs human"
     }
   ]
 }
