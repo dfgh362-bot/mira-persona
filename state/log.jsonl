@@ -516,3 +516,6 @@
 {"ts": "2026-10-22T10:08:31Z", "kind": "inbox_swept", "address": "demetrisvariable@maxxspace.com", "count": 0}
 {"ts": "2026-10-22T10:09:26Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T10:09:26Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-10-22T10:09:28Z", "kind": "archived", "moved": 0, "older_than_hours": 48.0}
+{"ts": "2026-10-22T10:09:28Z", "kind": "backlog_exec", "id": "T-0048", "rc": 0, "tail": "archived 0 item(s)"}
+{"ts": "2026-10-22T10:09:28Z", "kind": "health_check", "funnel": "draining", "unposted": 19, "oldest_h": 19.4}
