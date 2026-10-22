@@ -1,5 +1,5 @@
 ## CURRENT
-T-0072 wire telegram + first post — telegram: posted 2026-10-21-free-001 (msg 5)
+T-0074 post now: telegram — telegram: dupe blocked
 ## NEXT ACTION
 python scripts/post_telegram.py
 ## WALLS
@@ -11,9 +11,9 @@ python scripts/post_telegram.py
 - T-0012 needs human: onboard telegram: bot via BotFather, token + chat id (ts 2026-10-21T20:36:54Z)
 - T-0013 needs human: onboard reddit: script app OAuth, sub + creds (ts 2026-10-21T21:10:55Z)
 ## LAST COMMIT
-0478627
+0483aaf
 ## CYCLE
-66
+67
 ## LANES (v3.5)
 | platform | lane | state | blocker | human cost |
 |---|---|---|---|---|
