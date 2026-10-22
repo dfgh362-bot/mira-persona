@@ -13,7 +13,6 @@
 - [~] T-0032 | onboard mastodon: create account, bio + pinned, creds to Actions Secrets | attempted, needs human (BLOCKERS.md)
 - [~] T-0033 | onboard x: create account, bio + pinned, creds to Actions Secrets | attempted, needs human (BLOCKERS.md)
 - [~] T-0035 | onboard pinterest: create account, bio + pinned, creds to Actions Secrets | attempted, needs human (BLOCKERS.md)
-- [ ] T-0039 | cycle audit: stats + guard checks | self-improve | cmd: python scripts/state.py stats
 - [ ] T-0040 | expand prompt library (+5 scenes, +5 captions) | library growth | cmd: python scripts/backlog.py --expand-prompts
 - [ ] T-0041 | retry commit via shared path | self-repair (R-01) | cmd: python scripts/backlog.py --commit repair: retry after commit_failed
 - [ ] T-0042 | self-heal recent errors (scan, map, re-run) | self-repair (R-01) | cmd: python scripts/selfheal.py --scan
@@ -22,6 +21,8 @@
 - [ ] T-0045 | build 1 video clip | daily quota (0/2 today) | cmd: python scripts/make_video.py --auto
 - [ ] T-0046 | rebuild site | pipeline | cmd: python scripts/build_site.py
 - [ ] T-0047 | sweep mail.tm inboxes | verification | cmd: python scripts/mailtm.py verify --all
+- [ ] T-0048 | archive old items | hygiene | cmd: python scripts/state.py archive --older-than 48h
+- [x] T-0039 | cycle audit: stats + guard checks | ok: ledger: {'free': 8, 'paid': 5, 'video': 4, 'voice': 20} upda | cmd: python scripts/state.py stats
 - [x] T-0038 | archive old items | ok: archived 0 item(s) | cmd: python scripts/state.py archive --older-than 48h
 - [x] T-0037 | sweep mail.tm inboxes | ok: demetrisvariable@maxxspace.com: 0 message(s) | cmd: python scripts/mailtm.py verify --all
 - [x] T-0036 | rebuild site | ok: site/index.html rebuilt with 9 card(s); synced content/free | cmd: python scripts/build_site.py
