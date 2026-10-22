@@ -1,7 +1,7 @@
 ## CURRENT
-T-0060 cycle audit: stats + guard checks — ledger: {'free': 16, 'paid': 9, 'video': 5, 'voice': 20} updated: 2026-10-22T14:
+T-0061 expand prompt library (+5 scenes, +5 captions) — expanded: +5 scenes, +5 captions (17 / 9 spares left)
 ## NEXT ACTION
-python scripts/backlog.py --expand-prompts
+python scripts/gen_image.py --tier free --count 1
 ## WALLS
 7 platforms blocked | cheapest human unblock: telegram (1 min) -> https://t.me/BotFather
 ## BLOCKERS
@@ -11,6 +11,6 @@ python scripts/backlog.py --expand-prompts
 - T-0012 needs human: onboard telegram: bot via BotFather, token + chat id (ts 2026-10-21T20:36:54Z)
 - T-0013 needs human: onboard reddit: script app OAuth, sub + creds (ts 2026-10-21T21:10:55Z)
 ## LAST COMMIT
-b30d5ad
+b38c75e
 ## CYCLE
-60
+61

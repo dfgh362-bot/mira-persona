@@ -625,3 +625,6 @@
 {"ts": "2026-10-22T17:01:54Z", "kind": "inbox_swept", "address": "demetrisvariable@maxxspace.com", "count": 0}
 {"ts": "2026-10-22T17:13:23Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T17:13:23Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-10-22T17:13:27Z", "kind": "prompts_expanded", "scenes_added": 5, "captions_added": 5}
+{"ts": "2026-10-22T17:13:27Z", "kind": "backlog_exec", "id": "T-0061", "rc": 0, "tail": "expanded: +5 scenes, +5 captions (17 / 9 spares left)"}
+{"ts": "2026-10-22T17:13:27Z", "kind": "escalated_posting", "items": 0, "platforms": ""}
