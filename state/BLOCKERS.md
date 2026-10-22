@@ -21,3 +21,4 @@
 - T-0031 needs human: onboard reddit: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-22T00:16:30Z)
 - T-0032 needs human: onboard mastodon: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-22T01:05:07Z)
 - T-0033 needs human: onboard x: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-22T01:41:02Z)
+- T-0035 needs human: onboard pinterest: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-22T02:13:43Z)

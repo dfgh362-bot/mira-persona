@@ -365,3 +365,5 @@
 {"ts": "2026-10-22T02:02:24Z", "kind": "inbox_swept", "address": "demetrisvariable@maxxspace.com", "count": 0}
 {"ts": "2026-10-22T02:13:41Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T02:13:41Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-10-22T02:13:43Z", "kind": "blocker_added", "line": "T-0035 needs human: onboard pinterest: create account, bio + pinned, creds to Actions Secrets"}
+{"ts": "2026-10-22T02:13:43Z", "kind": "health_check", "funnel": "draining", "unposted": 13, "oldest_h": 11.5}

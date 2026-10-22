@@ -12,7 +12,7 @@
 - [~] T-0031 | onboard reddit: create account, bio + pinned, creds to Actions Secrets | attempted, needs human (BLOCKERS.md)
 - [~] T-0032 | onboard mastodon: create account, bio + pinned, creds to Actions Secrets | attempted, needs human (BLOCKERS.md)
 - [~] T-0033 | onboard x: create account, bio + pinned, creds to Actions Secrets | attempted, needs human (BLOCKERS.md)
-- [ ] T-0035 | onboard pinterest: create account, bio + pinned, creds to Actions Secrets | onboarding (human)
+- [~] T-0035 | onboard pinterest: create account, bio + pinned, creds to Actions Secrets | attempted, needs human (BLOCKERS.md)
 - [ ] T-0036 | rebuild site | pipeline | cmd: python scripts/build_site.py
 - [ ] T-0037 | sweep mail.tm inboxes | verification | cmd: python scripts/mailtm.py verify --all
 - [ ] T-0038 | archive old items | hygiene | cmd: python scripts/state.py archive --older-than 48h
