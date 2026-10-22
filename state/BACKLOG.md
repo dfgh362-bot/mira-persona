@@ -13,7 +13,6 @@
 - [~] T-0032 | onboard mastodon: create account, bio + pinned, creds to Actions Secrets | attempted, needs human (BLOCKERS.md)
 - [~] T-0033 | onboard x: create account, bio + pinned, creds to Actions Secrets | attempted, needs human (BLOCKERS.md)
 - [~] T-0035 | onboard pinterest: create account, bio + pinned, creds to Actions Secrets | attempted, needs human (BLOCKERS.md)
-- [ ] T-0041 | retry commit via shared path | self-repair (R-01) | cmd: python scripts/backlog.py --commit repair: retry after commit_failed
 - [ ] T-0042 | self-heal recent errors (scan, map, re-run) | self-repair (R-01) | cmd: python scripts/selfheal.py --scan
 - [ ] T-0043 | generate 4 free images | daily quota (0/8 today) | cmd: python scripts/gen_image.py --tier free --count 4
 - [ ] T-0044 | generate 2 paid images | daily quota (0/4 today) | cmd: python scripts/gen_image.py --tier paid --count 2

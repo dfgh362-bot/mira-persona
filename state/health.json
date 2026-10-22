@@ -169,6 +169,11 @@
       "c": 40,
       "cls": "productive",
       "why": "T-0040 expanded: +5 scenes, +5 captions (27 / 1"
+    },
+    {
+      "c": 41,
+      "cls": "productive",
+      "why": "T-0041 workflow commit pushed: repair: retry af"
     }
   ]
 }
