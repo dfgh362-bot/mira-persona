@@ -630,3 +630,11 @@
 {"ts": "2026-10-22T17:13:27Z", "kind": "escalated_posting", "items": 0, "platforms": ""}
 {"ts": "2026-10-22T17:15:43Z", "kind": "brain", "source": "pollinations", "action": "python scripts/gen_image.py --tier free --count 9"}
 {"ts": "2026-10-22T17:15:43Z", "kind": "site_built", "cards": 17, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
+{"ts": "2026-10-22T17:22:11Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-10-22T17:22:11Z", "kind": "post_skipped", "platform": "bluesky", "reason": "missing credentials"}
+{"ts": "2026-10-22T17:22:12Z", "kind": "post_skipped", "platform": "telegram", "reason": "missing credentials"}
+{"ts": "2026-10-22T17:22:12Z", "kind": "post_skipped", "platform": "reddit", "reason": "missing credentials"}
+{"ts": "2026-10-22T17:22:12Z", "kind": "post_skipped", "platform": "mastodon", "reason": "missing credentials"}
+{"ts": "2026-10-22T17:22:12Z", "kind": "post_skipped", "platform": "x", "reason": "missing credentials"}
+{"ts": "2026-10-22T17:22:12Z", "kind": "post_skipped", "platform": "pinterest", "reason": "missing credentials"}
+{"ts": "2026-10-22T17:22:12Z", "kind": "post_skipped", "platform": "fanvue", "reason": "missing credentials"}
