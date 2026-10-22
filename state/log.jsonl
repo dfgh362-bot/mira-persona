@@ -758,3 +758,12 @@
 {"ts": "2026-10-22T20:50:54Z", "kind": "blocker_added", "line": "WALL mastodon: email at https://mastodon.social/auth/sign_up — human step: open human+mirasolis-mastodon@gmail.com, click the confirmation link from mastodon.social / cleverlibre.org / mstdn.social / "}
 {"ts": "2026-10-22T20:50:54Z", "kind": "wall", "platform": "mastodon", "wall_type": "email", "attempts": 0, "url": "https://mastodon.social/auth/sign_up"}
 {"ts": "2026-10-22T20:50:54Z", "kind": "browser_skip", "platform": "fanvue", "reason": "no cookies"}
+{"ts": "2026-10-22T20:51:25Z", "kind": "blocker_added", "line": "selftest T-9999 needs human (probe)"}
+{"ts": "2026-10-22T20:51:25Z", "kind": "escalation_refused", "reason": "unposted 25 > cap 20 (sec.4)"}
+{"ts": "2026-10-22T20:51:25Z", "kind": "escalated_posting", "items": 0, "platforms": ""}
+{"ts": "2026-10-22T20:51:25Z", "kind": "health_reported", "status": "healthy", "p": 25, "n": 0, "unposted": 25}
+{"ts": "2026-10-22T20:51:25Z", "kind": "blocker_added", "line": "WALL reddit: captcha at https://x.example/signup — human step: solve it, human (cheapest-first: docs/SIGNUP.md)"}
+{"ts": "2026-10-22T20:51:25Z", "kind": "wall", "platform": "reddit", "wall_type": "captcha", "attempts": 2, "url": "https://x.example/signup"}
+{"ts": "2026-10-22T20:51:25Z", "kind": "blocker_added", "line": "WALL mastodon: email at https://mastodon.social/auth/sign_up — human step: open human+mirasolis-mastodon@gmail.com, click the confirmation link from mastodon.social / cleverlibre.org / mstdn.social / "}
+{"ts": "2026-10-22T20:51:25Z", "kind": "wall", "platform": "mastodon", "wall_type": "email", "attempts": 0, "url": "https://mastodon.social/auth/sign_up"}
+{"ts": "2026-10-22T20:51:25Z", "kind": "browser_skip", "platform": "fanvue", "reason": "no cookies"}

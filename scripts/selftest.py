@@ -517,8 +517,14 @@ def v33():
         check("wall-summary-fmt",
               re.match(r"^\d+ platforms blocked \| cheapest human unblock: "
                        r"[a-z]+ \(\d+ min\) -> https?://\S+$", s) is not None, s)
-        check("wall-cheapest", s.startswith("7 platforms blocked")
-              and "telegram (1 min) -> https://t.me/BotFather" in s, s)
+        # dynamic (v3.3): the count IS the not-ready tracked set; ready
+        # platforms (telegram flipped 2026-10-22) leave the blocked set
+        expected_n = len(walls.blocked())
+        tg_ready = (util.load_config("accounts.json")
+                    .get("platforms", {}).get("telegram", {}).get("status") == "ready")
+        check("wall-cheapest", s.startswith("%d platforms blocked" % expected_n)
+              and " -> " in s and not (tg_ready and "telegram (" in s),
+              "%s (blocked=%d, tg_ready=%s)" % (s, expected_n, tg_ready))
         # ready platforms leave the blocked set
         cfg = util.load_config("accounts.json")
         cfg["platforms"]["telegram"]["status"] = "ready"
