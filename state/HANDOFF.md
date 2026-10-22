@@ -1,5 +1,5 @@
 ## CURRENT
-T-0074 post now: telegram — telegram: dupe blocked
+T-9999 v35 selftest — synthetic
 ## NEXT ACTION
 python scripts/post_telegram.py
 ## WALLS
@@ -11,9 +11,9 @@ python scripts/post_telegram.py
 - T-0012 needs human: onboard telegram: bot via BotFather, token + chat id (ts 2026-10-21T20:36:54Z)
 - T-0013 needs human: onboard reddit: script app OAuth, sub + creds (ts 2026-10-21T21:10:55Z)
 ## LAST COMMIT
-b693feb
+dead
 ## CYCLE
-68
+99
 ## LANES (v3.5)
 | platform | lane | state | blocker | human cost |
 |---|---|---|---|---|
