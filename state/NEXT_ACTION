@@ -1,1 +1,1 @@
-python scripts/make_image.py "wrapped in a blanket, reading"
+python scripts/issues.py --poll
