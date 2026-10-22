@@ -243,7 +243,6 @@
 {"ts": "2026-10-21T19:39:53Z", "kind": "escalated_posting", "items": 1, "platforms": "telegram"}
 {"ts": "2026-10-21T19:39:53Z", "kind": "health_reported", "status": "healthy", "p": 15, "n": 1, "unposted": 13}
 {"ts": "2026-10-21T19:40:44Z", "kind": "lint_ok", "files": 5}
-{"ts": "2026-10-21T19:40:44Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-21T19:40:44Z", "kind": "commit_failed", "error": "global user.email \"you@example.com\"\n  git config --global user.name \"Your Name\"\n\nto set your account's default identity.\nOmit --global to set the identity only in this repository.\n\nfatal: empty ident name (for <runner@runnervmxehtw.wvrovd0155dehj0p2zzdp0rdca.phxx.internal.cloudapp.net>) not allowed\n"}
 {"ts": "2026-10-21T19:41:03Z", "kind": "brain", "source": "pollinations", "action": "git config user.email \"you@example.com\" && git config user.name \"Your Name\""}
 {"ts": "2026-10-21T19:41:03Z", "kind": "site_built", "cards": 9, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
@@ -273,7 +272,6 @@
 {"ts": "2026-10-21T20:04:21Z", "kind": "brain", "source": "pollinations", "action": "python scripts/backlog.py --one"}
 {"ts": "2026-10-21T20:04:21Z", "kind": "site_built", "cards": 9, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
 {"ts": "2026-10-21T20:36:51Z", "kind": "lint_ok", "files": 5}
-{"ts": "2026-10-21T20:36:51Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-21T20:36:54Z", "kind": "blocker_added", "line": "T-0012 needs human: onboard telegram: bot via BotFather, token + chat id"}
 {"ts": "2026-10-21T20:36:54Z", "kind": "health_check", "funnel": "draining", "unposted": 13, "oldest_h": 5.9}
 {"ts": "2026-10-21T20:36:54Z", "kind": "health_reported", "status": "healthy", "p": 17, "n": 2, "unposted": 13}
@@ -298,12 +296,10 @@
 {"ts": "2026-10-21T21:30:53Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-21T21:30:54Z", "kind": "inbox_swept", "address": "demetrisvariable@maxxspace.com", "count": 0}
 {"ts": "2026-10-21T21:49:55Z", "kind": "lint_ok", "files": 5}
-{"ts": "2026-10-21T21:49:55Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-21T21:49:57Z", "kind": "blocker_added", "line": "T-0014 needs human: onboard mastodon: account + app token"}
 {"ts": "2026-10-21T21:49:57Z", "kind": "health_check", "funnel": "draining", "unposted": 13, "oldest_h": 7.1}
 {"ts": "2026-10-21T21:52:14Z", "kind": "brain", "source": "pollinations", "action": "python scripts/backlog.py --one"}
 {"ts": "2026-10-21T21:52:15Z", "kind": "site_built", "cards": 9, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
-{"ts": "2026-10-21T22:17:19Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-21T22:17:19Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-21T22:17:22Z", "kind": "blocker_added", "line": "T-0015 needs human: onboard x: developer account + bearer token"}
 {"ts": "2026-10-21T22:17:22Z", "kind": "health_check", "funnel": "draining", "unposted": 13, "oldest_h": 7.6}
@@ -312,7 +308,6 @@
 {"ts": "2026-10-21T22:22:12Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-21T22:22:13Z", "kind": "inbox_swept", "address": "demetrisvariable@maxxspace.com", "count": 0}
 {"ts": "2026-10-21T22:52:33Z", "kind": "lint_ok", "files": 5}
-{"ts": "2026-10-21T22:52:33Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-21T22:52:35Z", "kind": "blocker_added", "line": "T-0016 needs human: onboard pinterest: account + board + token"}
 {"ts": "2026-10-21T22:52:35Z", "kind": "health_check", "funnel": "draining", "unposted": 13, "oldest_h": 8.2}
 {"ts": "2026-10-21T22:55:07Z", "kind": "brain", "source": "pollinations", "action": "python scripts/backlog.py --one"}
@@ -320,14 +315,12 @@
 {"ts": "2026-10-21T22:56:25Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-21T22:56:26Z", "kind": "inbox_swept", "address": "demetrisvariable@maxxspace.com", "count": 0}
 {"ts": "2026-10-21T23:18:53Z", "kind": "lint_ok", "files": 5}
-{"ts": "2026-10-21T23:18:53Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-21T23:18:55Z", "kind": "blocker_added", "line": "T-0029 needs human: onboard bluesky: create account, bio + pinned, creds to Actions Secrets"}
 {"ts": "2026-10-21T23:18:55Z", "kind": "health_check", "funnel": "draining", "unposted": 13, "oldest_h": 8.6}
 {"ts": "2026-10-21T23:21:33Z", "kind": "brain", "source": "pollinations", "action": "python scripts/backlog.py --one"}
 {"ts": "2026-10-21T23:21:33Z", "kind": "site_built", "cards": 9, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
 {"ts": "2026-10-21T23:21:57Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-21T23:21:58Z", "kind": "inbox_swept", "address": "demetrisvariable@maxxspace.com", "count": 0}
-{"ts": "2026-10-21T23:50:48Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-21T23:50:48Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-21T23:50:50Z", "kind": "blocker_added", "line": "T-0030 needs human: onboard telegram: create account, bio + pinned, creds to Actions Secrets"}
 {"ts": "2026-10-21T23:50:50Z", "kind": "health_check", "funnel": "draining", "unposted": 13, "oldest_h": 9.1}
@@ -348,14 +341,12 @@
 {"ts": "2026-10-22T00:25:21Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T00:25:22Z", "kind": "inbox_swept", "address": "demetrisvariable@maxxspace.com", "count": 0}
 {"ts": "2026-10-22T01:05:06Z", "kind": "lint_ok", "files": 5}
-{"ts": "2026-10-22T01:05:06Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T01:05:07Z", "kind": "blocker_added", "line": "T-0032 needs human: onboard mastodon: create account, bio + pinned, creds to Actions Secrets"}
 {"ts": "2026-10-22T01:05:07Z", "kind": "health_check", "funnel": "draining", "unposted": 13, "oldest_h": 10.4}
 {"ts": "2026-10-22T01:07:22Z", "kind": "brain", "source": "pollinations", "action": "python scripts/backlog.py --one"}
 {"ts": "2026-10-22T01:07:22Z", "kind": "site_built", "cards": 9, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
 {"ts": "2026-10-22T01:10:39Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T01:10:40Z", "kind": "inbox_swept", "address": "demetrisvariable@maxxspace.com", "count": 0}
-{"ts": "2026-10-22T01:41:00Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T01:41:00Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T01:41:02Z", "kind": "blocker_added", "line": "T-0033 needs human: onboard x: create account, bio + pinned, creds to Actions Secrets"}
 {"ts": "2026-10-22T01:41:02Z", "kind": "health_check", "funnel": "draining", "unposted": 13, "oldest_h": 11.0}
@@ -364,12 +355,10 @@
 {"ts": "2026-10-22T02:02:23Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T02:02:24Z", "kind": "inbox_swept", "address": "demetrisvariable@maxxspace.com", "count": 0}
 {"ts": "2026-10-22T02:13:41Z", "kind": "lint_ok", "files": 5}
-{"ts": "2026-10-22T02:13:41Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T02:13:43Z", "kind": "blocker_added", "line": "T-0035 needs human: onboard pinterest: create account, bio + pinned, creds to Actions Secrets"}
 {"ts": "2026-10-22T02:13:43Z", "kind": "health_check", "funnel": "draining", "unposted": 13, "oldest_h": 11.5}
 {"ts": "2026-10-22T02:16:00Z", "kind": "brain", "source": "pollinations", "action": "python scripts/build_site.py"}
 {"ts": "2026-10-22T02:16:00Z", "kind": "site_built", "cards": 9, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
-{"ts": "2026-10-22T02:53:54Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T02:53:54Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T02:53:56Z", "kind": "site_built", "cards": 9, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
 {"ts": "2026-10-22T02:53:56Z", "kind": "backlog_exec", "id": "T-0036", "rc": 0, "tail": "site/index.html rebuilt with 9 card(s); synced content/free -> site/content/free"}
@@ -379,7 +368,6 @@
 {"ts": "2026-10-22T03:00:31Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T03:00:31Z", "kind": "inbox_swept", "address": "demetrisvariable@maxxspace.com", "count": 0}
 {"ts": "2026-10-22T03:25:45Z", "kind": "lint_ok", "files": 5}
-{"ts": "2026-10-22T03:25:45Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T03:25:47Z", "kind": "inbox_swept", "address": "demetrisvariable@maxxspace.com", "count": 0}
 {"ts": "2026-10-22T03:25:47Z", "kind": "backlog_exec", "id": "T-0037", "rc": 0, "tail": "demetrisvariable@maxxspace.com: 0 message(s)"}
 {"ts": "2026-10-22T03:25:47Z", "kind": "health_check", "funnel": "draining", "unposted": 13, "oldest_h": 12.7}
@@ -388,13 +376,11 @@
 {"ts": "2026-10-22T04:03:43Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T04:03:43Z", "kind": "inbox_swept", "address": "demetrisvariable@maxxspace.com", "count": 0}
 {"ts": "2026-10-22T04:06:48Z", "kind": "lint_ok", "files": 5}
-{"ts": "2026-10-22T04:06:48Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T04:06:50Z", "kind": "archived", "moved": 0, "older_than_hours": 48.0}
 {"ts": "2026-10-22T04:06:50Z", "kind": "backlog_exec", "id": "T-0038", "rc": 0, "tail": "archived 0 item(s)"}
 {"ts": "2026-10-22T04:06:50Z", "kind": "health_check", "funnel": "draining", "unposted": 13, "oldest_h": 13.4}
 {"ts": "2026-10-22T04:08:59Z", "kind": "brain", "source": "pollinations", "action": "python scripts/state.py stats"}
 {"ts": "2026-10-22T04:08:59Z", "kind": "site_built", "cards": 9, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
-{"ts": "2026-10-22T04:40:44Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T04:40:44Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T04:40:45Z", "kind": "backlog_exec", "id": "T-0039", "rc": 0, "tail": "ledger: {'free': 8, 'paid': 5, 'video': 4, 'voice': 20} updated: 2026-10-21T16:45:50Z"}
 {"ts": "2026-10-22T04:40:45Z", "kind": "health_check", "funnel": "draining", "unposted": 13, "oldest_h": 14.0}
@@ -403,13 +389,11 @@
 {"ts": "2026-10-22T05:03:24Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T05:03:25Z", "kind": "inbox_swept", "address": "demetrisvariable@maxxspace.com", "count": 0}
 {"ts": "2026-10-22T05:16:44Z", "kind": "lint_ok", "files": 5}
-{"ts": "2026-10-22T05:16:44Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T05:16:46Z", "kind": "prompts_expanded", "scenes_added": 5, "captions_added": 5}
 {"ts": "2026-10-22T05:16:46Z", "kind": "backlog_exec", "id": "T-0040", "rc": 0, "tail": "expanded: +5 scenes, +5 captions (27 / 19 spares left)"}
 {"ts": "2026-10-22T05:16:46Z", "kind": "health_check", "funnel": "draining", "unposted": 13, "oldest_h": 14.6}
 {"ts": "2026-10-22T05:18:54Z", "kind": "brain", "source": "pollinations", "action": "python scripts/backlog.py --run T-0043"}
 {"ts": "2026-10-22T05:18:54Z", "kind": "site_built", "cards": 9, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
-{"ts": "2026-10-22T05:53:36Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T05:53:36Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T05:53:39Z", "kind": "backlog_exec", "id": "T-0041", "rc": 0, "tail": "workflow commit pushed: repair: retry after commit_failed (da4bb67)"}
 {"ts": "2026-10-22T05:53:39Z", "kind": "health_check", "funnel": "draining", "unposted": 13, "oldest_h": 15.2}
@@ -450,7 +434,6 @@
 {"ts": "2026-10-22T06:39:16Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T06:39:16Z", "kind": "inbox_swept", "address": "demetrisvariable@maxxspace.com", "count": 0}
 {"ts": "2026-10-22T07:23:48Z", "kind": "lint_ok", "files": 5}
-{"ts": "2026-10-22T07:23:48Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T07:23:57Z", "kind": "image_generated", "id": "2026-10-22-free-s947794", "file": "content/free/2026-10-22/mira_free_20261022_012_947794.jpg", "seed": 947794, "model": "flux"}
 {"ts": "2026-10-22T07:24:03Z", "kind": "image_attempt_failed", "scene": "rainy day, transparent umbrella, wet street", "seed": 116700, "model": "flux", "error": "RuntimeError(\"download https://image.pollinations.ai/prompt/photo%20of%20mira_solis%2C%2024%20year%20old%20woman%2C%20long%20dark%20wavy%20hair%2C%20hazel%20eyes%2C%20faint%20freckles%2C%20small%20mole%20on%20left%20cheek%2C%20natural%20skin%20texture%2C%2035mm%20film%20photo%2C%20warm%20neutral%20tones%2C%20shallow%20depth%20of%20field%2C%20soft%20natural%20light%2C%20rainy%20day%2C%20transparent%20umbrella%2C%20wet%20street%2C%20candid%20expression?width=1024&height=1536&model=flux&seed=116700&nologo=true failed: <HTTPError 402: 'Payment Required'>\")"}
 {"ts": "2026-10-22T07:24:28Z", "kind": "image_attempt_failed", "scene": "rainy day, transparent umbrella, wet street", "seed": 116700, "model": "turbo", "error": "RuntimeError(\"download https://image.pollinations.ai/prompt/photo%20of%20mira_solis%2C%2024%20year%20old%20woman%2C%20long%20dark%20wavy%20hair%2C%20hazel%20eyes%2C%20faint%20freckles%2C%20small%20mole%20on%20left%20cheek%2C%20natural%20skin%20texture%2C%2035mm%20film%20photo%2C%20warm%20neutral%20tones%2C%20shallow%20depth%20of%20field%2C%20soft%20natural%20light%2C%20rainy%20day%2C%20transparent%20umbrella%2C%20wet%20street%2C%20candid%20expression?width=1024&height=1536&model=turbo&seed=116700&nologo=true failed: <HTTPError 402: 'Payment Required'>\")"}
@@ -468,7 +451,6 @@
 {"ts": "2026-10-22T07:28:25Z", "kind": "brain", "source": "pollinations", "action": "python scripts/gen_image.py --tier paid --count 2"}
 {"ts": "2026-10-22T07:28:25Z", "kind": "site_built", "cards": 13, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
 {"ts": "2026-10-22T07:28:39Z", "kind": "lint_ok", "files": 5}
-{"ts": "2026-10-22T07:28:39Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T07:28:49Z", "kind": "image_generated", "id": "2026-10-22-paid-s317158", "file": "content/paid/2026-10-22/mira_paid_20261022_007_317158.jpg", "seed": 317158, "model": "flux"}
 {"ts": "2026-10-22T07:28:55Z", "kind": "image_attempt_failed", "scene": "wrapped in a blanket, reading", "seed": 780938, "model": "flux", "error": "RuntimeError(\"download https://image.pollinations.ai/prompt/photo%20of%20mira_solis%2C%2024%20year%20old%20woman%2C%20long%20dark%20wavy%20hair%2C%20hazel%20eyes%2C%20faint%20freckles%2C%20small%20mole%20on%20left%20cheek%2C%20natural%20skin%20texture%2C%2035mm%20film%20photo%2C%20warm%20neutral%20tones%2C%20shallow%20depth%20of%20field%2C%20soft%20natural%20light%2C%20wrapped%20in%20a%20blanket%2C%20reading%2C%20candid%20expression?width=1024&height=1536&model=flux&seed=780938&nologo=true failed: <HTTPError 402: 'Payment Required'>\")"}
 {"ts": "2026-10-22T07:29:25Z", "kind": "image_attempt_failed", "scene": "wrapped in a blanket, reading", "seed": 780938, "model": "turbo", "error": "RuntimeError(\"download https://image.pollinations.ai/prompt/photo%20of%20mira_solis%2C%2024%20year%20old%20woman%2C%20long%20dark%20wavy%20hair%2C%20hazel%20eyes%2C%20faint%20freckles%2C%20small%20mole%20on%20left%20cheek%2C%20natural%20skin%20texture%2C%2035mm%20film%20photo%2C%20warm%20neutral%20tones%2C%20shallow%20depth%20of%20field%2C%20soft%20natural%20light%2C%20wrapped%20in%20a%20blanket%2C%20reading%2C%20candid%20expression?width=1024&height=1536&model=turbo&seed=780938&nologo=true failed: <HTTPError 402: 'Payment Required'>\")"}
@@ -481,7 +463,6 @@
 {"ts": "2026-10-22T07:31:37Z", "kind": "site_built", "cards": 13, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
 {"ts": "2026-10-22T07:38:52Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T07:38:53Z", "kind": "inbox_swept", "address": "demetrisvariable@maxxspace.com", "count": 0}
-{"ts": "2026-10-22T08:09:30Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T08:09:30Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T08:09:32Z", "kind": "video_skipped", "reason": "ffmpeg not installed"}
 {"ts": "2026-10-22T08:09:32Z", "kind": "backlog_exec", "id": "T-0045", "rc": 0, "tail": "ffmpeg not installed — skipping"}
@@ -506,7 +487,6 @@
 {"ts": "2026-10-22T09:26:15Z", "kind": "post_skipped", "platform": "pinterest", "reason": "missing credentials"}
 {"ts": "2026-10-22T09:26:15Z", "kind": "post_skipped", "platform": "fanvue", "reason": "missing credentials"}
 {"ts": "2026-10-22T09:26:37Z", "kind": "lint_ok", "files": 5}
-{"ts": "2026-10-22T09:26:37Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T09:26:40Z", "kind": "inbox_swept", "address": "demetrisvariable@maxxspace.com", "count": 0}
 {"ts": "2026-10-22T09:26:40Z", "kind": "backlog_exec", "id": "T-0047", "rc": 0, "tail": "demetrisvariable@maxxspace.com: 0 message(s)"}
 {"ts": "2026-10-22T09:26:40Z", "kind": "health_check", "funnel": "draining", "unposted": 19, "oldest_h": 18.7}
@@ -515,13 +495,11 @@
 {"ts": "2026-10-22T10:08:30Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T10:08:31Z", "kind": "inbox_swept", "address": "demetrisvariable@maxxspace.com", "count": 0}
 {"ts": "2026-10-22T10:09:26Z", "kind": "lint_ok", "files": 5}
-{"ts": "2026-10-22T10:09:26Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T10:09:28Z", "kind": "archived", "moved": 0, "older_than_hours": 48.0}
 {"ts": "2026-10-22T10:09:28Z", "kind": "backlog_exec", "id": "T-0048", "rc": 0, "tail": "archived 0 item(s)"}
 {"ts": "2026-10-22T10:09:28Z", "kind": "health_check", "funnel": "draining", "unposted": 19, "oldest_h": 19.4}
 {"ts": "2026-10-22T10:11:43Z", "kind": "brain", "source": "pollinations", "action": "python scripts/state.py stats"}
 {"ts": "2026-10-22T10:11:43Z", "kind": "site_built", "cards": 13, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
-{"ts": "2026-10-22T10:45:54Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T10:45:54Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T10:45:56Z", "kind": "backlog_exec", "id": "T-0049", "rc": 0, "tail": "ledger: {'free': 15, 'paid': 8, 'video': 5, 'voice': 20} updated: 2026-10-22T07:30:54Z"}
 {"ts": "2026-10-22T10:45:56Z", "kind": "health_check", "funnel": "draining", "unposted": 19, "oldest_h": 20.0}
@@ -539,7 +517,6 @@
 {"ts": "2026-10-22T11:20:16Z", "kind": "brain", "source": "pollinations", "action": "python scripts/backlog.py --commit T-0052"}
 {"ts": "2026-10-22T11:20:16Z", "kind": "site_built", "cards": 13, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
 {"ts": "2026-10-22T11:55:51Z", "kind": "lint_ok", "files": 5}
-{"ts": "2026-10-22T11:55:51Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T11:55:54Z", "kind": "backlog_exec", "id": "T-0051", "rc": 0, "tail": "workflow commit pushed: repair: retry after commit_failed (fd90b6f)"}
 {"ts": "2026-10-22T11:55:54Z", "kind": "health_check", "funnel": "draining", "unposted": 19, "oldest_h": 21.2}
 {"ts": "2026-10-22T11:58:07Z", "kind": "brain", "source": "pollinations", "action": "python scripts/gen_image.py --tier free --count 1"}
@@ -551,7 +528,6 @@
 {"ts": "2026-10-22T12:24:03Z", "kind": "health_reported", "status": "healthy", "p": 16, "n": 9, "unposted": 19}
 {"ts": "2026-10-22T12:24:03Z", "kind": "archived", "moved": 0, "older_than_hours": 48.0}
 {"ts": "2026-10-22T12:36:53Z", "kind": "lint_ok", "files": 5}
-{"ts": "2026-10-22T12:36:53Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T12:37:01Z", "kind": "image_generated", "id": "2026-10-22-free-s689830", "file": "content/free/2026-10-22/mira_free_20261022_015_689830.jpg", "seed": 689830, "model": "flux"}
 {"ts": "2026-10-22T12:37:05Z", "kind": "backlog_exec", "id": "T-0052", "rc": 0, "tail": "generated 1/1 free image(s)"}
 {"ts": "2026-10-22T12:37:05Z", "kind": "health_check", "funnel": "draining", "unposted": 19, "oldest_h": 21.9}
@@ -559,7 +535,6 @@
 {"ts": "2026-10-22T12:39:07Z", "kind": "site_built", "cards": 13, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
 {"ts": "2026-10-22T12:40:33Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T12:40:34Z", "kind": "inbox_swept", "address": "demetrisvariable@maxxspace.com", "count": 0}
-{"ts": "2026-10-22T13:26:32Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T13:26:32Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T13:26:35Z", "kind": "backlog_exec", "id": "T-0053", "rc": 0, "tail": "quota met (8/8 free images today), skipping"}
 {"ts": "2026-10-22T13:26:35Z", "kind": "health_check", "funnel": "draining", "unposted": 19, "oldest_h": 22.7}
@@ -576,7 +551,6 @@
 {"ts": "2026-10-22T13:38:13Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T13:38:14Z", "kind": "inbox_swept", "address": "demetrisvariable@maxxspace.com", "count": 0}
 {"ts": "2026-10-22T14:09:45Z", "kind": "lint_ok", "files": 5}
-{"ts": "2026-10-22T14:09:45Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T14:09:59Z", "kind": "captioned", "id": "2026-10-22-free-s947794", "source": "generated", "caption": "strawberries on a blanket, sundress by the sun, quiet joy"}
 {"ts": "2026-10-22T14:10:47Z", "kind": "captioned", "id": "2026-10-22-free-s116700", "source": "generated", "caption": "wet street, transparent umbrella. only the rain knows our path"}
 {"ts": "2026-10-22T14:11:37Z", "kind": "captioned", "id": "2026-10-22-free-s281320", "source": "generated", "caption": "after the burn, a quick stretch and a ponytail look"}
@@ -587,7 +561,6 @@
 {"ts": "2026-10-22T14:13:35Z", "kind": "brain", "source": "pollinations", "action": "python scripts/gen_image.py --tier paid --count 1"}
 {"ts": "2026-10-22T14:13:35Z", "kind": "site_built", "cards": 17, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
 {"ts": "2026-10-22T14:13:47Z", "kind": "lint_ok", "files": 5}
-{"ts": "2026-10-22T14:13:47Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T14:13:55Z", "kind": "image_generated", "id": "2026-10-22-paid-s933851", "file": "content/paid/2026-10-22/mira_paid_20261022_008_933851.jpg", "seed": 933851, "model": "flux"}
 {"ts": "2026-10-22T14:13:59Z", "kind": "backlog_exec", "id": "T-0055", "rc": 0, "tail": "generated 1/1 paid image(s)"}
 {"ts": "2026-10-22T14:13:59Z", "kind": "health_check", "funnel": "draining", "unposted": 24, "oldest_h": 23.5}
@@ -595,7 +568,6 @@
 {"ts": "2026-10-22T14:15:59Z", "kind": "site_built", "cards": 17, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
 {"ts": "2026-10-22T14:28:43Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T14:28:44Z", "kind": "inbox_swept", "address": "demetrisvariable@maxxspace.com", "count": 0}
-{"ts": "2026-10-22T14:48:46Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T14:48:46Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T14:48:49Z", "kind": "video_skipped", "reason": "ffmpeg not installed"}
 {"ts": "2026-10-22T14:48:49Z", "kind": "backlog_exec", "id": "T-0056", "rc": 0, "tail": "ffmpeg not installed — skipping"}
@@ -605,16 +577,34 @@
 {"ts": "2026-10-22T15:08:45Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T15:08:46Z", "kind": "inbox_swept", "address": "demetrisvariable@maxxspace.com", "count": 0}
 {"ts": "2026-10-22T15:22:26Z", "kind": "lint_ok", "files": 5}
-{"ts": "2026-10-22T15:22:26Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T15:22:29Z", "kind": "site_built", "cards": 17, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
 {"ts": "2026-10-22T15:22:29Z", "kind": "backlog_exec", "id": "T-0057", "rc": 0, "tail": "site/index.html rebuilt with 17 card(s); synced content/free -> site/content/free"}
 {"ts": "2026-10-22T15:22:29Z", "kind": "escalated_posting", "items": 0, "platforms": ""}
 {"ts": "2026-10-22T15:24:43Z", "kind": "brain", "source": "pollinations", "action": "python scripts/mailtm.py verify --all"}
 {"ts": "2026-10-22T15:24:43Z", "kind": "site_built", "cards": 17, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
 {"ts": "2026-10-22T16:01:27Z", "kind": "lint_ok", "files": 5}
-{"ts": "2026-10-22T16:01:27Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T16:01:30Z", "kind": "inbox_swept", "address": "demetrisvariable@maxxspace.com", "count": 0}
 {"ts": "2026-10-22T16:01:30Z", "kind": "backlog_exec", "id": "T-0058", "rc": 0, "tail": "demetrisvariable@maxxspace.com: 0 message(s)"}
 {"ts": "2026-10-22T16:01:30Z", "kind": "escalated_posting", "items": 0, "platforms": ""}
 {"ts": "2026-10-22T16:03:39Z", "kind": "brain", "source": "pollinations", "action": "python scripts/state.py archive --older-than 48h"}
 {"ts": "2026-10-22T16:03:39Z", "kind": "site_built", "cards": 17, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
+{"ts": "2026-10-22T16:02:11Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-10-22T16:02:12Z", "kind": "inbox_swept", "address": "demetrisvariable@maxxspace.com", "count": 0}
+{"ts": "2026-10-22T16:12:48Z", "kind": "blocker_removed", "substr": "onboarding needs human"}
+{"ts": "2026-10-22T16:12:48Z", "kind": "blocker_added", "line": "WIRE bluesky: onboarding needs human — secrets expected: BSKY_HANDLE, BSKY_APP_PASSWORD (or body lines KEY=value in a 'WIRE bluesky' issue, label: command); 2-minute steps in docs/SIGNUP.md"}
+{"ts": "2026-10-22T16:12:48Z", "kind": "blocker_added", "line": "WIRE telegram: onboarding needs human — secrets expected: TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID (or body lines KEY=value in a 'WIRE telegram' issue, label: command); 2-minute steps in docs/SIGNUP.md"}
+{"ts": "2026-10-22T16:12:48Z", "kind": "blocker_added", "line": "WIRE reddit: onboarding needs human — secrets expected: REDDIT_CLIENT_ID, REDDIT_SECRET, REDDIT_USERNAME, REDDIT_PASSWORD, REDDIT_SUBREDDIT (or body lines KEY=value in a 'WIRE reddit' issue, label: co"}
+{"ts": "2026-10-22T16:12:48Z", "kind": "blocker_added", "line": "WIRE mastodon: onboarding needs human — secrets expected: MASTODON_INSTANCE, MASTODON_TOKEN (or body lines KEY=value in a 'WIRE mastodon' issue, label: command); 2-minute steps in docs/SIGNUP.md"}
+{"ts": "2026-10-22T16:12:48Z", "kind": "blocker_added", "line": "WIRE x: onboarding needs human — secrets expected: X_BEARER_TOKEN (or body lines KEY=value in a 'WIRE x' issue, label: command); 2-minute steps in docs/SIGNUP.md"}
+{"ts": "2026-10-22T16:12:48Z", "kind": "blocker_added", "line": "WIRE pinterest: onboarding needs human — secrets expected: PINTEREST_TOKEN, PINTEREST_BOARD_ID (or body lines KEY=value in a 'WIRE pinterest' issue, label: command); 2-minute steps in docs/SIGNUP.md"}
+{"ts": "2026-10-22T16:12:48Z", "kind": "blocker_added", "line": "WIRE fanvue: onboarding needs human — secrets expected: FANVUE_EMAIL, FANVUE_PASSWORD (or body lines KEY=value in a 'WIRE fanvue' issue, label: command); 2-minute steps in docs/SIGNUP.md"}
+{"ts": "2026-10-22T16:12:48Z", "kind": "blocker_added", "line": "MAIL_BASE not set: store the base gmail address as Actions secret MAIL_BASE (Settings > Secrets and variables > Actions > New repository secret) or run 'python scripts/emailaddr.py base <addr>' locall"}
+{"ts": "2026-10-22T16:13:54Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-10-22T16:13:54Z", "kind": "blocker_added", "line": "selftest T-9999 needs human (probe)"}
+{"ts": "2026-10-22T16:13:54Z", "kind": "escalation_refused", "reason": "unposted 25 > cap 20 (sec.4)"}
+{"ts": "2026-10-22T16:13:54Z", "kind": "escalated_posting", "items": 1, "platforms": "telegram"}
+{"ts": "2026-10-22T16:13:54Z", "kind": "health_reported", "status": "healthy", "p": 22, "n": 3, "unposted": 24}
+{"ts": "2026-10-22T16:13:54Z", "kind": "blocker_added", "line": "WALL reddit: captcha at https://x.example/signup — human step: solve it, human (cheapest-first: docs/SIGNUP.md)"}
+{"ts": "2026-10-22T16:13:54Z", "kind": "wall", "platform": "reddit", "wall_type": "captcha", "attempts": 2, "url": "https://x.example/signup"}
+{"ts": "2026-10-22T16:13:54Z", "kind": "blocker_added", "line": "WALL mastodon: email at https://mastodon.social/auth/sign_up — human step: open human+mirasolis-mastodon@gmail.com, click the confirmation link from mastodon.social / cleverlibre.org / mstdn.social / "}
+{"ts": "2026-10-22T16:13:54Z", "kind": "wall", "platform": "mastodon", "wall_type": "email", "attempts": 0, "url": "https://mastodon.social/auth/sign_up"}

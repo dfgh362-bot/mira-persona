@@ -1,6 +1,6 @@
 # mira-persona
 
-MIRA is an AI-generated persona ("Mira Solis", Lisbon barista / film photographer) built and run for **zero cost**: Python stdlib scripts, GitHub Actions cron on a public repo, Pollinations for images and captions, mail.tm for disposable inboxes, jsDelivr as CDN, GitHub Pages for the site.
+MIRA is an AI-generated persona ("Mira Solis", Lisbon barista / film photographer) built and run for **zero cost**: Python stdlib scripts, GitHub Actions cron on a public repo, Pollinations for images and captions, plus-addressed Gmail identities (secret MAIL_BASE) for account signups with mail.tm demoted to throwaway/secondary (v3.3), jsDelivr as CDN, GitHub Pages for the site.
 
 **Disclosure is a hard requirement of this build.** The persona is not a real person:
 
@@ -107,6 +107,8 @@ The repo now runs itself:
 - **Guards**: max 400 commits/day, max 1 commit / 2 min, log rotation at 5MB, repo prune at 900MB, 4-min runner cooldown, authenticated API < 5000 req/hr.
 
 ## v3.2 — the WIRE channel (open the funnel)
+
+2-minute per-platform signup steps with copy-paste WIRE blocks: **docs/SIGNUP.md** (v3.3). `WIRE <platform> EMAIL=<addr>` sets the account email and resumes the confirmation flow (poll for the link, follow it).
 
 The issues channel is the human wiring path. Open an issue with the label **`command`** (labeling needs write access, so strangers cannot inject):
 

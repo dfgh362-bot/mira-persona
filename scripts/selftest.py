@@ -350,7 +350,7 @@ def v32():
 
 # ---------------------------------------------------------------- specs
 def specs():
-    for n in ("SPEC-v2.md", "SPEC-v3.md", "SPEC-v3.1.md", "SPEC-v3.2.md"):
+    for n in ("SPEC-v2.md", "SPEC-v3.md", "SPEC-v3.1.md", "SPEC-v3.2.md", "SPEC-v3.3.md"):
         t = read(ROOT / "docs" / n)
         check(n, len(t) > 200, "%d bytes" % len(t))
     v31 = read(ROOT / "docs" / "SPEC-v3.1.md")
@@ -360,6 +360,141 @@ def specs():
     v32 = read(ROOT / "docs" / "SPEC-v3.2.md")
     check("v32-frozen", "OPEN THE FUNNEL" in v32 and "WIRE" in v32
           and "FIRST POST CEREMONY" in v32, "v3.2 order frozen verbatim")
+    v33 = read(ROOT / "docs" / "SPEC-v3.3.md")
+    check("v33-spec-markers", "CAPTCHA BUDGET" in v33 and "WALLS LEDGER" in v33,
+          "v3.3 order frozen verbatim")
+
+
+# ---------------------------------------------------------------- v3.3
+def v33():
+    import tempfile
+    import shutil
+    import emailaddr
+    import walls
+    import emailpoll
+    import issues
+    from datetime import timedelta
+
+    # sec.1 — plus-address derivation (pure)
+    os.environ["MAIL_BASE"] = "human@gmail.com"
+    try:
+        check("addr-general", emailaddr.general() == "human+mirasolis@gmail.com",
+              emailaddr.general() or "None")
+        check("addr-platform", emailaddr.platform("mastodon")
+              == "human+mirasolis-mastodon@gmail.com",
+              emailaddr.platform("mastodon") or "None")
+    finally:
+        del os.environ["MAIL_BASE"]
+    check("addr-nobase", emailaddr.general() is None
+          and emailaddr.platform("x") is None, "no base -> None, no crash")
+    check("addr-gitignored", "config/email.json" in read(ROOT / ".gitignore"),
+          "config/email.json gitignored")
+
+    # sec.2+3 — walls ledger: record + summary line + ready-exclusion
+    snap = {}
+    for p in (util.CONFIG / "accounts.json", util.STATE / "BLOCKERS.md",
+              util.STATE / "HANDOFF.md", walls.WALLS):
+        snap[p] = p.read_text(encoding="utf-8") if p.exists() else None
+    tmpdir = tempfile.mkdtemp()
+    try:
+        line = walls.record("reddit", "captcha", attempts=2,
+                            url="https://x.example/signup", est_min=4,
+                            human_step="solve it, human")
+        check("wall-record", line is not None and line["attempts"] == 2,
+              "record returned the line")
+        w = walls.load()
+        check("wall-ledger", any(x.get("platform") == "reddit"
+                                and x.get("wall_type") == "captcha"
+                                and x.get("attempts") == 2 for x in w),
+              "%d ledger line(s)" % len(w))
+        check("wall-blockers", "WALL reddit: captcha" in read(util.STATE / "BLOCKERS.md"),
+              "BLOCKERS.md gained the wall line")
+        s = walls.summary_line()
+        check("wall-summary-fmt",
+              re.match(r"^\d+ platforms blocked \| cheapest human unblock: "
+                       r"[a-z]+ \(\d+ min\) -> https?://\S+$", s) is not None, s)
+        check("wall-cheapest", s.startswith("7 platforms blocked")
+              and "telegram (1 min) -> https://t.me/BotFather" in s, s)
+        # ready platforms leave the blocked set
+        cfg = util.load_config("accounts.json")
+        cfg["platforms"]["telegram"]["status"] = "ready"
+        util.save_json(util.CONFIG / "accounts.json", cfg)
+        s2 = walls.summary_line()
+        check("wall-ready-excluded", s2.startswith("6 platforms blocked")
+              and "telegram" not in s2.split("|", 1)[1], s2)
+
+        # sec.5 — WIRE EMAIL=: parse, validation, account field, flow status
+        pairs = issues.parse_wire_pairs("mastodon",
+                                        ["EMAIL=human+mirasolis-mastodon@gmail.com"])
+        check("wire-email-parse", pairs.get("EMAIL")
+              == "human+mirasolis-mastodon@gmail.com", str(sorted(pairs)))
+        res, ok = issues._wire("mastodon", ["EMAIL=notanemail"], None,
+                               "WIRE mastodon", "")
+        check("wire-email-invalid", ok and "not a valid address" in res, res[:80])
+        res2, ok2 = issues._wire("mastodon",
+                                 ["EMAIL=human+mirasolis-mastodon@gmail.com"],
+                                 None, "WIRE mastodon", "")
+        check("wire-email-ok", ok2 and "account email field set" in res2
+              and "confirmation:" in res2, res2.splitlines()[0][:80])
+        acc = util.load_config("accounts.json")["platforms"]["mastodon"]
+        check("wire-email-stored", acc.get("email")
+              == "human+mirasolis-mastodon@gmail.com", "accounts.json email set")
+        check("wire-email-status", "no_channel" in res2 or "pending" in res2
+              or "confirmed" in res2 or "failed" in res2,
+              "flow status reported")
+
+        # sec.3 — HANDOFF surfaces exactly one walls line
+        import backlog
+        backlog.rewrite_handoff(99, {"id": "T-9999", "action": "v33 selftest"},
+                                "synthetic", "dead")
+        h = read(util.STATE / "HANDOFF.md")
+        wl = [l for l in h.splitlines()
+              if "platforms blocked" in l and "cheapest human unblock" in l]
+        check("handoff-one-line", len(wl) == 1 and "## WALLS" in h,
+              "%d line(s): %s" % (len(wl), wl[0][:80] if wl else "none"))
+
+        # sec.5 — link picker preference order (pure)
+        links = ["https://site.example/unrelated",
+                 "https://mastodon.social/verify?token=abc",
+                 "https://mastodon.social/profile"]
+        check("pick-link", emailpoll.pick_link(links, ("mastodon.social",))
+              == "https://mastodon.social/verify?token=abc",
+              emailpoll.pick_link(links, ("mastodon.social",)))
+        check("pick-link-none", emailpoll.pick_link([], ()) is None, "empty -> None")
+    finally:
+        for p, txt in snap.items():
+            if txt is None:
+                if p.exists():
+                    p.unlink()
+            else:
+                p.write_text(txt, encoding="utf-8")
+        shutil.rmtree(tmpdir, ignore_errors=True)
+
+    # sec.4 — SIGNUP.md: cheapest-first order, WIRE blocks, bluesky deferred
+    su = read(ROOT / "docs" / "SIGNUP.md")
+    pos = [su.find("## %d." % i) for i in range(1, 7)]
+    check("signup-order", all(p >= 0 for p in pos) and pos == sorted(pos)
+          and "telegram" in su[pos[0]:pos[1]], "1..6 cheapest-first")
+    for blk in ("WIRE telegram", "WIRE mastodon", "WIRE reddit", "WIRE x",
+                "WIRE pinterest", "WIRE fanvue", "WIRE bluesky"):
+        check("signup-block-%s" % blk.split()[1], blk in su, "copy-paste block")
+    check("signup-bluesky-deferred", "NEEDS PHONE" in su
+          and su.find("bluesky — NEEDS PHONE") > pos[-1], "deferred marker last")
+    check("signup-mail-base", "MAIL_BASE" in su and "Step 0" in su,
+          "step 0 stores the base")
+
+    # specs — v3.3 frozen verbatim, v2 ERRATA appended (not rewritten)
+    v33t = read(ROOT / "docs" / "SPEC-v3.3.md")
+    check("v33-frozen", "CAPTCHA BUDGET" in v33t and "EMAIL REALITY" in v33t
+          and "WIRE gains EMAIL=" in v33t, "order frozen verbatim")
+    v2 = read(ROOT / "docs" / "SPEC-v2.md")
+    check("v2-errata", "ERRATA v3.3" in v2 and "MAIL_BASE" in v2,
+          "errata block appended")
+
+    # inbox.yml carries the emailpoll step (no colon in the step name — D45)
+    iy = read(ROOT / ".github" / "workflows" / "inbox.yml")
+    check("inbox-emailpoll", "emailpoll.py --poll" in iy
+          and "MAIL_BASE" in iy, "poller wired into the inbox cycle")
 
 
 # ---------------------------------------------------------------- remote
@@ -381,8 +516,8 @@ def remote():
 
 
 CHECKS = {"r01": r01, "r02": r02, "r03": r03, "r04": r04, "r05": r05, "r06": r06,
-          "r07": r07, "r08": r08, "r09": r09, "v4": v4, "v32": v32, "specs": specs,
-          "remote": remote}
+          "r07": r07, "r08": r08, "r09": r09, "v4": v4, "v32": v32, "v33": v33,
+          "specs": specs, "remote": remote}
 
 
 @util.cli_guard
@@ -390,7 +525,7 @@ def main(argv):
     which = argv[0] if argv else "all"
     if which == "all":
         order = ["r01", "r02", "r03", "r04", "r05", "r06", "r07", "r08", "r09",
-                 "v4", "v32", "specs", "remote"]
+                 "v4", "v32", "v33", "specs", "remote"]
         for k in order:
             print("== %s" % k)
             CHECKS[k]()

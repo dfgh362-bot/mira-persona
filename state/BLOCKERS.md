@@ -1,12 +1,5 @@
 # BLOCKERS — things needing the human
 
-- WIRE bluesky: onboarding needs human — secrets expected: BSKY_HANDLE, BSKY_APP_PASSWORD (or body lines KEY=value in a 'WIRE bluesky' issue, label: command) (ts 2026-10-22T00:00:00Z)
-- WIRE telegram: onboarding needs human — secrets expected: TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID (or body lines KEY=value in a 'WIRE telegram' issue, label: command) (ts 2026-10-22T00:00:00Z)
-- WIRE reddit: onboarding needs human — secrets expected: REDDIT_CLIENT_ID, REDDIT_SECRET, REDDIT_USERNAME, REDDIT_PASSWORD, REDDIT_SUBREDDIT (or body lines KEY=value in a 'WIRE reddit' issue, label: command) (ts 2026-10-22T00:00:00Z)
-- WIRE mastodon: onboarding needs human — secrets expected: MASTODON_INSTANCE, MASTODON_TOKEN (or body lines KEY=value in a 'WIRE mastodon' issue, label: command) (ts 2026-10-22T00:00:00Z)
-- WIRE x: onboarding needs human — secrets expected: X_BEARER_TOKEN (or body lines KEY=value in a 'WIRE x' issue, label: command) (ts 2026-10-22T00:00:00Z)
-- WIRE pinterest: onboarding needs human — secrets expected: PINTEREST_TOKEN, PINTEREST_BOARD_ID (or body lines KEY=value in a 'WIRE pinterest' issue, label: command) (ts 2026-10-22T00:00:00Z)
-- WIRE fanvue: onboarding needs human — secrets expected: FANVUE_EMAIL, FANVUE_PASSWORD (or body lines KEY=value in a 'WIRE fanvue' issue, label: command) (ts 2026-10-22T00:00:00Z)
 - T-0010 needs human: onboard fanvue: AI creator flag + pricing 9.99/12.99/35 + tips 5/10/25 + DM auto-reply (ts 2026-10-21T18:47:33Z)
 - WIRE needs GH_PAT: secret uploads require a token with secrets access (GITHUB_TOKEN cannot write secrets) — store a PAT (repo scope) once as Actions secret GH_PAT, or run scripts/issues.py --poll locally (ts 2026-10-22T00:00:00Z) [RESOLVED 2026-10-21T21:30Z: GH_PAT stored as Actions secret via sealed-box; verified in secret list]
 - T-0011 needs human: onboard bluesky: account + app password, set as Actions Secrets (ts 2026-10-21T20:02:14Z) [UPDATE 2026-10-21T22:05Z: bsky.social now REQUIRES PHONE VERIFICATION for signup (API returns InvalidPhoneVerification; web flow rejects captcha tokens with 'Invalid verification code'). Human must create the account via the Bluesky mobile app with their phone, then create an App Password in Settings and WIRE bluesky with BSKY_HANDLE + BSKY_APP_PASSWORD. Handle 'itsmirasolis' was available at check time.]
@@ -23,3 +16,12 @@
 - T-0033 needs human: onboard x: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-22T01:41:02Z)
 - T-0035 needs human: onboard pinterest: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-22T02:13:43Z)
 - unmapped error needs triage: TypeError: can only concatenate str (not "list") to str (ts 2026-10-22T06:30:49Z)
+- WIRE bluesky: onboarding needs human — secrets expected: BSKY_HANDLE, BSKY_APP_PASSWORD (or body lines KEY=value in a 'WIRE bluesky' issue, label: command); 2-minute steps in docs/SIGNUP.md (ts 2026-10-22T16:12:48Z)
+- WIRE telegram: onboarding needs human — secrets expected: TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID (or body lines KEY=value in a 'WIRE telegram' issue, label: command); 2-minute steps in docs/SIGNUP.md (ts 2026-10-22T16:12:48Z)
+- WIRE reddit: onboarding needs human — secrets expected: REDDIT_CLIENT_ID, REDDIT_SECRET, REDDIT_USERNAME, REDDIT_PASSWORD, REDDIT_SUBREDDIT (or body lines KEY=value in a 'WIRE reddit' issue, label: command); 2-minute steps in docs/SIGNUP.md (ts 2026-10-22T16:12:48Z)
+- WIRE mastodon: onboarding needs human — secrets expected: MASTODON_INSTANCE, MASTODON_TOKEN (or body lines KEY=value in a 'WIRE mastodon' issue, label: command); 2-minute steps in docs/SIGNUP.md (ts 2026-10-22T16:12:48Z)
+- WIRE x: onboarding needs human — secrets expected: X_BEARER_TOKEN (or body lines KEY=value in a 'WIRE x' issue, label: command); 2-minute steps in docs/SIGNUP.md (ts 2026-10-22T16:12:48Z)
+- WIRE pinterest: onboarding needs human — secrets expected: PINTEREST_TOKEN, PINTEREST_BOARD_ID (or body lines KEY=value in a 'WIRE pinterest' issue, label: command); 2-minute steps in docs/SIGNUP.md (ts 2026-10-22T16:12:48Z)
+- WIRE fanvue: onboarding needs human — secrets expected: FANVUE_EMAIL, FANVUE_PASSWORD (or body lines KEY=value in a 'WIRE fanvue' issue, label: command); 2-minute steps in docs/SIGNUP.md (ts 2026-10-22T16:12:48Z)
+- MAIL_BASE not set: store the base gmail address as Actions secret MAIL_BASE (Settings > Secrets and variables > Actions > New repository secret) or run 'python scripts/emailaddr.py base <addr>' locally — plus-addressed identities <base>+mirasolis-<platform>@gmail.com are derived from it (v3.3 sec.1) (ts 2026-10-22T16:12:48Z)
+- v3.3 UPDATE (FUNNEL EMAIL WALL resolved by design): real email via secret MAIL_BASE + plus-addressed identities (scripts/emailaddr.py), human steps in docs/SIGNUP.md, confirmation flow via WIRE EMAIL= + scripts/emailpoll.py; live status in HANDOFF.md walls line (ts 2026-10-22T16:12:48Z)

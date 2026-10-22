@@ -42,6 +42,17 @@ jobs:
           MAIL_PASS: ${{ secrets.MAIL_PASS }}
         run: python scripts/mailtm.py verify --all || true
 
+      # v3.3 sec.5 — confirmation-flow poller for WIRE EMAIL= addresses
+      # (mail.tm exact-match, IMAP via MAIL_IMAP_* secrets, else the human
+      # clicks the link and the wall lands in state/walls.jsonl)
+      - name: poll confirmation links (v3.3 emailpoll)
+        env:
+          MAIL_BASE: ${{ secrets.MAIL_BASE }}
+          MAIL_IMAP_HOST: ${{ secrets.MAIL_IMAP_HOST }}
+          MAIL_IMAP_USER: ${{ secrets.MAIL_IMAP_USER }}
+          MAIL_IMAP_PASS: ${{ secrets.MAIL_IMAP_PASS }}
+        run: python scripts/emailpoll.py --poll || true
+
       - name: commit state
         run: |
           git config user.name "mira-bot"

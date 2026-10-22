@@ -9,6 +9,11 @@
   accounts.json platforms.<p>.status = "ready", comment the result (never
   echoing secret values), close the issue. onboard_check picks it up next
   cycle and queues the first post ceremony (sec.6).
+- WIRE <platform> EMAIL=<addr> (v3.3 sec.5): sets the account email field
+  and resumes the confirmation flow — poll for the link, follow it
+  (scripts/emailpoll.py), then continue to the pinned-disclosure first
+  post once the platform's creds land. Works alone or alongside the
+  platform's canonical pairs.
 - DRAIN: post every unposted item immediately, ignoring the schedule.
 - failed commands stay open and retry next cycle, capped at 3 attempts.
 - deadman: HEARTBEAT gap > 60 min -> open one "blocked:" issue.
@@ -58,6 +63,7 @@ PLATFORM_ENVS = {
 }
 PAIR_LINE_RE = re.compile(r"^\s*([A-Z][A-Z0-9_]{2,})=(.*)$")     # body: KEY=value rest-of-line
 PAIR_TOKEN_RE = re.compile(r"\b([A-Z][A-Z0-9_]{2,})=([^\s]+)")  # title: space-separated
+EMAIL_ADDR_RE = re.compile(r"^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$")
 
 
 def _repo():
@@ -169,8 +175,13 @@ def _wire_help(msg):
              "canonical env names, exact (v3.2 sec.5):"]
     for plat in ("telegram", "bluesky", "mastodon", "reddit", "x", "pinterest", "fanvue"):
         lines.append("  %-10s %s" % (plat, ", ".join(PLATFORM_ENVS[plat])))
-    lines += ["", "example body:", "  TELEGRAM_BOT_TOKEN=123456:ABC...",
-              "  TELEGRAM_CHAT_ID=-1001234567890"]
+    lines += ["",
+              "v3.3 sec.5: EMAIL=<addr> is always accepted — it sets the account",
+              "email field and resumes the confirmation flow (poll for the link,",
+              "follow it, then the first-post ceremony once creds land).",
+              "", "example body:", "  TELEGRAM_BOT_TOKEN=123456:ABC...",
+              "  TELEGRAM_CHAT_ID=-1001234567890",
+              "", "confirmation-only example:", "  EMAIL=you+mirasolis-mastodon@gmail.com"]
     return "\n".join(lines)
 
 
@@ -273,43 +284,90 @@ def _wire(cmdline_rest, body_lines, num, title, body):
     if plat not in PLATFORM_ENVS:
         return _wire_help("unknown platform '%s'." % plat), True
     canonical = PLATFORM_ENVS[plat]
-    pairs = parse_wire_pairs(cmdline_rest, body_lines)
-    bad = sorted(k for k in pairs if k not in canonical)
+    all_pairs = parse_wire_pairs(cmdline_rest, body_lines)
+    # v3.3 sec.5: EMAIL=<addr> is accepted for every platform — it sets the
+    # account email field (accounts.json), it is NOT an Actions secret.
+    email = all_pairs.pop("EMAIL", None)
+    if email is not None and not EMAIL_ADDR_RE.match(email.strip()):
+        return _wire_help("EMAIL= value is not a valid address — re-issue "
+                          "with EMAIL=<addr>."), True
+    bad = sorted(k for k in all_pairs if k not in canonical)
     if bad:
         return _wire_help("non-canonical key(s) for %s: %s — expected exactly: %s"
                           % (plat, ", ".join(bad), ", ".join(canonical))), True
-    if not pairs:
+    if not all_pairs and not email:
         return _wire_help("WIRE %s: no KEY=value pairs found in title or body." % plat), True
-    empty = [k for k, v in pairs.items() if not v.strip()]
+    empty = [k for k, v in all_pairs.items() if not v.strip()]
+    if email is not None and not email.strip():
+        empty.append("EMAIL")
     if empty:
         return _wire_help("empty value(s): %s — re-issue with values filled in."
                           % ", ".join(sorted(empty))), True
-    # close the exposure window FIRST, whatever happens next
-    redacted = _redact_issue(num, title, body, pairs)
-    ok, lines = upload_secrets(pairs)
+    # close the exposure window FIRST, whatever happens next (EMAIL included —
+    # a public issue is a spam magnet)
+    redact_pairs = dict(all_pairs)
+    if email is not None:
+        redact_pairs["EMAIL"] = email
+    redacted = _redact_issue(num, title, body, redact_pairs)
+    # v3.3 sec.5 — email-only WIRE: set the field, resume the confirmation
+    # flow (poll for the link, follow it); the ceremony fires from
+    # onboard_check once the platform's creds land.
+    if email and not all_pairs:
+        cfg = util.load_config("accounts.json")
+        acc = cfg.setdefault("platforms", {}).setdefault(plat, {})
+        acc["email"] = email.strip()
+        acc["email_wired_at"] = util.ts()
+        if num:
+            acc["wire_issue"] = num
+        import emailpoll
+        status, detail = emailpoll.poll(plat, acc)
+        if status == "confirmed":
+            acc["email_confirmed_at"] = util.ts()
+        util.save_json(util.CONFIG / "accounts.json", cfg)
+        util.log_decision(
+            "D53: WIRE %s EMAIL= via issue #%s — account email set, "
+            "confirmation flow resumed (%s); first-post ceremony continues "
+            "from onboard_check once creds land (v3.3 sec.5)." % (plat, num, status))
+        out = ["WIRE %s EMAIL ok: account email field set (address redacted "
+               "from this issue)." % plat,
+               "confirmation: %s — %s" % (status, detail),
+               "next: WIRE %s with its secrets when you have them:" % plat]
+        out += ["  %s=<value>" % k for k in canonical]
+        out.append("then the pinned disclosure posts FIRST, then the oldest "
+                   "unposted item (v3.2 sec.6).")
+        return "\n".join(out), True
+    # v3.2 path: upload the canonical pairs as sealed-box secrets
+    ok, lines = upload_secrets(all_pairs)
     if not ok:
         return "\n".join(["WIRE %s: upload FAILED." % plat] + lines +
                          ["issue stays open — retried next cycle (attempt capped at 3)."]), False
     cfg = util.load_config("accounts.json")
     acc = cfg.setdefault("platforms", {}).setdefault(plat, {})
     acc["status"] = "ready"
-    acc["wired"] = sorted(pairs.keys())
+    acc["wired"] = sorted(all_pairs.keys())
     acc["wired_at"] = util.ts()
+    if email is not None:
+        acc["email"] = email.strip()
+        acc["email_wired_at"] = util.ts()
     if num:
         acc["wire_issue"] = num
     util.save_json(util.CONFIG / "accounts.json", cfg)
     util.set_platform_status(plat, "ready")
     util.remove_blockers("WIRE %s" % plat)
     util.remove_blockers("%s onboarding needs human" % plat)
+    util.remove_blockers("WALL %s:" % plat)          # v3.3: wiring resolves the wall
     util.log_decision(
         "D46: WIRE %s via issue #%s — %d secret(s) uploaded sealed-box, status -> ready; "
         "onboard_check queues the first post ceremony next cycle (pinned disclosure "
         "first, then oldest unposted item, live URLs commented on the wire issue)."
-        % (plat, num, len(pairs)))
+        % (plat, num, len(all_pairs)))
     out = ["WIRE %s ok:" % plat,
-           "secrets uploaded: %s (values never echoed)" % ", ".join(sorted(pairs.keys()))]
+           "secrets uploaded: %s (values never echoed)" % ", ".join(sorted(all_pairs.keys()))]
     if redacted:
         out.append("issue body/title redacted (public repo — values scrubbed).")
+    if email is not None:
+        out.append("account email field set (EMAIL=, v3.3 sec.5); the confirmation "
+                   "flow runs from inbox.yml (scripts/emailpoll.py).")
     out.append("next cycle: pinned disclosure posts FIRST, then the oldest unposted "
                "item; live URLs will be commented on this issue.")
     return "\n".join(out), True

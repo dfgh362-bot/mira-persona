@@ -561,13 +561,21 @@ def rewrite_handoff(cycle, target, summary, sha):
         lines = [l for l in (util.STATE / "BLOCKERS.md").read_text(encoding="utf-8").splitlines()
                  if l.strip() and not l.startswith("#") and "(none" not in l]
         if lines:
-            blockers = "\n".join(lines[:10])
+            # v3.3 sec.3: 5-line cap — the walls line is the headline, the
+            # human never gets a wall of text (full detail: state/BLOCKERS.md)
+            blockers = "\n".join(lines[:5])
     except Exception:
         pass
-    text = ("## CURRENT\n%s %s — %s\n## NEXT ACTION\n%s\n## BLOCKERS\n%s\n"
-            "## LAST COMMIT\n%s\n## CYCLE\n%d\n"
+    # v3.3 sec.3: exactly one walls line — the single cheapest next action
+    try:
+        import walls
+        wall_line = walls.summary_line()
+    except Exception:
+        wall_line = "(walls summary unavailable)"
+    text = ("## CURRENT\n%s %s — %s\n## NEXT ACTION\n%s\n## WALLS\n%s\n"
+            "## BLOCKERS\n%s\n## LAST COMMIT\n%s\n## CYCLE\n%d\n"
             % (target["id"], target["action"], summary, next_action,
-               blockers, sha or "none", cycle))
+               wall_line, blockers, sha or "none", cycle))
     HANDOFF.write_text(text, encoding="utf-8")
     return next_action
 

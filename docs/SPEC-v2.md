@@ -72,3 +72,20 @@ platform signups need humans (D11); voice notes beyond spec tree (D12);
 python 3.12 compatible (D13); Pages via workflow artifact (D14); pinned
 disclosure auto-first (D15); mail.tm 503 deferred to runner (D16);
 Pollinations 402 ladder (D17); build complete, remote deferred (D19).
+
+## ERRATA v3.3 (2026-10-22) — the temp-email premise is dead
+
+§4 of this spec says "every account uses a mail.tm address". FALSE in
+operation: no disposable domain receives platform confirmation mail
+reliably (state/BLOCKERS.md, FUNNEL EMAIL WALL — mail.tm/temp-mail.io
+undelivered across every tested Mastodon instance; mail.gw unreachable;
+GMX region-blocked; Proton signup behavioral-captcha-blocked).
+
+Corrected by BUILD ORDER v3.3 (docs/SPEC-v3.3.md, decision D51):
+- real email, plus-addressed: `<base>+<persona>@gmail.com` for the
+  persona general, `<base>+<persona>-<platform>@gmail.com` per platform
+- base stored in gitignored config/email.json AND Actions secret
+  MAIL_BASE — never committed
+- mail.tm demoted to throwaway/secondary only
+
+The remainder of this spec stands as history.

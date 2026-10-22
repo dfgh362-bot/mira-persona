@@ -4,3 +4,4 @@ __pycache__/
 *.tmp
 site/content/
 config/mail_secret.json
+config/email.json

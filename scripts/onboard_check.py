@@ -133,7 +133,8 @@ def _comment_wire_urls(name, acc):
 
 def _blocker_line(name):
     return ("WIRE %s: onboarding needs human — secrets expected: %s "
-            "(or body lines KEY=value in a 'WIRE %s' issue, label: command)"
+            "(or body lines KEY=value in a 'WIRE %s' issue, label: command); "
+            "2-minute steps in docs/SIGNUP.md"
             % (name, ", ".join(ENV_NAMES.get(name, ())), name))
 
 
@@ -178,6 +179,18 @@ def run():
             util.append_blocker(_blocker_line(name))
     if (platforms.get("fanvue") or {}).get("status") != "ready":
         util.append_blocker(_blocker_line("fanvue"))
+    # v3.3 sec.1: MAIL_BASE is the single gating secret for email identities
+    # — self-heals out of BLOCKERS the moment it resolves
+    import emailaddr
+    if emailaddr.base():
+        util.remove_blockers("MAIL_BASE not set")
+    else:
+        util.append_blocker(
+            "MAIL_BASE not set: store the base gmail address as Actions secret "
+            "MAIL_BASE (Settings > Secrets and variables > Actions > New "
+            "repository secret) or run 'python scripts/emailaddr.py base <addr>' "
+            "locally — plus-addressed identities <base>+mirasolis-<platform>@"
+            "gmail.com are derived from it (v3.3 sec.1)")
     return flipped
 
 

@@ -1,5 +1,11 @@
 """mail.tm / mail.gw disposable inbox client + CLI.
 
+v3.3 D51: DEMOTED to throwaway/secondary — account identities are
+plus-addressed Gmail now (scripts/emailaddr.py, secret MAIL_BASE). This
+module remains for disposable inboxes and any platform that still accepts
+them. BUILD ORDER v3.3 killed the "every account uses mail.tm" premise of
+SPEC-v2 §4 (see its ERRATA block and state/BLOCKERS.md FUNNEL EMAIL WALL).
+
 API (identical on both hosts):
   GET  /domains
   POST /accounts      {"address","password"}

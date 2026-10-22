@@ -56,6 +56,11 @@ def _append_jsonl(path, obj):
         f.write(json.dumps(obj, ensure_ascii=False) + "\n")
 
 
+def json_dumps_line(obj):
+    """v3.3 walls ledger: one compact json line + newline."""
+    return json.dumps(obj, ensure_ascii=False) + "\n"
+
+
 def log_event(kind, **kw):
     rec = {"ts": ts(), "kind": kind}
     rec.update(kw)
