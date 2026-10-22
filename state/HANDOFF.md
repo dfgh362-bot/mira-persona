@@ -1,7 +1,7 @@
 ## CURRENT
-T-0041 retry commit via shared path — workflow commit pushed: repair: retry after commit_failed (da4bb67)
+T-0042 self-heal recent errors (scan, map, re-run) —  - blocker noted
 ## NEXT ACTION
-python scripts/selfheal.py --scan
+python scripts/gen_image.py --tier free --count 4
 ## BLOCKERS
 - WIRE bluesky: onboarding needs human — secrets expected: BSKY_HANDLE, BSKY_APP_PASSWORD (or body lines KEY=value in a 'WIRE bluesky' issue, label: command) (ts 2026-10-22T00:00:00Z)
 - WIRE telegram: onboarding needs human — secrets expected: TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID (or body lines KEY=value in a 'WIRE telegram' issue, label: command) (ts 2026-10-22T00:00:00Z)
@@ -14,6 +14,6 @@ python scripts/selfheal.py --scan
 - WIRE needs GH_PAT: secret uploads require a token with secrets access (GITHUB_TOKEN cannot write secrets) — store a PAT (repo scope) once as Actions secret GH_PAT, or run scripts/issues.py --poll locally (ts 2026-10-22T00:00:00Z) [RESOLVED 2026-10-21T21:30Z: GH_PAT stored as Actions secret via sealed-box; verified in secret list]
 - T-0011 needs human: onboard bluesky: account + app password, set as Actions Secrets (ts 2026-10-21T20:02:14Z) [UPDATE 2026-10-21T22:05Z: bsky.social now REQUIRES PHONE VERIFICATION for signup (API returns InvalidPhoneVerification; web flow rejects captcha tokens with 'Invalid verification code'). Human must create the account via the Bluesky mobile app with their phone, then create an App Password in Settings and WIRE bluesky with BSKY_HANDLE + BSKY_APP_PASSWORD. Handle 'itsmirasolis' was available at check time.]
 ## LAST COMMIT
-da4bb67
+87026fc
 ## CYCLE
-41
+42

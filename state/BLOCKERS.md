@@ -22,3 +22,4 @@
 - T-0032 needs human: onboard mastodon: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-22T01:05:07Z)
 - T-0033 needs human: onboard x: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-22T01:41:02Z)
 - T-0035 needs human: onboard pinterest: create account, bio + pinned, creds to Actions Secrets (ts 2026-10-22T02:13:43Z)
+- unmapped error needs triage: TypeError: can only concatenate str (not "list") to str (ts 2026-10-22T06:30:49Z)

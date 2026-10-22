@@ -423,3 +423,7 @@
 {"ts": "2026-10-22T06:23:45Z", "kind": "archived", "moved": 0, "older_than_hours": 48.0}
 {"ts": "2026-10-22T06:30:46Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T06:30:46Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-10-22T06:30:49Z", "kind": "blocker_added", "line": "unmapped error needs triage: TypeError: can only concatenate str (not \"list\") to str"}
+{"ts": "2026-10-22T06:30:49Z", "kind": "selfheal_run", "repairs": ["commit-retry rc=0", "blocker noted"]}
+{"ts": "2026-10-22T06:30:49Z", "kind": "backlog_exec", "id": "T-0042", "rc": 0, "tail": " - blocker noted"}
+{"ts": "2026-10-22T06:30:49Z", "kind": "health_check", "funnel": "draining", "unposted": 13, "oldest_h": 15.8}
