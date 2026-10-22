@@ -619,3 +619,5 @@
 {"ts": "2026-10-22T16:38:44Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T16:38:47Z", "kind": "backlog_exec", "id": "T-0060", "rc": 0, "tail": "ledger: {'free': 16, 'paid': 9, 'video': 5, 'voice': 20} updated: 2026-10-22T14:13:59Z"}
 {"ts": "2026-10-22T16:38:47Z", "kind": "escalated_posting", "items": 0, "platforms": ""}
+{"ts": "2026-10-22T16:40:55Z", "kind": "brain", "source": "pollinations", "action": "python scripts/backlog.py --expand-prompts"}
+{"ts": "2026-10-22T16:40:55Z", "kind": "site_built", "cards": 17, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
