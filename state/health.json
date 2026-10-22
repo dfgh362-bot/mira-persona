@@ -189,6 +189,11 @@
       "c": 44,
       "cls": "productive",
       "why": "T-0044 generated 1/2 paid image(s)"
+    },
+    {
+      "c": 45,
+      "cls": "productive",
+      "why": "T-0045 ffmpeg not installed — skipping"
     }
   ]
 }

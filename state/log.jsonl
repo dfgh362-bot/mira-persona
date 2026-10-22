@@ -483,3 +483,6 @@
 {"ts": "2026-10-22T07:38:53Z", "kind": "inbox_swept", "address": "demetrisvariable@maxxspace.com", "count": 0}
 {"ts": "2026-10-22T08:09:30Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-22T08:09:30Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-10-22T08:09:32Z", "kind": "video_skipped", "reason": "ffmpeg not installed"}
+{"ts": "2026-10-22T08:09:32Z", "kind": "backlog_exec", "id": "T-0045", "rc": 0, "tail": "ffmpeg not installed — skipping"}
+{"ts": "2026-10-22T08:09:32Z", "kind": "health_check", "funnel": "draining", "unposted": 19, "oldest_h": 17.4}
