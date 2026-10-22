@@ -550,3 +550,5 @@
 {"ts": "2026-10-22T12:24:03Z", "kind": "keepalive_ok", "workflows": 5}
 {"ts": "2026-10-22T12:24:03Z", "kind": "health_reported", "status": "healthy", "p": 16, "n": 9, "unposted": 19}
 {"ts": "2026-10-22T12:24:03Z", "kind": "archived", "moved": 0, "older_than_hours": 48.0}
+{"ts": "2026-10-22T12:36:53Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-10-22T12:36:53Z", "kind": "lint_ok", "files": 5}
