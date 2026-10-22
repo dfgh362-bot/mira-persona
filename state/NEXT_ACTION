@@ -1,1 +1,1 @@
-python scripts/mailtm.py verify --all
+python scripts/post_telegram.py
