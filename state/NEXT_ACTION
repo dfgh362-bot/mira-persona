@@ -1,1 +1,1 @@
-python scripts/backlog.py --expand-prompts
+python scripts/gen_image.py --tier free --count 9

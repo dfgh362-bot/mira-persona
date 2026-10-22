@@ -628,3 +628,5 @@
 {"ts": "2026-10-22T17:13:27Z", "kind": "prompts_expanded", "scenes_added": 5, "captions_added": 5}
 {"ts": "2026-10-22T17:13:27Z", "kind": "backlog_exec", "id": "T-0061", "rc": 0, "tail": "expanded: +5 scenes, +5 captions (17 / 9 spares left)"}
 {"ts": "2026-10-22T17:13:27Z", "kind": "escalated_posting", "items": 0, "platforms": ""}
+{"ts": "2026-10-22T17:15:43Z", "kind": "brain", "source": "pollinations", "action": "python scripts/gen_image.py --tier free --count 9"}
+{"ts": "2026-10-22T17:15:43Z", "kind": "site_built", "cards": 17, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
