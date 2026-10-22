@@ -1,1 +1,1 @@
-python scripts/rebuild_site.py
+python scripts/mailtm.py verify --all
