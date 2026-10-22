@@ -274,6 +274,11 @@
       "c": 61,
       "cls": "productive",
       "why": "T-0061 expanded: +5 scenes, +5 captions (17 / 9"
+    },
+    {
+      "c": 62,
+      "cls": "productive",
+      "why": "T-0062 quota met (8/8 free images today), skipp"
     }
   ]
 }
