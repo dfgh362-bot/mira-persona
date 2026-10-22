@@ -1,1 +1,1 @@
-python scripts/make_video.py --auto
+python scripts/archive_old_items.py

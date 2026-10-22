@@ -600,3 +600,5 @@
 {"ts": "2026-10-22T14:48:49Z", "kind": "video_skipped", "reason": "ffmpeg not installed"}
 {"ts": "2026-10-22T14:48:49Z", "kind": "backlog_exec", "id": "T-0056", "rc": 0, "tail": "ffmpeg not installed — skipping"}
 {"ts": "2026-10-22T14:48:49Z", "kind": "escalated_posting", "items": 0, "platforms": ""}
+{"ts": "2026-10-22T14:50:57Z", "kind": "brain", "source": "pollinations", "action": "python scripts/archive_old_items.py"}
+{"ts": "2026-10-22T14:50:58Z", "kind": "site_built", "cards": 17, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
