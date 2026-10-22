@@ -27,7 +27,7 @@
       "note": "env override: BSKY_HANDLE, BSKY_APP_PASSWORD"
     },
     "telegram": {
-      "status": "pending",
+      "status": "ready",
       "tier": 1,
       "bot_token": null,
       "chat_id": null,

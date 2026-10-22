@@ -32,7 +32,7 @@
     "telegram": {
       "tier": 1,
       "enabled": true,
-      "status": "manual",
+      "status": "ready",
       "lane": "api"
     },
     "mastodon": {

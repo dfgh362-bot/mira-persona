@@ -1,9 +1,9 @@
 ## CURRENT
-T-0065 rebuild site — site/index.html rebuilt with 17 card(s); synced content/free -> site/content/fre
+T-0072 wire telegram + first post — telegram: posted 2026-10-21-free-001 (msg 5)
 ## NEXT ACTION
-python scripts/mailtm.py verify --all
+python scripts/post_telegram.py
 ## WALLS
-7 platforms blocked | cheapest human unblock: telegram (1 min) -> https://t.me/BotFather
+6 platforms blocked | cheapest human unblock: mastodon (2 min) -> https://mastodon.social/auth/sign_up
 ## BLOCKERS
 - T-0010 needs human: onboard fanvue: AI creator flag + pricing 9.99/12.99/35 + tips 5/10/25 + DM auto-reply (ts 2026-10-21T18:47:33Z)
 - WIRE needs GH_PAT: secret uploads require a token with secrets access (GITHUB_TOKEN cannot write secrets) — store a PAT (repo scope) once as Actions secret GH_PAT, or run scripts/issues.py --poll locally (ts 2026-10-22T00:00:00Z) [RESOLVED 2026-10-21T21:30Z: GH_PAT stored as Actions secret via sealed-box; verified in secret list]
@@ -11,13 +11,13 @@ python scripts/mailtm.py verify --all
 - T-0012 needs human: onboard telegram: bot via BotFather, token + chat id (ts 2026-10-21T20:36:54Z)
 - T-0013 needs human: onboard reddit: script app OAuth, sub + creds (ts 2026-10-21T21:10:55Z)
 ## LAST COMMIT
-de84d70
+0478627
 ## CYCLE
-65
+66
 ## LANES (v3.5)
 | platform | lane | state | blocker | human cost |
 |---|---|---|---|---|
-| telegram | api | pending | blocked | 60s: public channel + add @MiraSolisbot admin |
+| telegram | api | ready | - | 60s: public channel + add @MiraSolisbot admin |
 | mastodon | api | pending | blocked | 1 min: click the confirmation mail (WIRE EMAIL= first) |
 | bluesky | api | pending | blocked | phone-required signup (mobile app), then app password |
 | x | browser | pending | blocked | none — signup runs in the loop (mail.tm ladder) |
