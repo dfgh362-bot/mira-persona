@@ -505,3 +505,5 @@
 {"ts": "2026-10-22T09:26:15Z", "kind": "post_skipped", "platform": "x", "reason": "missing credentials"}
 {"ts": "2026-10-22T09:26:15Z", "kind": "post_skipped", "platform": "pinterest", "reason": "missing credentials"}
 {"ts": "2026-10-22T09:26:15Z", "kind": "post_skipped", "platform": "fanvue", "reason": "missing credentials"}
+{"ts": "2026-10-22T09:26:37Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-10-22T09:26:37Z", "kind": "lint_ok", "files": 5}
