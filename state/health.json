@@ -249,6 +249,11 @@
       "c": 56,
       "cls": "productive",
       "why": "T-0056 ffmpeg not installed — skipping"
+    },
+    {
+      "c": 57,
+      "cls": "productive",
+      "why": "T-0057 site/index.html rebuilt with 17 card(s);"
     }
   ]
 }
