@@ -981,3 +981,5 @@
 {"ts": "2026-10-23T11:08:04Z", "kind": "site_built", "cards": 20, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
 {"ts": "2026-10-23T11:31:12Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-23T11:31:33Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-10-23T11:31:46Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-10-23T11:31:47Z", "kind": "inbox_swept", "address": "demetrisvariable@maxxspace.com", "count": 0}
