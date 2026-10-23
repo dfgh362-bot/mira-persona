@@ -977,3 +977,5 @@
 {"ts": "2026-10-23T11:05:27Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-23T11:05:30Z", "kind": "backlog_exec", "id": "T-0078", "rc": 0, "tail": "telegram: dupe blocked"}
 {"ts": "2026-10-23T11:05:30Z", "kind": "escalated_posting", "items": 1, "platforms": "telegram"}
+{"ts": "2026-10-23T11:08:04Z", "kind": "brain", "source": "pollinations", "action": "python scripts/post_telegram.py"}
+{"ts": "2026-10-23T11:08:04Z", "kind": "site_built", "cards": 20, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
