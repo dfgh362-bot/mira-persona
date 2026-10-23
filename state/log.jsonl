@@ -1011,3 +1011,10 @@
 {"ts": "2026-10-23T13:27:11Z", "kind": "escalated_posting", "items": 1, "platforms": "telegram"}
 {"ts": "2026-10-23T13:29:25Z", "kind": "brain", "source": "pollinations", "action": "python scripts/expand_prompt_library.py"}
 {"ts": "2026-10-23T13:29:26Z", "kind": "site_built", "cards": 20, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
+{"ts": "2026-10-23T13:32:13Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-10-23T13:32:35Z", "kind": "post_skipped", "platform": "bluesky", "reason": "missing credentials"}
+{"ts": "2026-10-23T13:32:35Z", "kind": "post_skipped", "platform": "mastodon", "reason": "missing credentials"}
+{"ts": "2026-10-23T13:32:35Z", "kind": "browser_skip", "platform": "x", "reason": "no cookies"}
+{"ts": "2026-10-23T13:32:35Z", "kind": "browser_skip", "platform": "reddit", "reason": "no cookies"}
+{"ts": "2026-10-23T13:32:35Z", "kind": "browser_skip", "platform": "pinterest", "reason": "no cookies"}
+{"ts": "2026-10-23T13:32:35Z", "kind": "browser_skip", "platform": "fanvue", "reason": "no cookies"}
