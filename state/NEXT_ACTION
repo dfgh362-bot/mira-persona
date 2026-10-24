@@ -1,1 +1,1 @@
-python scripts/post_telegram.py
+python scripts/generate_scenes.py --count 5
