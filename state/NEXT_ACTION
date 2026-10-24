@@ -1,1 +1,1 @@
-python scripts/post_telegram.py --force
+python scripts/cycle_audit.py
