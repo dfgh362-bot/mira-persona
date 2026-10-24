@@ -1527,3 +1527,5 @@
 {"ts": "2026-10-24T19:14:25Z", "kind": "escalated_posting", "items": 1, "platforms": "telegram"}
 {"ts": "2026-10-24T19:14:25Z", "kind": "health_reported", "status": "healthy", "p": 25, "n": 0, "unposted": 46}
 {"ts": "2026-10-24T19:14:25Z", "kind": "drift_checked", "cycle": 150, "drifts": 0}
+{"ts": "2026-10-24T19:16:42Z", "kind": "brain", "source": "pollinations", "action": "python scripts/sweep_mail_tm.py"}
+{"ts": "2026-10-24T19:16:42Z", "kind": "site_built", "cards": 30, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
