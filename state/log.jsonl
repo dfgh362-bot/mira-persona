@@ -1308,3 +1308,5 @@
 {"ts": "2026-10-24T06:31:09Z", "kind": "site_built", "cards": 27, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
 {"ts": "2026-10-24T06:42:44Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-24T06:43:14Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-10-24T06:43:16Z", "kind": "backlog_exec", "id": "T-0080", "rc": 0, "tail": "telegram: dupe blocked"}
+{"ts": "2026-10-24T06:43:16Z", "kind": "escalated_posting", "items": 1, "platforms": "telegram"}
