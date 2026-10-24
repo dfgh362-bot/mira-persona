@@ -1515,3 +1515,5 @@
 {"ts": "2026-10-24T18:24:10Z", "kind": "video_built", "file": "content/video/mira_clip_20261024_09.mp4", "stills": 3}
 {"ts": "2026-10-24T18:24:13Z", "kind": "voice_batch", "generated": 0, "total": 20}
 {"ts": "2026-10-24T18:24:13Z", "kind": "site_built", "cards": 30, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
+{"ts": "2026-10-24T18:47:56Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-10-24T18:56:34Z", "kind": "lint_ok", "files": 5}
