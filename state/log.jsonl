@@ -2001,3 +2001,5 @@
 {"ts": "2026-10-25T21:51:01Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-25T21:51:03Z", "kind": "backlog_exec", "id": "T-0080", "rc": 0, "tail": "telegram: dupe blocked"}
 {"ts": "2026-10-25T21:51:03Z", "kind": "escalated_posting", "items": 1, "platforms": "telegram"}
+{"ts": "2026-10-25T21:53:16Z", "kind": "brain", "source": "pollinations", "action": "python scripts/archive_old_items.py"}
+{"ts": "2026-10-25T21:53:16Z", "kind": "site_built", "cards": 36, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
