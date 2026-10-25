@@ -1,1 +1,1 @@
-python scripts/archive_old_items.py
+python scripts/sweep_mail_tm_inboxes.py
