@@ -1757,3 +1757,5 @@
 {"ts": "2026-10-25T08:29:30Z", "kind": "backlog_exec", "id": "T-0080", "rc": 0, "tail": "telegram: dupe blocked"}
 {"ts": "2026-10-25T08:29:30Z", "kind": "escalated_posting", "items": 1, "platforms": "telegram"}
 {"ts": "2026-10-25T08:29:30Z", "kind": "health_reported", "status": "healthy", "p": 25, "n": 0, "unposted": 51}
+{"ts": "2026-10-25T08:31:50Z", "kind": "brain", "source": "pollinations", "action": "python scripts/archive_old_items.py"}
+{"ts": "2026-10-25T08:31:50Z", "kind": "site_built", "cards": 33, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
