@@ -1851,5 +1851,5 @@
 {"ts": "2026-10-25T13:24:38Z", "kind": "browser_skip", "platform": "fanvue", "reason": "no cookies"}
 {"ts": "2026-10-25T13:54:13Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-25T13:54:40Z", "kind": "lint_ok", "files": 5}
-{"ts": "2026-10-25T13:55:34Z", "kind": "lint_ok", "files": 5}
-{"ts": "2026-10-25T13:55:35Z", "kind": "inbox_swept", "address": "demetrisvariable@maxxspace.com", "count": 0}
+{"ts": "2026-10-25T13:54:42Z", "kind": "backlog_exec", "id": "T-0080", "rc": 0, "tail": "telegram: dupe blocked"}
+{"ts": "2026-10-25T13:54:42Z", "kind": "escalated_posting", "items": 1, "platforms": "telegram"}
