@@ -1970,3 +1970,5 @@
 {"ts": "2026-10-25T20:15:23Z", "kind": "inbox_swept", "address": "demetrisvariable@maxxspace.com", "count": 0}
 {"ts": "2026-10-25T20:18:23Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-25T20:18:44Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-10-25T20:18:46Z", "kind": "backlog_exec", "id": "T-0080", "rc": 0, "tail": "telegram: dupe blocked"}
+{"ts": "2026-10-25T20:18:46Z", "kind": "escalated_posting", "items": 1, "platforms": "telegram"}
