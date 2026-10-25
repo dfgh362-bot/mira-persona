@@ -1879,5 +1879,5 @@
 {"ts": "2026-10-25T15:23:37Z", "kind": "site_built", "cards": 33, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
 {"ts": "2026-10-25T15:53:44Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-25T15:54:11Z", "kind": "lint_ok", "files": 5}
-{"ts": "2026-10-25T15:55:38Z", "kind": "lint_ok", "files": 5}
-{"ts": "2026-10-25T15:55:38Z", "kind": "inbox_swept", "address": "demetrisvariable@maxxspace.com", "count": 0}
+{"ts": "2026-10-25T15:54:13Z", "kind": "backlog_exec", "id": "T-0080", "rc": 0, "tail": "telegram: dupe blocked"}
+{"ts": "2026-10-25T15:54:13Z", "kind": "escalated_posting", "items": 1, "platforms": "telegram"}
