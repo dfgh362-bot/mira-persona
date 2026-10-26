@@ -1,11 +1,6 @@
 {
   "cycles": [
     {
-      "c": 35,
-      "cls": "noop",
-      "why": "T-0035 needs human"
-    },
-    {
       "c": 36,
       "cls": "productive",
       "why": "T-0036 site/index.html rebuilt with 9 card(s); "
@@ -997,6 +992,11 @@
     },
     {
       "c": 234,
+      "cls": "productive",
+      "why": "T-0080 telegram: dupe blocked"
+    },
+    {
+      "c": 235,
       "cls": "productive",
       "why": "T-0080 telegram: dupe blocked"
     }
