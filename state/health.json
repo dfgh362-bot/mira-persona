@@ -1,11 +1,6 @@
 {
   "cycles": [
     {
-      "c": 24,
-      "cls": "productive",
-      "why": "T-0011 needs human"
-    },
-    {
       "c": 25,
       "cls": "noop",
       "why": "T-0012 needs human"
@@ -997,6 +992,11 @@
     },
     {
       "c": 223,
+      "cls": "productive",
+      "why": "T-0080 telegram: dupe blocked"
+    },
+    {
+      "c": 224,
       "cls": "productive",
       "why": "T-0080 telegram: dupe blocked"
     }
