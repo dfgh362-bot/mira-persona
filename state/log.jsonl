@@ -2208,3 +2208,10 @@
 {"ts": "2026-10-26T14:17:55Z", "kind": "keepalive_ok", "workflows": 5}
 {"ts": "2026-10-26T14:17:55Z", "kind": "health_reported", "status": "healthy", "p": 25, "n": 0, "unposted": 60}
 {"ts": "2026-10-26T14:17:55Z", "kind": "archived", "moved": 0, "older_than_hours": 48.0}
+{"ts": "2026-10-26T15:08:14Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-10-26T15:08:37Z", "kind": "post_skipped", "platform": "bluesky", "reason": "missing credentials"}
+{"ts": "2026-10-26T15:08:37Z", "kind": "post_skipped", "platform": "mastodon", "reason": "missing credentials"}
+{"ts": "2026-10-26T15:08:37Z", "kind": "browser_skip", "platform": "x", "reason": "no cookies"}
+{"ts": "2026-10-26T15:08:37Z", "kind": "browser_skip", "platform": "reddit", "reason": "no cookies"}
+{"ts": "2026-10-26T15:08:37Z", "kind": "browser_skip", "platform": "pinterest", "reason": "no cookies"}
+{"ts": "2026-10-26T15:08:37Z", "kind": "browser_skip", "platform": "fanvue", "reason": "no cookies"}
