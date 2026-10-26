@@ -1,11 +1,6 @@
 {
   "cycles": [
     {
-      "c": 18,
-      "cls": "productive",
-      "why": "T-0028 imported demetrisvariable@maxxspace.com "
-    },
-    {
       "c": 19,
       "cls": "productive",
       "why": "T-0006 demetrisvariable@maxxspace.com: 0 messag"
@@ -997,6 +992,11 @@
     },
     {
       "c": 217,
+      "cls": "productive",
+      "why": "T-0080 telegram: dupe blocked"
+    },
+    {
+      "c": 218,
       "cls": "productive",
       "why": "T-0080 telegram: dupe blocked"
     }
