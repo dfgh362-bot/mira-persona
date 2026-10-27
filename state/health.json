@@ -1,11 +1,6 @@
 {
   "cycles": [
     {
-      "c": 55,
-      "cls": "productive",
-      "why": "T-0055 generated 1/1 paid image(s)"
-    },
-    {
       "c": 56,
       "cls": "productive",
       "why": "T-0056 ffmpeg not installed — skipping"
@@ -997,6 +992,11 @@
     },
     {
       "c": 254,
+      "cls": "productive",
+      "why": "T-0080 telegram: dupe blocked"
+    },
+    {
+      "c": 255,
       "cls": "productive",
       "why": "T-0080 telegram: dupe blocked"
     }
