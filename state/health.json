@@ -1,11 +1,6 @@
 {
   "cycles": [
     {
-      "c": 45,
-      "cls": "productive",
-      "why": "T-0045 ffmpeg not installed — skipping"
-    },
-    {
       "c": 46,
       "cls": "productive",
       "why": "T-0046 site/index.html rebuilt with 13 card(s);"
@@ -997,6 +992,11 @@
     },
     {
       "c": 244,
+      "cls": "productive",
+      "why": "T-0080 telegram: dupe blocked"
+    },
+    {
+      "c": 245,
       "cls": "productive",
       "why": "T-0080 telegram: dupe blocked"
     }
