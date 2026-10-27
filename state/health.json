@@ -1,11 +1,6 @@
 {
   "cycles": [
     {
-      "c": 59,
-      "cls": "productive",
-      "why": "T-0059 archived 0 item(s)"
-    },
-    {
       "c": 60,
       "cls": "productive",
       "why": "T-0060 ledger: {'free': 16, 'paid': 9, 'video':"
@@ -997,6 +992,11 @@
     },
     {
       "c": 258,
+      "cls": "productive",
+      "why": "T-0080 telegram: dupe blocked"
+    },
+    {
+      "c": 259,
       "cls": "productive",
       "why": "T-0080 telegram: dupe blocked"
     }
