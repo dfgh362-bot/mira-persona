@@ -1,11 +1,6 @@
 {
   "cycles": [
     {
-      "c": 53,
-      "cls": "productive",
-      "why": "T-0053 quota met (8/8 free images today), skipp"
-    },
-    {
       "c": 54,
       "cls": "productive",
       "why": "T-0054 captioned 5 item(s)"
@@ -997,6 +992,11 @@
     },
     {
       "c": 252,
+      "cls": "productive",
+      "why": "T-0080 telegram: dupe blocked"
+    },
+    {
+      "c": 253,
       "cls": "productive",
       "why": "T-0080 telegram: dupe blocked"
     }
