@@ -1,11 +1,6 @@
 {
   "cycles": [
     {
-      "c": 54,
-      "cls": "productive",
-      "why": "T-0054 captioned 5 item(s)"
-    },
-    {
       "c": 55,
       "cls": "productive",
       "why": "T-0055 generated 1/1 paid image(s)"
@@ -997,6 +992,11 @@
     },
     {
       "c": 253,
+      "cls": "productive",
+      "why": "T-0080 telegram: dupe blocked"
+    },
+    {
+      "c": 254,
       "cls": "productive",
       "why": "T-0080 telegram: dupe blocked"
     }
