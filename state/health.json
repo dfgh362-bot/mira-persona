@@ -1,11 +1,6 @@
 {
   "cycles": [
     {
-      "c": 41,
-      "cls": "productive",
-      "why": "T-0041 workflow commit pushed: repair: retry af"
-    },
-    {
       "c": 42,
       "cls": "productive",
       "why": "T-0042  - blocker noted"
@@ -997,6 +992,11 @@
     },
     {
       "c": 240,
+      "cls": "productive",
+      "why": "T-0080 telegram: dupe blocked"
+    },
+    {
+      "c": 241,
       "cls": "productive",
       "why": "T-0080 telegram: dupe blocked"
     }
