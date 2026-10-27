@@ -1,11 +1,6 @@
 {
   "cycles": [
     {
-      "c": 63,
-      "cls": "productive",
-      "why": "T-0063 captioned 1 item(s)"
-    },
-    {
       "c": 64,
       "cls": "productive",
       "why": "T-0064 ffmpeg not installed — skipping"
@@ -997,6 +992,11 @@
     },
     {
       "c": 262,
+      "cls": "productive",
+      "why": "T-0080 telegram: dupe blocked"
+    },
+    {
+      "c": 263,
       "cls": "productive",
       "why": "T-0080 telegram: dupe blocked"
     }
