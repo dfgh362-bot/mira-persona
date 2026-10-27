@@ -1,11 +1,6 @@
 {
   "cycles": [
     {
-      "c": 49,
-      "cls": "productive",
-      "why": "T-0049 ledger: {'free': 15, 'paid': 8, 'video':"
-    },
-    {
       "c": 50,
       "cls": "productive",
       "why": "T-0050 expanded: +5 scenes, +5 captions (22 / 1"
@@ -997,6 +992,11 @@
     },
     {
       "c": 248,
+      "cls": "productive",
+      "why": "T-0080 telegram: dupe blocked"
+    },
+    {
+      "c": 249,
       "cls": "productive",
       "why": "T-0080 telegram: dupe blocked"
     }
