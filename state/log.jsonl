@@ -2853,3 +2853,5 @@
 {"ts": "2026-10-28T12:29:55Z", "kind": "archived", "moved": 0, "older_than_hours": 48.0}
 {"ts": "2026-10-28T12:33:51Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-28T12:34:09Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-10-28T12:34:11Z", "kind": "backlog_exec", "id": "T-0080", "rc": 0, "tail": "telegram: dupe blocked"}
+{"ts": "2026-10-28T12:34:11Z", "kind": "escalated_posting", "items": 1, "platforms": "telegram"}
