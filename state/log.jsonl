@@ -2716,3 +2716,5 @@
 {"ts": "2026-10-28T01:23:07Z", "kind": "deadman_fired", "gap_min": 66}
 {"ts": "2026-10-28T01:23:09Z", "kind": "backlog_exec", "id": "T-0080", "rc": 0, "tail": "telegram: dupe blocked"}
 {"ts": "2026-10-28T01:23:09Z", "kind": "escalated_posting", "items": 1, "platforms": "telegram"}
+{"ts": "2026-10-28T01:25:18Z", "kind": "brain", "source": "pollinations", "action": "python scripts/tg_repoint.py"}
+{"ts": "2026-10-28T01:25:18Z", "kind": "site_built", "cards": 48, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
