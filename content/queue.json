@@ -1123,6 +1123,36 @@
       "status": "captioned",
       "created": "2026-10-27T18:39:04Z",
       "posted_at": null
+    },
+    {
+      "id": "2026-10-28-paid-s623764",
+      "tier": "paid",
+      "file": "content/paid/2026-10-28/mira_paid_20261028_028_623764.jpg",
+      "cdn": "https://cdn.jsdelivr.net/gh/dfgh362-bot/mira-persona@main/content/paid/2026-10-28/mira_paid_20261028_028_623764.jpg",
+      "scene": "painting her nails on the floor, tv glow",
+      "modifier": "candid expression",
+      "seed": 623764,
+      "model": "flux",
+      "prompt": "photo of mira_solis, 24 year old woman, long dark wavy hair, hazel eyes, faint freckles, small mole on left cheek, natural skin texture, 35mm film photo, warm neutral tones, shallow depth of field, soft natural light, painting her nails on the floor, tv glow, candid expression",
+      "caption": "nails on floor, tv glow underfoot. just a quiet moment",
+      "status": "captioned",
+      "created": "2026-10-28T06:37:17Z",
+      "posted_at": null
+    },
+    {
+      "id": "2026-10-28-paid-s935194",
+      "tier": "paid",
+      "file": "content/paid/2026-10-28/mira_paid_20261028_029_935194.jpg",
+      "cdn": "https://cdn.jsdelivr.net/gh/dfgh362-bot/mira-persona@main/content/paid/2026-10-28/mira_paid_20261028_029_935194.jpg",
+      "scene": "laundry line between buildings, afternoon",
+      "modifier": "candid expression",
+      "seed": 935194,
+      "model": "flux",
+      "prompt": "photo of mira_solis, 24 year old woman, long dark wavy hair, hazel eyes, faint freckles, small mole on left cheek, natural skin texture, 35mm film photo, warm neutral tones, shallow depth of field, soft natural light, laundry line between buildings, afternoon, candid expression",
+      "caption": "afternoon light laces the laundry line between brick and glass",
+      "status": "captioned",
+      "created": "2026-10-28T06:38:21Z",
+      "posted_at": null
     }
   ]
 }
