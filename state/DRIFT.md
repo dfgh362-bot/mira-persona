@@ -1,6 +1,6 @@
 # DRIFT — spec conformance audit
 
-cycle: 250
+cycle: 300
 specs re-read: SPEC-v2.md, SPEC-v3.md, SPEC-v3.1.md, SPEC-v3.2.md
 
 - [ok] specs frozen (v2/v3/v3.1/v3.2)
@@ -11,4 +11,4 @@ specs re-read: SPEC-v2.md, SPEC-v3.md, SPEC-v3.1.md, SPEC-v3.2.md
 - [ok] site tier chain present
 - [ok] quotas config intact
 
-generated: 2026-10-27T09:23:05Z
+generated: 2026-10-28T23:52:13Z
