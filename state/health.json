@@ -1,11 +1,6 @@
 {
   "cycles": [
     {
-      "c": 97,
-      "cls": "productive",
-      "why": "T-0078 telegram: dupe blocked"
-    },
-    {
       "c": 98,
       "cls": "productive",
       "why": "T-0078 telegram: dupe blocked"
@@ -997,6 +992,11 @@
     },
     {
       "c": 296,
+      "cls": "productive",
+      "why": "T-0080 telegram: dupe blocked"
+    },
+    {
+      "c": 297,
       "cls": "productive",
       "why": "T-0080 telegram: dupe blocked"
     }
