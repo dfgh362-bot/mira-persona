@@ -3297,3 +3297,10 @@
 {"ts": "2026-10-29T21:23:43Z", "kind": "health_reported", "status": "healthy", "p": 25, "n": 0, "unposted": 94}
 {"ts": "2026-10-29T21:26:09Z", "kind": "brain", "source": "pollinations", "action": "python scripts/sweep_mail_tm.py"}
 {"ts": "2026-10-29T21:26:09Z", "kind": "site_built", "cards": 48, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
+{"ts": "2026-10-29T21:28:58Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-10-29T21:29:17Z", "kind": "post_skipped", "platform": "bluesky", "reason": "missing credentials"}
+{"ts": "2026-10-29T21:29:18Z", "kind": "post_skipped", "platform": "mastodon", "reason": "missing credentials"}
+{"ts": "2026-10-29T21:29:18Z", "kind": "browser_skip", "platform": "x", "reason": "no cookies"}
+{"ts": "2026-10-29T21:29:18Z", "kind": "browser_skip", "platform": "reddit", "reason": "no cookies"}
+{"ts": "2026-10-29T21:29:18Z", "kind": "browser_skip", "platform": "pinterest", "reason": "no cookies"}
+{"ts": "2026-10-29T21:29:18Z", "kind": "browser_skip", "platform": "fanvue", "reason": "no cookies"}
