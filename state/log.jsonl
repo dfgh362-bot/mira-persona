@@ -3034,3 +3034,5 @@
 {"ts": "2026-10-29T01:35:20Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-29T01:35:22Z", "kind": "issue_opened", "title": "blocked: heartbeat gap 61 min"}
 {"ts": "2026-10-29T01:35:22Z", "kind": "deadman_fired", "gap_min": 61}
+{"ts": "2026-10-29T01:35:24Z", "kind": "backlog_exec", "id": "T-0080", "rc": 0, "tail": "telegram: dupe blocked"}
+{"ts": "2026-10-29T01:35:24Z", "kind": "escalated_posting", "items": 1, "platforms": "telegram"}
