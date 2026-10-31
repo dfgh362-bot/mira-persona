@@ -3721,7 +3721,5 @@
 {"ts": "2026-10-31T05:52:42Z", "kind": "site_built", "cards": 48, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
 {"ts": "2026-10-31T06:30:18Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-31T06:30:33Z", "kind": "lint_ok", "files": 5}
-{"ts": "2026-10-31T06:31:02Z", "kind": "lint_ok", "files": 5}
-{"ts": "2026-10-31T06:31:03Z", "kind": "keepalive_ok", "workflows": 5}
-{"ts": "2026-10-31T06:31:03Z", "kind": "health_reported", "status": "healthy", "p": 25, "n": 0, "unposted": 104}
-{"ts": "2026-10-31T06:31:03Z", "kind": "archived", "moved": 0, "older_than_hours": 48.0}
+{"ts": "2026-10-31T06:30:35Z", "kind": "backlog_exec", "id": "T-0080", "rc": 0, "tail": "telegram: dupe blocked"}
+{"ts": "2026-10-31T06:30:35Z", "kind": "escalated_posting", "items": 1, "platforms": "telegram"}
