@@ -3979,3 +3979,5 @@
 {"ts": "2026-10-31T21:25:26Z", "kind": "browser_skip", "platform": "fanvue", "reason": "no cookies"}
 {"ts": "2026-10-31T21:54:40Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-10-31T21:54:55Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-10-31T21:54:57Z", "kind": "backlog_exec", "id": "T-0080", "rc": 0, "tail": "telegram: dupe blocked"}
+{"ts": "2026-10-31T21:54:57Z", "kind": "escalated_posting", "items": 1, "platforms": "telegram"}
