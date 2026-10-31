@@ -3821,3 +3821,5 @@
 {"ts": "2026-10-31T12:13:06Z", "kind": "backlog_exec", "id": "T-0080", "rc": 0, "tail": "telegram: dupe blocked"}
 {"ts": "2026-10-31T12:13:06Z", "kind": "escalated_posting", "items": 1, "platforms": "telegram"}
 {"ts": "2026-10-31T12:13:06Z", "kind": "health_reported", "status": "healthy", "p": 25, "n": 0, "unposted": 106}
+{"ts": "2026-10-31T12:15:26Z", "kind": "brain", "source": "pollinations", "action": "python scripts/post_mastodon.py"}
+{"ts": "2026-10-31T12:15:26Z", "kind": "site_built", "cards": 48, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
