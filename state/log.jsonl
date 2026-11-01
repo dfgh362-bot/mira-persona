@@ -4065,3 +4065,7 @@
 {"ts": "2026-11-01T05:37:43Z", "kind": "inbox_swept", "address": "demetrisvariable@maxxspace.com", "count": 0}
 {"ts": "2026-11-01T05:52:02Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-11-01T05:52:35Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-11-01T05:52:38Z", "kind": "backlog_exec", "id": "T-0080", "rc": 0, "tail": "telegram: dupe blocked"}
+{"ts": "2026-11-01T05:52:38Z", "kind": "escalated_posting", "items": 1, "platforms": "telegram"}
+{"ts": "2026-11-01T05:52:38Z", "kind": "health_reported", "status": "healthy", "p": 25, "n": 0, "unposted": 107}
+{"ts": "2026-11-01T05:52:38Z", "kind": "drift_checked", "cycle": 400, "drifts": 0}
