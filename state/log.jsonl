@@ -5093,3 +5093,5 @@
 {"ts": "2026-11-04T13:57:00Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-11-04T13:57:15Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-11-04T13:57:16Z", "kind": "deadman_fired", "gap_min": 64}
+{"ts": "2026-11-04T13:57:18Z", "kind": "backlog_exec", "id": "T-0080", "rc": 0, "tail": "telegram: dupe blocked"}
+{"ts": "2026-11-04T13:57:18Z", "kind": "escalated_posting", "items": 1, "platforms": "telegram"}
