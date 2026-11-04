@@ -5216,3 +5216,7 @@
 {"ts": "2026-11-04T22:21:15Z", "kind": "site_built", "cards": 48, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
 {"ts": "2026-11-04T23:06:25Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-11-04T23:06:49Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-11-04T23:06:51Z", "kind": "backlog_exec", "id": "T-0080", "rc": 0, "tail": "telegram: dupe blocked"}
+{"ts": "2026-11-04T23:06:51Z", "kind": "escalated_posting", "items": 1, "platforms": "telegram"}
+{"ts": "2026-11-04T23:06:51Z", "kind": "health_reported", "status": "healthy", "p": 25, "n": 0, "unposted": 150}
+{"ts": "2026-11-04T23:06:51Z", "kind": "drift_checked", "cycle": 500, "drifts": 0}
