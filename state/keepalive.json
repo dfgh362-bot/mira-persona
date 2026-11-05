@@ -1,33 +1,33 @@
 {
-  "checked": "2026-11-04T18:41:47Z",
+  "checked": "2026-11-05T00:38:31Z",
   "stalled": [],
   "workflows": {
     "generate": {
       "state": "active",
-      "last_run": "2026-11-04T06:54:01Z",
-      "age_h": 11.8
+      "last_run": "2026-11-04T18:44:38Z",
+      "age_h": 5.9
     },
     "inbox": {
       "state": "active",
-      "last_run": "2026-11-04T18:15:53Z",
-      "age_h": 0.4
+      "last_run": "2026-11-05T00:04:06Z",
+      "age_h": 0.6
     },
     "keepalive": {
       "state": "active",
-      "last_run": "2026-11-04T18:41:37Z",
+      "last_run": "2026-11-05T00:38:20Z",
       "age_h": 0.0
     },
     "loop": {
       "state": "active",
-      "last_run": "2026-11-04T18:35:49Z",
+      "last_run": "2026-11-05T00:34:40Z",
       "age_h": 0.1
     },
     "post": {
       "state": "active",
-      "last_run": "2026-11-04T17:42:45Z",
-      "age_h": 1.0
+      "last_run": "2026-11-04T21:40:36Z",
+      "age_h": 3.0
     }
   },
-  "cycle": 495,
-  "cycle_ts": "2026-11-04T18:41:47Z"
+  "cycle": 502,
+  "cycle_ts": "2026-11-05T00:38:31Z"
 }
