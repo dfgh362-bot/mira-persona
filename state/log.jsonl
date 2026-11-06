@@ -5574,3 +5574,7 @@
 {"ts": "2026-11-06T05:34:54Z", "kind": "site_built", "cards": 48, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
 {"ts": "2026-11-06T05:50:23Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-11-06T05:50:24Z", "kind": "inbox_swept", "address": "demetrisvariable@maxxspace.com", "count": 0}
+{"ts": "2026-11-06T06:36:42Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-11-06T06:44:10Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-11-06T06:44:11Z", "kind": "issue_opened", "title": "blocked: heartbeat gap 69 min"}
+{"ts": "2026-11-06T06:44:11Z", "kind": "deadman_fired", "gap_min": 69}
