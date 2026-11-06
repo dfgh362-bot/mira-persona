@@ -5612,3 +5612,7 @@
 {"ts": "2026-11-06T07:04:38Z", "kind": "video_built", "file": "content/video/mira_clip_20261106_34.mp4", "stills": 4}
 {"ts": "2026-11-06T07:04:41Z", "kind": "voice_batch", "generated": 0, "total": 20}
 {"ts": "2026-11-06T07:04:41Z", "kind": "site_built", "cards": 48, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
+{"ts": "2026-11-06T07:54:10Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-11-06T07:54:29Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-11-06T07:54:30Z", "kind": "issue_opened", "title": "blocked: heartbeat gap 67 min"}
+{"ts": "2026-11-06T07:54:30Z", "kind": "deadman_fired", "gap_min": 67}
