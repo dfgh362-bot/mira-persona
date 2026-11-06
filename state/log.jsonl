@@ -5543,3 +5543,5 @@
 {"ts": "2026-11-06T01:59:23Z", "kind": "inbox_error", "address": "demetrisvariable@maxxspace.com", "error": "RuntimeError(\"GET https://api.mail.tm/messages?page=1 failed after 3 tries: URLError(ConnectionResetError(104, 'Connection reset by peer'))\")"}
 {"ts": "2026-11-06T02:33:14Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-11-06T02:33:34Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-11-06T02:33:36Z", "kind": "backlog_exec", "id": "T-0080", "rc": 0, "tail": "telegram: dupe blocked"}
+{"ts": "2026-11-06T02:33:36Z", "kind": "escalated_posting", "items": 1, "platforms": "telegram"}
