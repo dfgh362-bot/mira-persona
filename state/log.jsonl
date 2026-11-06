@@ -5565,3 +5565,6 @@
 {"ts": "2026-11-06T04:32:15Z", "kind": "site_built", "cards": 48, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
 {"ts": "2026-11-06T04:49:53Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-11-06T04:50:04Z", "kind": "inbox_error", "address": "demetrisvariable@maxxspace.com", "error": "RuntimeError(\"GET https://api.mail.tm/messages?page=1 failed after 3 tries: URLError(ConnectionResetError(104, 'Connection reset by peer'))\")"}
+{"ts": "2026-11-06T05:32:05Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-11-06T05:32:23Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-11-06T05:32:23Z", "kind": "deadman_fired", "gap_min": 60}
