@@ -5632,10 +5632,7 @@
 {"ts": "2026-11-06T09:23:32Z", "kind": "inbox_swept", "address": "demetrisvariable@maxxspace.com", "count": 0}
 {"ts": "2026-11-06T09:49:26Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-11-06T09:49:46Z", "kind": "lint_ok", "files": 5}
-{"ts": "2026-11-06T09:51:30Z", "kind": "lint_ok", "files": 5}
-{"ts": "2026-11-06T09:51:47Z", "kind": "post_skipped", "platform": "bluesky", "reason": "missing credentials"}
-{"ts": "2026-11-06T09:51:47Z", "kind": "post_skipped", "platform": "mastodon", "reason": "missing credentials"}
-{"ts": "2026-11-06T09:51:47Z", "kind": "browser_skip", "platform": "x", "reason": "no cookies"}
-{"ts": "2026-11-06T09:51:47Z", "kind": "browser_skip", "platform": "reddit", "reason": "no cookies"}
-{"ts": "2026-11-06T09:51:47Z", "kind": "browser_skip", "platform": "pinterest", "reason": "no cookies"}
-{"ts": "2026-11-06T09:51:47Z", "kind": "browser_skip", "platform": "fanvue", "reason": "no cookies"}
+{"ts": "2026-11-06T09:49:48Z", "kind": "backlog_exec", "id": "T-0080", "rc": 0, "tail": "telegram: dupe blocked"}
+{"ts": "2026-11-06T09:49:48Z", "kind": "escalated_posting", "items": 1, "platforms": "telegram"}
+{"ts": "2026-11-06T09:52:10Z", "kind": "brain", "source": "pollinations", "action": "python scripts/archive_old_items.py"}
+{"ts": "2026-11-06T09:52:10Z", "kind": "site_built", "cards": 48, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
