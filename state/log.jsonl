@@ -5580,3 +5580,5 @@
 {"ts": "2026-11-06T06:44:11Z", "kind": "deadman_fired", "gap_min": 69}
 {"ts": "2026-11-06T06:44:13Z", "kind": "backlog_exec", "id": "T-0080", "rc": 0, "tail": "telegram: dupe blocked"}
 {"ts": "2026-11-06T06:44:13Z", "kind": "escalated_posting", "items": 1, "platforms": "telegram"}
+{"ts": "2026-11-06T06:46:33Z", "kind": "brain", "source": "pollinations", "action": "**Current snapshot**"}
+{"ts": "2026-11-06T06:46:33Z", "kind": "site_built", "cards": 48, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
