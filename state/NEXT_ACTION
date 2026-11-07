@@ -1,1 +1,1 @@
-python scripts/sweep_mail_tm.py
+python scripts/post_mastodon.py
