@@ -6055,3 +6055,5 @@
 {"ts": "2026-11-07T19:04:18Z", "kind": "backlog_exec", "id": "T-0080", "rc": 0, "tail": "telegram: dupe blocked"}
 {"ts": "2026-11-07T19:04:18Z", "kind": "escalated_posting", "items": 1, "platforms": "telegram"}
 {"ts": "2026-11-07T19:04:18Z", "kind": "health_reported", "status": "healthy", "p": 25, "n": 0, "unposted": 179}
+{"ts": "2026-11-07T19:06:58Z", "kind": "brain", "source": "pollinations", "action": "python scripts/sweep_mailtm.py"}
+{"ts": "2026-11-07T19:06:58Z", "kind": "site_built", "cards": 48, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
