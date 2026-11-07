@@ -5806,5 +5806,7 @@
 {"ts": "2026-11-07T00:32:49Z", "kind": "keepalive_ok", "workflows": 5}
 {"ts": "2026-11-07T00:32:49Z", "kind": "health_reported", "status": "healthy", "p": 25, "n": 0, "unposted": 168}
 {"ts": "2026-11-07T00:32:49Z", "kind": "archived", "moved": 0, "older_than_hours": 48.0}
-{"ts": "2026-11-07T01:30:15Z", "kind": "lint_ok", "files": 5}
-{"ts": "2026-11-07T01:30:16Z", "kind": "inbox_swept", "address": "demetrisvariable@maxxspace.com", "count": 0}
+{"ts": "2026-11-07T01:30:00Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-11-07T01:30:23Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-11-07T01:30:24Z", "kind": "issue_opened", "title": "blocked: heartbeat gap 65 min"}
+{"ts": "2026-11-07T01:30:24Z", "kind": "deadman_fired", "gap_min": 65}
