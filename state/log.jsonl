@@ -5961,5 +5961,7 @@
 {"ts": "2026-11-07T13:42:03Z", "kind": "browser_skip", "platform": "reddit", "reason": "no cookies"}
 {"ts": "2026-11-07T13:42:03Z", "kind": "browser_skip", "platform": "pinterest", "reason": "no cookies"}
 {"ts": "2026-11-07T13:42:03Z", "kind": "browser_skip", "platform": "fanvue", "reason": "no cookies"}
-{"ts": "2026-11-07T14:13:27Z", "kind": "lint_ok", "files": 5}
-{"ts": "2026-11-07T14:13:28Z", "kind": "inbox_swept", "address": "demetrisvariable@maxxspace.com", "count": 0}
+{"ts": "2026-11-07T14:12:56Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-11-07T14:13:14Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-11-07T14:13:16Z", "kind": "backlog_exec", "id": "T-0080", "rc": 0, "tail": "telegram: dupe blocked"}
+{"ts": "2026-11-07T14:13:16Z", "kind": "escalated_posting", "items": 1, "platforms": "telegram"}
