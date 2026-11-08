@@ -1,33 +1,33 @@
 {
-  "checked": "2026-11-08T00:32:32Z",
+  "checked": "2026-11-08T06:39:51Z",
   "stalled": [],
   "workflows": {
     "generate": {
       "state": "active",
       "last_run": "2026-11-07T18:28:15Z",
-      "age_h": 6.1
+      "age_h": 12.2
     },
     "inbox": {
       "state": "active",
-      "last_run": "2026-11-07T23:59:05Z",
-      "age_h": 0.6
+      "last_run": "2026-11-08T05:40:45Z",
+      "age_h": 1.0
     },
     "keepalive": {
       "state": "active",
-      "last_run": "2026-11-08T00:32:20Z",
+      "last_run": "2026-11-08T06:39:43Z",
       "age_h": 0.0
     },
     "loop": {
       "state": "active",
-      "last_run": "2026-11-08T00:13:51Z",
-      "age_h": 0.3
+      "last_run": "2026-11-08T06:08:44Z",
+      "age_h": 0.5
     },
     "post": {
       "state": "active",
       "last_run": "2026-11-07T21:25:56Z",
-      "age_h": 3.1
+      "age_h": 9.2
     }
   },
-  "cycle": 583,
-  "cycle_ts": "2026-11-08T00:32:32Z"
+  "cycle": 589,
+  "cycle_ts": "2026-11-08T06:39:51Z"
 }
