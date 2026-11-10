@@ -6826,3 +6826,6 @@
 {"ts": "2026-11-10T06:58:57Z", "kind": "video_built", "file": "content/video/mira_clip_20261110_41.mp4", "stills": 4}
 {"ts": "2026-11-10T06:58:58Z", "kind": "voice_batch", "generated": 0, "total": 20}
 {"ts": "2026-11-10T06:58:58Z", "kind": "site_built", "cards": 48, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
+{"ts": "2026-11-10T07:44:57Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-11-10T07:45:18Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-11-10T07:45:19Z", "kind": "deadman_fired", "gap_min": 70}
