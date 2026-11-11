@@ -7184,3 +7184,5 @@
 {"ts": "2026-11-11T12:48:52Z", "kind": "archived", "moved": 0, "older_than_hours": 48.0}
 {"ts": "2026-11-11T12:54:45Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-11-11T12:55:13Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-11-11T12:55:14Z", "kind": "backlog_exec", "id": "T-0080", "rc": 0, "tail": "telegram: dupe blocked"}
+{"ts": "2026-11-11T12:55:14Z", "kind": "escalated_posting", "items": 1, "platforms": "telegram"}
