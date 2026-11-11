@@ -7190,3 +7190,10 @@
 {"ts": "2026-11-11T12:57:39Z", "kind": "site_built", "cards": 48, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
 {"ts": "2026-11-11T13:42:26Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-11-11T13:42:27Z", "kind": "inbox_swept", "address": "demetrisvariable@maxxspace.com", "count": 0}
+{"ts": "2026-11-11T14:04:18Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-11-11T14:14:36Z", "kind": "post_skipped", "platform": "bluesky", "reason": "missing credentials"}
+{"ts": "2026-11-11T14:14:36Z", "kind": "post_skipped", "platform": "mastodon", "reason": "missing credentials"}
+{"ts": "2026-11-11T14:14:36Z", "kind": "browser_skip", "platform": "x", "reason": "no cookies"}
+{"ts": "2026-11-11T14:14:36Z", "kind": "browser_skip", "platform": "reddit", "reason": "no cookies"}
+{"ts": "2026-11-11T14:14:36Z", "kind": "browser_skip", "platform": "pinterest", "reason": "no cookies"}
+{"ts": "2026-11-11T14:14:37Z", "kind": "browser_skip", "platform": "fanvue", "reason": "no cookies"}
