@@ -1,1 +1,1 @@
-python scripts/post_telegram.py
+python tg_repoint.py
