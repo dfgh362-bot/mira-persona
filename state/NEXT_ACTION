@@ -1,1 +1,1 @@
-python scripts/mastodon_confirm.py
+python scripts/post_telegram.py
