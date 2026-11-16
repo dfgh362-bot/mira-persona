@@ -8609,5 +8609,7 @@
 {"ts": "2026-11-16T11:24:11Z", "kind": "escalated_posting", "items": 1, "platforms": "telegram"}
 {"ts": "2026-11-16T11:27:00Z", "kind": "brain", "source": "pollinations", "action": "python scripts/sweep_mail_tm.py"}
 {"ts": "2026-11-16T11:27:00Z", "kind": "site_built", "cards": 48, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
-{"ts": "2026-11-16T13:07:55Z", "kind": "lint_ok", "files": 5}
-{"ts": "2026-11-16T13:07:56Z", "kind": "inbox_swept", "address": "demetrisvariable@maxxspace.com", "count": 0}
+{"ts": "2026-11-16T13:08:08Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-11-16T13:08:52Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-11-16T13:08:53Z", "kind": "issue_opened", "title": "blocked: heartbeat gap 101 min"}
+{"ts": "2026-11-16T13:08:53Z", "kind": "deadman_fired", "gap_min": 101}
