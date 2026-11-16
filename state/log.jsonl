@@ -8602,5 +8602,6 @@
 {"ts": "2026-11-16T10:32:22Z", "kind": "browser_skip", "platform": "reddit", "reason": "no cookies"}
 {"ts": "2026-11-16T10:32:22Z", "kind": "browser_skip", "platform": "pinterest", "reason": "no cookies"}
 {"ts": "2026-11-16T10:32:22Z", "kind": "browser_skip", "platform": "fanvue", "reason": "no cookies"}
-{"ts": "2026-11-16T11:23:47Z", "kind": "lint_ok", "files": 5}
-{"ts": "2026-11-16T11:23:47Z", "kind": "inbox_swept", "address": "demetrisvariable@maxxspace.com", "count": 0}
+{"ts": "2026-11-16T11:23:20Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-11-16T11:24:08Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-11-16T11:24:08Z", "kind": "deadman_fired", "gap_min": 83}
