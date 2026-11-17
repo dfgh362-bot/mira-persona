@@ -11,9 +11,9 @@ python scripts/post_telegram.py
 - T-0012 needs human: onboard telegram: bot via BotFather, token + chat id (ts 2026-10-21T20:36:54Z)
 - T-0013 needs human: onboard reddit: script app OAuth, sub + creds (ts 2026-10-21T21:10:55Z)
 ## LAST COMMIT
-5e73fda7
+a8843ce6
 ## CYCLE
-838
+839
 ## LANES (v3.5)
 | platform | lane | state | blocker | human cost |
 |---|---|---|---|---|
