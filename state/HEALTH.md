@@ -6,9 +6,9 @@ status: **healthy**
 - productive: 25
 - noop: 0
 - ratio: n/a (no noop)
-- funnel (v3.2): 282 captioned unposted, oldest 643.1h (stuck>24h, gen-cap 20)
+- funnel (v3.2): 282 captioned unposted, oldest 646.0h (stuck>24h, gen-cap 20)
 - quota boost (R-05): none (img_free_day=8, video_day=2)
-- commits today: 39 / 400
+- commits today: 1 / 400
 - dependency chain (v3.2 sec.3): cron (external) -> loop run -> deadman -> issue
-- keepalive last check: 2026-11-17T06:56:36Z (state/keepalive.json)
-- generated: 2026-11-17T09:49:25Z
+- keepalive last check: 2026-11-17T12:46:14Z (state/keepalive.json)
+- generated: 2026-11-17T12:46:14Z
