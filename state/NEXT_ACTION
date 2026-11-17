@@ -1,1 +1,1 @@
-python scripts/mastodon_confirm.py
+python scripts/sweep_mail_tm.py
