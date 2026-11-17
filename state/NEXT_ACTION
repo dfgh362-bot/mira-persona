@@ -1,1 +1,1 @@
-python scripts/sweep_mail.tm.py
+python scripts/post_telegram.py
