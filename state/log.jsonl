@@ -9133,3 +9133,5 @@
 {"ts": "2026-11-18T08:04:30Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-11-18T08:10:09Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-11-18T08:10:10Z", "kind": "deadman_fired", "gap_min": 78}
+{"ts": "2026-11-18T08:10:12Z", "kind": "backlog_exec", "id": "T-0080", "rc": 0, "tail": "telegram: dupe blocked"}
+{"ts": "2026-11-18T08:10:12Z", "kind": "escalated_posting", "items": 1, "platforms": "telegram"}
