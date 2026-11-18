@@ -1,1 +1,1 @@
-python scripts/telegram_setup.py
+python scripts/post_telegram.py
