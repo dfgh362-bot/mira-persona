@@ -1,1 +1,1 @@
-python scripts/post_telegram.py
+echo "Please complete the Telegram bot onboarding (BotFather, token, chat_id) to unblock T-0012 and enable future posts on Telegram."
