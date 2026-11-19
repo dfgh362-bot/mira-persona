@@ -9575,10 +9575,5 @@
 {"ts": "2026-11-19T20:47:09Z", "kind": "inbox_swept", "address": "demetrisvariable@maxxspace.com", "count": 0}
 {"ts": "2026-11-19T21:33:38Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-11-19T21:38:36Z", "kind": "lint_ok", "files": 5}
-{"ts": "2026-11-19T21:40:07Z", "kind": "lint_ok", "files": 5}
-{"ts": "2026-11-19T21:40:29Z", "kind": "post_skipped", "platform": "bluesky", "reason": "missing credentials"}
-{"ts": "2026-11-19T21:40:29Z", "kind": "post_skipped", "platform": "mastodon", "reason": "missing credentials"}
-{"ts": "2026-11-19T21:40:29Z", "kind": "browser_skip", "platform": "x", "reason": "no cookies"}
-{"ts": "2026-11-19T21:40:29Z", "kind": "browser_skip", "platform": "reddit", "reason": "no cookies"}
-{"ts": "2026-11-19T21:40:29Z", "kind": "browser_skip", "platform": "pinterest", "reason": "no cookies"}
-{"ts": "2026-11-19T21:40:29Z", "kind": "browser_skip", "platform": "fanvue", "reason": "no cookies"}
+{"ts": "2026-11-19T21:38:39Z", "kind": "backlog_exec", "id": "T-0080", "rc": 0, "tail": "telegram: dupe blocked"}
+{"ts": "2026-11-19T21:38:39Z", "kind": "escalated_posting", "items": 1, "platforms": "telegram"}
