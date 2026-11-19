@@ -9439,3 +9439,6 @@
 {"ts": "2026-11-19T09:55:26Z", "kind": "browser_skip", "platform": "reddit", "reason": "no cookies"}
 {"ts": "2026-11-19T09:55:26Z", "kind": "browser_skip", "platform": "pinterest", "reason": "no cookies"}
 {"ts": "2026-11-19T09:55:26Z", "kind": "browser_skip", "platform": "fanvue", "reason": "no cookies"}
+{"ts": "2026-11-19T10:26:52Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-11-19T10:27:39Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-11-19T10:27:39Z", "kind": "deadman_fired", "gap_min": 67}
