@@ -1,1 +1,1 @@
-python scripts/wire_mastodon.py
+python scripts/post_telegram.py
