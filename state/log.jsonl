@@ -9708,3 +9708,10 @@
 {"ts": "2026-11-20T08:53:24Z", "kind": "site_built", "cards": 48, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
 {"ts": "2026-11-20T09:49:00Z", "kind": "lint_ok", "files": 5}
 {"ts": "2026-11-20T09:49:34Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-11-20T09:50:31Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-11-20T09:50:57Z", "kind": "post_skipped", "platform": "bluesky", "reason": "missing credentials"}
+{"ts": "2026-11-20T09:50:57Z", "kind": "post_skipped", "platform": "mastodon", "reason": "missing credentials"}
+{"ts": "2026-11-20T09:50:57Z", "kind": "browser_skip", "platform": "x", "reason": "no cookies"}
+{"ts": "2026-11-20T09:50:57Z", "kind": "browser_skip", "platform": "reddit", "reason": "no cookies"}
+{"ts": "2026-11-20T09:50:57Z", "kind": "browser_skip", "platform": "pinterest", "reason": "no cookies"}
+{"ts": "2026-11-20T09:50:57Z", "kind": "browser_skip", "platform": "fanvue", "reason": "no cookies"}
