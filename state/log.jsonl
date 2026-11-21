@@ -9884,3 +9884,10 @@
 {"ts": "2026-11-21T14:15:47Z", "kind": "video_built", "file": "content/video/mira_clip_20261121_62.mp4", "stills": 4}
 {"ts": "2026-11-21T14:15:51Z", "kind": "voice_batch", "generated": 0, "total": 20}
 {"ts": "2026-11-21T14:15:51Z", "kind": "site_built", "cards": 48, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
+{"ts": "2026-11-21T16:34:52Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-11-21T16:35:30Z", "kind": "post_skipped", "platform": "bluesky", "reason": "missing credentials"}
+{"ts": "2026-11-21T16:35:30Z", "kind": "post_skipped", "platform": "mastodon", "reason": "missing credentials"}
+{"ts": "2026-11-21T16:35:30Z", "kind": "browser_skip", "platform": "x", "reason": "no cookies"}
+{"ts": "2026-11-21T16:35:30Z", "kind": "browser_skip", "platform": "reddit", "reason": "no cookies"}
+{"ts": "2026-11-21T16:35:31Z", "kind": "browser_skip", "platform": "pinterest", "reason": "no cookies"}
+{"ts": "2026-11-21T16:35:31Z", "kind": "browser_skip", "platform": "fanvue", "reason": "no cookies"}
