@@ -10259,3 +10259,5 @@
 {"ts": "2026-11-25T02:01:04Z", "kind": "video_built", "file": "content/video/mira_clip_20261125_69.mp4", "stills": 3}
 {"ts": "2026-11-25T02:01:07Z", "kind": "voice_batch", "generated": 0, "total": 20}
 {"ts": "2026-11-25T02:01:07Z", "kind": "site_built", "cards": 48, "out": "/home/runner/work/mira-persona/mira-persona/site/index.html", "tier": "R-03 3-tier"}
+{"ts": "2026-11-25T02:56:17Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-11-25T02:56:18Z", "kind": "inbox_swept", "address": "demetrisvariable@maxxspace.com", "count": 0}
