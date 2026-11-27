@@ -10386,3 +10386,10 @@
 {"ts": "2026-11-27T15:55:25Z", "kind": "keepalive_ok", "workflows": 5}
 {"ts": "2026-11-27T15:55:25Z", "kind": "health_reported", "status": "healthy", "p": 25, "n": 0, "unposted": 364}
 {"ts": "2026-11-27T15:55:25Z", "kind": "archived", "moved": 0, "older_than_hours": 48.0}
+{"ts": "2026-11-27T18:39:32Z", "kind": "lint_ok", "files": 5}
+{"ts": "2026-11-27T18:39:52Z", "kind": "post_skipped", "platform": "bluesky", "reason": "missing credentials"}
+{"ts": "2026-11-27T18:39:52Z", "kind": "post_skipped", "platform": "mastodon", "reason": "missing credentials"}
+{"ts": "2026-11-27T18:39:52Z", "kind": "browser_skip", "platform": "x", "reason": "no cookies"}
+{"ts": "2026-11-27T18:39:52Z", "kind": "browser_skip", "platform": "reddit", "reason": "no cookies"}
+{"ts": "2026-11-27T18:39:53Z", "kind": "browser_skip", "platform": "pinterest", "reason": "no cookies"}
+{"ts": "2026-11-27T18:39:53Z", "kind": "browser_skip", "platform": "fanvue", "reason": "no cookies"}
